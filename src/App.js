@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Outlet } from "react-router-dom";
+import BottomBar from "./components/bottombar/BottomBar";
+import Topbar from "./components/topbar/Topbar";
+import "./App.scss";
+import appContext from "./utils/appContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <appContext.Provider value={{ user: { name: "kishan", email: "kisja"}}}>
+    <div className="h-full w-full flex flex-col">
+      <Topbar />
+      <div className="flex-grow min-h-0">
+        <Outlet></Outlet>
+      </div>
+      <BottomBar />
     </div>
+    </appContext.Provider>
   );
 }
 
