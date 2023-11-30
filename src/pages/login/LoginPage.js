@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
-import { Link } from "react-router-dom";
-const { Text, Title } = Typography;
+import { useNavigate, Link } from "react-router-dom";
+import { Button, Form, Input, Typography } from "antd";
+const { Title } = Typography;
 
 const LoginPage = () => {
   const navigate = useNavigate();
