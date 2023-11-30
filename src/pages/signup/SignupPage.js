@@ -1,19 +1,18 @@
 import signupBackground from "../../assets/images/signupBackground.svg";
 import appLogo from "../../assets/images/appLogo.svg";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Typography, Button } from "antd";
 import { Link } from "react-router-dom";
+
+const { Title, Text } = Typography;
 
 const SignupPage = () => {
   return (
     <div className="h-full w-full flex relative">
       <div className="m-auto flex flex-col p-5 items-center">
-        <div className="h-44 w-44">
+        <div className="h-36 w-36">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
-        <Typography variant="h3" gutterBottom>
-          PurrfectMate
-        </Typography>
+        <Title className="mt-2 text-blue-600">PurrfectMate</Title>
         <div className="mt-5">
           <img
             className="h-full w-full"
@@ -21,21 +20,15 @@ const SignupPage = () => {
             alt="girl with a dog"
           />
         </div>
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth={true}
-          className="mt-10"
-        >
+        <Button type="primary" block className="mt-5" size="large">
           Create an Account
         </Button>
-        <Typography variant="body1" align="center" className="mt-4">
+        <Text className="mt-5">
           Already have an account? <Link to="/login">Login</Link>
-        </Typography>
-        <div className="absolute bottom-0 left-0 w-full p-2">
-          <Typography variant="body1" align="center">
-            Made with ❤️ by for your furry friends
-          </Typography>
+        </Text>
+
+        <div className="absolute bottom-0 left-0 w-full p-2 text-center">
+          <Text> Made with ❤️ by for your furry friends</Text>
         </div>
       </div>
     </div>
