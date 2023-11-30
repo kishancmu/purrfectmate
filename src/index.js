@@ -5,6 +5,8 @@ import "./index.scss";
 import App from "./App";
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
+import SignupPage from "./pages/signup/SignupPage";
+import LoginPage from "./pages/login/LoginPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -13,10 +15,18 @@ const appRouter = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <HomePage />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
   },
 ]);
 
