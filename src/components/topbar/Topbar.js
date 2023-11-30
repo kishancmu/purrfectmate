@@ -1,11 +1,12 @@
-import appContext from "../../utils/appContext";
-import { useContext } from "react";
+import { Typography } from "antd";
+const { Title } = Typography;
 
 const Topbar = () => {
-  const { user } = useContext(appContext);
   return (
-    <div className="h-12 bg-cyan-500 flex justify-center items-center">
-      PurrfectMate {user.name}
+    <div className="h-12 bg-blue-500 flex justify-center items-center shadow-lg">
+      <Title level={3} className="m-0 text-white">
+        PurrfectMate
+      </Title>
     </div>
   );
 };

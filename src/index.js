@@ -5,17 +5,25 @@ import "./index.scss";
 import App from "./App";
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
-import SignupPage from "./pages/signup/SignupPage";
 import LoginPage from "./pages/login/LoginPage";
+import SignupPageAccountScreen from "./pages/signup/SignupPageAccountScreen";
+import SignupPagePetScreen from "./pages/signup/SignupPagePetScreen";
+import SignupPageUserScreen from "./pages/signup/SignupPageUserScreen";
+import MainPage from "./pages/main/MainPage";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/main",
+    element: <MainPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        path: "home",
         element: <HomePage />,
       },
     ],
@@ -23,10 +31,25 @@ const appRouter = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/signup",
-    element: <SignupPage />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <SignupPageAccountScreen />,
+      },
+      {
+        path: "pet",
+        element: <SignupPagePetScreen />,
+      },
+      {
+        path: "user",
+        element: <SignupPageUserScreen />,
+      },
+    ],
   },
 ]);
 

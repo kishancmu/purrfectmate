@@ -2,12 +2,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button, Form, Input, Typography } from "antd";
 const { Title } = Typography;
 
-const LoginPage = () => {
+const SignupPageUserScreen = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Success:", values);
-    navigate("/main/home");
+    navigate("/");
   };
 
   return (
@@ -55,4 +55,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPageUserScreen;
