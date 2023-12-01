@@ -24,7 +24,7 @@ const BottomBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-around bg-white h-20 border-solid border-t-1 border-r-0 border-l-0 border-b-0  border-gray-200">
+    <div className="flex items-center justify-around bg-white h-20 border-solid border-r-0 border-l-0 border-b-0  border-gray-100">
       <div
         className={"flex flex-col justify-center items-center"}
         onClick={() => handleTabClick("home")}
