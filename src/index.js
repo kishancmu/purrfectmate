@@ -12,7 +12,7 @@ import ResetPasswordPage from "./pages/login/ResetPasswordPage";
 import PlayDatePage from "./pages/playdate/PlayDatePage";
 import AccountPage from "./pages/account/AccountPage";
 import NotificationsPage from "./pages/notification/NotificationsPage";
-import ChatsPage from "./pages/chat/ChatsPage";
+import ChatsPage from "./pages/chat/Chatspage";
 
 const appRouter = createBrowserRouter([
   {
