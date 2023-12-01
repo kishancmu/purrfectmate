@@ -6,10 +6,9 @@ import App from "./App";
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
-import SignupPageAccountScreen from "./pages/signup/SignupPageAccountScreen";
-import SignupPagePetScreen from "./pages/signup/SignupPagePetScreen";
-import SignupPageUserScreen from "./pages/signup/SignupPageUserScreen";
+import SignupPage from "./pages/signup/SignupPage";
 import MainPage from "./pages/main/MainPage";
+import ResetPasswordPage from "./pages/login/ResetPasswordPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -35,21 +34,13 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/signup",
+    element: <SignupPage />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "",
-        element: <SignupPageAccountScreen />,
-      },
-      {
-        path: "pet",
-        element: <SignupPagePetScreen />,
-      },
-      {
-        path: "user",
-        element: <SignupPageUserScreen />,
-      },
-    ],
+  },
+  {
+    path: "/forgotpassword",
+    element: <ResetPasswordPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

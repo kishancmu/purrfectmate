@@ -1,55 +1,157 @@
-import { useNavigate, Link } from "react-router-dom";
-import { Button, Form, Input, Typography } from "antd";
-const { Title } = Typography;
+import { useState } from "react";
+import {
+  Button,
+  Form,
+  Input,
+  Typography,
+  Select,
+  message,
+  Upload,
+  InputNumber,
+} from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+const { Title, Text } = Typography;
 
-const SignupPageUserScreen = () => {
-  const navigate = useNavigate();
+const getBase64 = (img, callback) => {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+const beforeUpload = (file) => {
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  if (!isJpgOrPng) {
+    message.error("You can only upload JPG/PNG file!");
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error("Image must smaller than 2MB!");
+  }
+  return isJpgOrPng && isLt2M;
+};
+
+const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    navigate("/");
+
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
+
+  const handleChange = (info) => {
+    if (info.file.status === "uploading") {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (url) => {
+        setLoading(false);
+        setImageUrl(url);
+      });
+    }
   };
+
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
 
   return (
     <div className="h-full w-full">
-      <div className="h-full w-full flex flex-col p-5">
-        <Title className="mt-0">Login to your account</Title>
-        <Form
-          name="normal_login"
-          form={form}
-          onFinish={onFinish}
-          layout="vertical"
-          scrollToFirstError={true}
-          className="flex flex-col h-full"
-        >
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[{ required: true, message: "Username cannot be empty!" }]}
+      <div className="h-full w-full flex flex-col">
+        <Title className="mt-0">And a little about you</Title>
+        <Text>
+          Please add a profile photo of yours taken in a well lit environment
+        </Text>
+        <div className="flex-grow min-h-0 mt-4">
+          <Form
+            name="normal_login"
+            form={form}
+            onFinish={(values) => onContinueClick(values, 4)}
+            layout="vertical"
+            scrollToFirstError={true}
+            className="flex flex-col h-full"
           >
-            <Input placeholder="Enter Username" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Password cannot be empty!" }]}
-          >
-            <Input.Password placeholder="Enter Password" size="large" />
-          </Form.Item>
-          <div className="text-center">
-            <Link to="/forgotpassword">Forgot Password?</Link>
-          </div>
-          <Form.Item className="mt-auto mb-2">
-            <Button type="primary" htmlType="submit" size="large" block>
-              Log In
-            </Button>
-          </Form.Item>
-          <Form.Item className="mb-0">
-            <Button size="large" block onClick={() => navigate("/")}>
-              Back
-            </Button>
-          </Form.Item>
-        </Form>
+            <div className="flex-grow min-h-0 overflow-y-auto">
+              <Upload
+                name="avatar"
+                listType="picture-circle"
+                className="avatar-uploader text-center"
+                showUploadList={false}
+                action=""
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+              >
+                {imageUrl ? (
+                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
+              <Form.Item
+                label="Name"
+                name="name"
+                rules={[{ required: true, message: "Name is required" }]}
+              >
+                <Input placeholder="Enter name" size="large" />
+              </Form.Item>
+              <Form.Item
+                label="Age"
+                name="age"
+                rules={[{ required: true, message: "Age is required" }]}
+              >
+                <InputNumber min={18} max={120} defaultValue={0} size="large" />
+              </Form.Item>
+
+              <Form.Item
+                name="gender"
+                label="Gender"
+                rules={[
+                  {
+                    required: true,
+                    message: "Gender is required",
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select a option and change input text above"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
+                    { value: "other", label: "Other" },
+                  ]}
+                ></Select>
+              </Form.Item>
+              <Form.Item
+                label="Location"
+                name="location"
+                rules={[{ required: true, message: "Location is required" }]}
+              >
+                <Input placeholder="Enter locaiton" size="large" />
+              </Form.Item>
+            </div>
+            <div className="pt-2">
+              <Form.Item className="mt-auto mb-2">
+                <Button type="primary" htmlType="submit" size="large" block>
+                  Continue
+                </Button>
+              </Form.Item>
+              <Form.Item className="mb-0">
+                <Button size="large" block onClick={() => onBackClick(2)}>
+                  Back
+                </Button>
+              </Form.Item>
+            </div>
+          </Form>
+        </div>
       </div>
     </div>
   );

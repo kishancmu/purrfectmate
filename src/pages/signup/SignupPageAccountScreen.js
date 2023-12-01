@@ -1,23 +1,20 @@
-import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Typography } from "antd";
 const { Title } = Typography;
 
-const SignupPageAccountScreen = () => {
-  const navigate = useNavigate();
+const SignupPageAccountScreen = ({
+  onContinueClick,
+  onBackClick,
+  setScreen,
+}) => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    navigate("/signup/pet");
-  };
-
   return (
     <div className="h-full w-full">
-      <div className="h-full w-full flex flex-col p-5">
+      <div className="h-full w-full flex flex-col">
         <Title className="mt-0">Create your Account</Title>
         <Form
           name="normal_login"
           form={form}
-          onFinish={onFinish}
+          onFinish={(values) => onContinueClick(values, 2)}
           layout="vertical"
           scrollToFirstError={true}
           className="flex flex-col h-full"
@@ -60,7 +57,7 @@ const SignupPageAccountScreen = () => {
             </Button>
           </Form.Item>
           <Form.Item className="mb-0">
-            <Button size="large" block onClick={() => navigate(-1)}>
+            <Button size="large" block onClick={onBackClick}>
               Back
             </Button>
           </Form.Item>

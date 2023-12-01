@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Typography, Select, message, Upload } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -22,8 +21,7 @@ const beforeUpload = (file) => {
   return isJpgOrPng && isLt2M;
 };
 
-const SignupPagePetScreen = () => {
-  const navigate = useNavigate();
+const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
@@ -54,21 +52,19 @@ const SignupPagePetScreen = () => {
     </div>
   );
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    navigate("/signup/user");
-  };
-
   return (
     <div className="h-full w-full">
-      <div className="h-full w-full flex flex-col p-5">
+      <div className="h-full w-full flex flex-col">
         <Title className="mt-0">Tell us about your pet</Title>
-
-        <div className="flex-grow min-h-0">
+        <Text>
+          Please add your pet profile photo below and make sure the photo is
+          taken in a wel lit environment
+        </Text>
+        <div className="flex-grow min-h-0 mt-5">
           <Form
             name="normal_login"
             form={form}
-            onFinish={onFinish}
+            onFinish={(values) => onContinueClick(values, 3)}
             layout="vertical"
             scrollToFirstError={true}
             className="flex flex-col h-full"
@@ -110,10 +106,8 @@ const SignupPagePetScreen = () => {
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -131,10 +125,9 @@ const SignupPagePetScreen = () => {
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "boxer", label: "Boxer" },
+                    { value: "labrador", label: "Labrador" },
+                    { value: "pug", label: "Pug" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -152,10 +145,9 @@ const SignupPagePetScreen = () => {
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "small", label: "Small" },
+                    { value: "medium", label: "Medium" },
+                    { value: "large", label: "Large" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -173,10 +165,10 @@ const SignupPagePetScreen = () => {
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "0", label: "Less than 1 year" },
+                    { value: "1", label: "1" },
+                    { value: "2", label: "2" },
+                    { value: "3", label: "3" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -194,16 +186,15 @@ const SignupPagePetScreen = () => {
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "low", label: "Low" },
+                    { value: "medium", label: "Medium" },
+                    { value: "high", label: "High" },
                   ]}
                 ></Select>
               </Form.Item>
               <Form.Item
-                name="playstyle"
-                label="PlayStyle"
+                name="personality"
+                label="Personality"
                 rules={[
                   {
                     required: true,
@@ -211,14 +202,32 @@ const SignupPagePetScreen = () => {
                 ]}
               >
                 <Select
-                  placeholder="Select PlayStyle"
+                  placeholder="Select Personality"
                   allowClear
                   size="large"
                   options={[
-                    { value: "jack", label: "Jack" },
-                    { value: "lucy", label: "Lucy" },
-                    { value: "Yiminghe", label: "yiminghe" },
-                    { value: "disabled", label: "Disabled", disabled: true },
+                    { value: "active", label: "Active" },
+                    { value: "playful", label: "Playful" },
+                    { value: "goofy", label: "Goofy" },
+                  ]}
+                ></Select>
+              </Form.Item>
+              <Form.Item
+                name="vaccination"
+                label="Vaccination"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select vaccination"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -231,7 +240,7 @@ const SignupPagePetScreen = () => {
                 </Button>
               </Form.Item>
               <Form.Item className="mb-0">
-                <Button size="large" block onClick={() => navigate(-1)}>
+                <Button size="large" block onClick={() => onBackClick(1)}>
                   Back
                 </Button>
               </Form.Item>
