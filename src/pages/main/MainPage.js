@@ -4,7 +4,7 @@ import Topbar from "../../components/topbar/Topbar";
 
 function MainPage() {
   return (
-    <div className="h-full w-full flex flex-col bg-gray-50">
+    <div className="h-full w-full flex flex-col">
       <Topbar />
       <div className="flex-grow min-h-0">
         <Outlet></Outlet>

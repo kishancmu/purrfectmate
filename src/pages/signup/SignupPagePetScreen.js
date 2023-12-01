@@ -1,6 +1,6 @@
 import { Button, Form, Input, Typography, Select, message, Upload } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const { Title, Text } = Typography;
 
