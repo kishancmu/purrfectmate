@@ -9,9 +9,8 @@ import {
   IoNotifications,
   IoPersonCircleOutline,
   IoPersonCircle,
-  IoHeartOutline,
-  IoHeart,
 } from "react-icons/io5";
+import { PiBone, PiBoneFill } from "react-icons/pi";
 
 const BottomBar = () => {
   const [pathName, setPathName] = useState("home");
@@ -66,9 +65,9 @@ const BottomBar = () => {
         onClick={() => handleTabClick("playdate")}
       >
         {pathName === "playdate" ? (
-          <IoHeart className="text-3xl text-blue-500" />
+          <PiBoneFill className="text-3xl text-blue-500" />
         ) : (
-          <IoHeartOutline className="text-3xl text-gray-500" />
+          <PiBone className="text-3xl text-gray-500" />
         )}
         <span
           className={
