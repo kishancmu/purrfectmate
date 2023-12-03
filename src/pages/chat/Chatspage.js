@@ -1,5 +1,4 @@
 import { Tabs } from "antd";
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import PrivateChatList from "./PrivateChatList";
 import PackChatList from "./PackChatList";
 

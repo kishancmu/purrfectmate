@@ -1,4 +1,3 @@
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import { IoHeart } from "react-icons/io5";
 import { PiBoneFill } from "react-icons/pi";
 import { FaShieldDog } from "react-icons/fa6";
