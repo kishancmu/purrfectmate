@@ -12,7 +12,7 @@ function PrivateChatList() {
         <Title level={5} className="m-0 ml-3 text-gray-900">
           Jane
         </Title>
-        <div className="h-full flex ml-auto">
+        <div className="h-full flex ml-auto items-center">
           <IoChevronForward className="text-2xl text-gray-700" />
         </div>
       </div>
@@ -24,7 +24,7 @@ function PrivateChatList() {
         <Title level={5} className="m-0 ml-3 text-gray-900">
           Jake
         </Title>
-        <div className="h-full flex ml-auto">
+        <div className="h-full flex ml-auto items-center">
           <IoChevronForward className="text-2xl text-gray-700" />
         </div>
       </div>
