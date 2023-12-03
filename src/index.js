@@ -16,6 +16,10 @@ import NotificationsPage from "./pages/notification/NotificationsPage";
 import StyleGuidePage from "./pages/styleguide/StyleGuidePage";
 import MatchSettings from "./components/matchSettings/MatchSettings";
 import ChatsPage from "./pages/chat/Chatspage";
+import PlayDateProfile from "./pages/playdate/PlayDateProfile";
+import SchedulePlaydate from "./pages/playdate/SchedulePlaydate";
+import PastPlayDateDetail from "./pages/playdate/PastPlayDateDetail";
+import RatePlayDate from "./pages/playdate/RatePlayDate";
 
 const appRouter = createBrowserRouter([
   {
@@ -77,7 +81,28 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "playdate",
-        element: <PlayDatePage />,
+        children: [
+          {
+            path: "",
+            element: <PlayDatePage />,
+          },
+          {
+            path: "profile/:id",
+            element: <PlayDateProfile />,
+          },
+          {
+            path: "profile/:id/schedule",
+            element: <SchedulePlaydate />,
+          },
+          {
+            path: "past/:id",
+            element: <PastPlayDateDetail />,
+          },
+          {
+            path: "past/:id/rate",
+            element: <RatePlayDate />,
+          },
+        ],
       },
     ],
   },

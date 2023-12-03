@@ -1,32 +1,14 @@
-import { Tabs, Segmented } from "antd";
+import { Button, Segmented } from "antd";
 import UpcomingPlayDate from "./UpcomingPlayDate";
 import MyMatches from "./MyMatches";
-import PastPlayDate from "./PastPlayDate";
+import PastPlayDate from "./PastPlayDateList";
 import { useState } from "react";
 
-const items = [
-  {
-    key: "1",
-    label: "Upcoming",
-    children: <UpcomingPlayDate />,
-  },
-  {
-    key: "2",
-    label: "My Matches",
-    children: <MyMatches />,
-  },
-  {
-    key: "3",
-    label: "Past",
-    children: <PastPlayDate />,
-  },
-];
-
 const PlayDatePage = () => {
-  const [isListView, setIsListView] = useState(false);
+  const [isListView, setIsListView] = useState(2);
   return (
-    <div className="h-full w-full flex flex-col">
-      <div className="mt-4 flex justify-center">
+    <div className="h-full w-full flex flex-col p-4">
+      <div className="flex justify-center">
         <Segmented
           options={[
             { label: "Upcoming", value: 1 },
@@ -38,6 +20,14 @@ const PlayDatePage = () => {
           defaultValue={2}
         />
       </div>
+      <div className="flex flex-grow min-h-0">
+        {isListView === 1 && <UpcomingPlayDate />}
+        {isListView === 2 && <MyMatches />}
+        {isListView === 3 && <PastPlayDate />}
+      </div>
+      <Button type="primary" size="large">
+        Create Pack Playdate
+      </Button>
     </div>
   );
 };

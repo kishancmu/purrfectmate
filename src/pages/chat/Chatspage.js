@@ -3,19 +3,6 @@ import { useState } from "react";
 import PrivateChatList from "./PrivateChatList";
 import PackChatList from "./PackChatList";
 
-const items = [
-  {
-    key: "1",
-    label: "Private",
-    children: <PrivateChatList />,
-  },
-  {
-    key: "2",
-    label: "Pack",
-    children: <PackChatList />,
-  },
-];
-
 const ChatsPage = () => {
   const [isListView, setIsListView] = useState(1);
   return (
@@ -28,10 +15,12 @@ const ChatsPage = () => {
           ]}
           onChange={(value) => setIsListView(value)}
           size="large"
-          defaultValue={2}
+          defaultValue={1}
         />
       </div>
-      <div className="flex-grow min-h-0"></div>
+      <div className="flex-grow min-h-0 pt-5">
+        {isListView === 1 ? <PrivateChatList /> : <PackChatList />}
+      </div>
     </div>
   );
 };
