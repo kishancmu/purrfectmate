@@ -23,15 +23,15 @@ const BottomBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-around bg-white h-20 border-solid border-r-0 border-l-0 border-b-0  border-gray-100">
+    <div className="flex items-center justify-center gap-10 bg-white min-h-[5rem] h-20 border-solid border-r-0 border-l-0 border-b-0  border-gray-100">
       <div
         className={"flex flex-col justify-center items-center"}
         onClick={() => handleTabClick("home")}
       >
         {pathName === "home" ? (
-          <IoPaw className="text-3xl text-blue-500" />
+          <IoPaw className="text-4xl text-blue-500" />
         ) : (
-          <IoPawOutline className="text-3xl text-gray-500" />
+          <IoPawOutline className="text-4xl text-gray-500" />
         )}
         <span
           className={
@@ -47,9 +47,9 @@ const BottomBar = () => {
         onClick={() => handleTabClick("chats")}
       >
         {pathName === "chats" ? (
-          <IoChatbubbles className="text-3xl text-blue-500" />
+          <IoChatbubbles className="text-4xl text-blue-500" />
         ) : (
-          <IoChatbubblesOutline className="text-3xl text-gray-500" />
+          <IoChatbubblesOutline className="text-4xl text-gray-500" />
         )}
         <span
           className={
@@ -65,9 +65,9 @@ const BottomBar = () => {
         onClick={() => handleTabClick("playdate")}
       >
         {pathName === "playdate" ? (
-          <PiBoneFill className="text-3xl text-blue-500" />
+          <PiBoneFill className="text-4xl text-blue-500" />
         ) : (
-          <PiBone className="text-3xl text-gray-500" />
+          <PiBone className="text-4xl text-gray-500" />
         )}
         <span
           className={
@@ -78,33 +78,15 @@ const BottomBar = () => {
           Playdates
         </span>
       </div>
-      <div
-        className="flex flex-col justify-center items-center"
-        onClick={() => handleTabClick("notifications")}
-      >
-        {pathName === "notifications" ? (
-          <IoNotifications className="text-3xl text-blue-500" />
-        ) : (
-          <IoNotificationsOutline className="text-3xl text-gray-500" />
-        )}
-        <span
-          className={
-            "text-sm " +
-            (pathName === "notifications" ? "text-blue-600" : "text-gray-600")
-          }
-        >
-          Notifications
-        </span>
-      </div>
 
       <div
         className="flex flex-col justify-center items-center"
         onClick={() => handleTabClick("account")}
       >
         {pathName === "account" ? (
-          <IoPersonCircle className="text-3xl text-blue-500" />
+          <IoPersonCircle className="text-4xl text-blue-500" />
         ) : (
-          <IoPersonCircleOutline className="text-3xl text-gray-500" />
+          <IoPersonCircleOutline className="text-4xl text-gray-500" />
         )}
         <span
           className={

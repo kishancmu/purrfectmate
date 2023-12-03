@@ -1,4 +1,5 @@
-import { Tabs } from "antd";
+import { Tabs, Segmented } from "antd";
+import { useState } from "react";
 import PrivateChatList from "./PrivateChatList";
 import PackChatList from "./PackChatList";
 
@@ -16,20 +17,21 @@ const items = [
 ];
 
 const ChatsPage = () => {
+  const [isListView, setIsListView] = useState(1);
   return (
-    <div className="h-full w-full">
-      <div className="h-full w-full flex flex-col">
-        <div className="flex-grow min-h-0">
-          <div className="h-full p-3">
-            <Tabs
-              size="large"
-              defaultActiveKey="1"
-              items={items}
-              className="h-full"
-            />
-          </div>
-        </div>
+    <div className="h-full w-full flex flex-col p-4">
+      <div className="text-center">
+        <Segmented
+          options={[
+            { label: "Private", value: 1 },
+            { label: "Pack", value: 2 },
+          ]}
+          onChange={(value) => setIsListView(value)}
+          size="large"
+          defaultValue={2}
+        />
       </div>
+      <div className="flex-grow min-h-0"></div>
     </div>
   );
 };

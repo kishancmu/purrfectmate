@@ -6,7 +6,7 @@ const { Title } = Typography;
 const SecondaryTopbar = ({ title, showBackButton }) => {
   const navigate = useNavigate();
   return (
-    <div className="h-16 bg-blue-500 flex justify-center items-center shadow-lg relative">
+    <div className="min-h-[64px] h-16 bg-blue-500 flex justify-center items-center shadow-lg relative">
       {showBackButton && (
         <div
           className="absolute left-0 top-0 h-full flex items-center pr-4"
