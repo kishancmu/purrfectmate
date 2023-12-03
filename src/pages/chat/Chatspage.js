@@ -20,7 +20,6 @@ const ChatsPage = () => {
   return (
     <div className="h-full w-full">
       <div className="h-full w-full flex flex-col">
-        <SecondaryTopbar title={"Chats"} showBackButton={false} />
         <div className="flex-grow min-h-0">
           <div className="h-full p-3">
             <Tabs

@@ -9,7 +9,6 @@ const NotificationsPage = () => {
   return (
     <div className="h-full w-full">
       <div className="h-full w-full flex flex-col">
-        <SecondaryTopbar title={"Notifications"} showBackButton={false} />
         <div className="flex-grow min-h-0 p-3">
           <div className="h-full overflow-y-auto">
             <div className="flex items-center bg-blue-100 p-2 rounded-md ">
