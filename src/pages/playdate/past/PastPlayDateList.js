@@ -1,5 +1,7 @@
 import { Avatar, Typography, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import PastPlayDateListShimmer from "./PastPlayDateListShimmer";
 import {
   IoChevronForward,
   IoPersonOutline,
@@ -11,7 +13,17 @@ const { Title, Text } = Typography;
 
 const PastPlayDateList = () => {
   const navigate = useNavigate();
-  return (
+  const [showComponent, setShowComponent] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowComponent(true);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, []);
+  return !showComponent ? (
+    <PastPlayDateListShimmer />
+  ) : (
     <div className="h-full w-full flex flex-col overflow-y-auto">
       {Array(5)
         .fill("")

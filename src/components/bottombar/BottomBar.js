@@ -16,13 +16,12 @@ const BottomBar = () => {
   const navigate = useNavigate();
 
   const handleTabClick = (pathName) => {
-    console.log("Tab clicked");
     navigate("/main/" + pathName);
     setPathName(pathName);
   };
 
   return (
-    <div className="flex items-center justify-center gap-10 bg-white min-h-[5rem] h-20 border border-solid border-r-0 border-l-0 border-b-0  border-gray-200">  
+    <div className="flex items-center justify-center gap-10 bg-white min-h-[5rem] h-20 border border-solid border-r-0 border-l-0 border-b-0  border-gray-200">
       <div
         className={"flex flex-col justify-center items-center"}
         onClick={() => handleTabClick("home")}

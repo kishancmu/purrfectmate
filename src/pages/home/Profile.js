@@ -1,11 +1,12 @@
 import petImage from "../../assets/images/petProfileImage.jpeg";
-import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
-import { Avatar, Typography, Button, Rate, Image } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Typography, Button, Rate, Image } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 const { Text } = Typography;
 
 const Profile = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-full w-full flex flex-col">
       <SecondaryTopbar title={"Coco Profile"} showBackButton={true} />
@@ -93,6 +94,10 @@ const Profile = () => {
           danger
           icon={<CloseOutlined />}
           size="large"
+          onClick={() => {
+            navigate(-1);
+            console.log("clicked");
+          }}
         >
           Dislike
         </Button>
@@ -101,6 +106,9 @@ const Profile = () => {
           className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2"
           icon={<HeartFilled />}
           size="large"
+          onClick={() => {
+            navigate(-1);
+          }}
         >
           Like
         </Button>

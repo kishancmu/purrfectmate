@@ -26,6 +26,7 @@ const PetProfile = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
+  const [messageApi, contextHolder] = message.useMessage();
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
       setLoading(true);
@@ -53,14 +54,28 @@ const PetProfile = () => {
     </div>
   );
 
+  const success = () => {
+    messageApi
+      .open({
+        type: "loading",
+        content: "Saving in progress..",
+        duration: 1.5,
+      })
+      .then(() => message.success("Profile saved successfully", 2.5));
+  };
+
   return (
     <div className="h-full w-full flex flex-col">
+      {contextHolder}
       <SecondaryTopbar title={"Pet Profile"} showBackButton={true} />
       <div className="flex-grow min-h-0 p-4">
         <Form
           name="normal_login"
           form={form}
-          onFinish={(values) => console.log(values)}
+          onFinish={(values) => {
+            console.log(values);
+            success();
+          }}
           layout="vertical"
           scrollToFirstError={true}
           className="flex flex-col h-full"

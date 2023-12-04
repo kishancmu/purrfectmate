@@ -6,6 +6,8 @@ import { CreditCardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import ProfileCard from "./ProfileCard";
 import ProfileList from "./ProfileList";
 import appContext from "../../utils/appContext";
+import ProfileCardShimmer from "./ProfileCardShimmer";
+import ProfileListShimmer from "./ProfileListShimmer";
 
 const HomePage = () => {
   const { homePageTab, setHomePageTab } = useContext(appContext);

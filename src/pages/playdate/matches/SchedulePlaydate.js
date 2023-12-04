@@ -35,7 +35,7 @@ const SchedulePlaydate = ({ onContinueClick, onBackClick }) => {
                 className="basis-1/2"
                 rules={[{ required: true, message: "Date is required" }]}
               >
-                <DatePicker className="w-full" />
+                <DatePicker className="w-full" size="large" />
               </Form.Item>
               <Form.Item
                 label="Time"
@@ -43,7 +43,12 @@ const SchedulePlaydate = ({ onContinueClick, onBackClick }) => {
                 className="basis-1/2"
                 rules={[{ required: true, message: "Time is required" }]}
               >
-                <TimePicker use12Hours format="h:mm a" className="w-full" />
+                <TimePicker
+                  use12Hours
+                  format="h:mm a"
+                  className="w-full"
+                  size="large"
+                />
               </Form.Item>
             </div>
             <Form.Item label="Notes" name="notes" className="mt-1">
@@ -52,6 +57,7 @@ const SchedulePlaydate = ({ onContinueClick, onBackClick }) => {
                 placeholder="Write your notes for playdate"
                 showCount
                 maxLength={100}
+                size="large"
               />
             </Form.Item>
           </div>

@@ -1,17 +1,36 @@
-import { Typography, Input, Button, Divider, Select, Form, Slider } from "antd";
-import { useNavigate } from "react-router-dom";
+import {
+  Typography,
+  Input,
+  Button,
+  Divider,
+  Select,
+  Form,
+  Slider,
+  message,
+} from "antd";
+
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 
 const { Text } = Typography;
 
 const MatchSettings = () => {
-  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   const onFormSubmit = (values) => {
     console.log(values);
-    navigate(-1);
+    success();
+  };
+  const success = () => {
+    messageApi
+      .open({
+        type: "loading",
+        content: "Saving in progress..",
+        duration: 1.5,
+      })
+      .then(() => message.success("Match Settings save successfully", 2.5));
   };
   return (
     <div className="h-full w-full">
+      {contextHolder}
       <div className="h-full w-full flex flex-col">
         <SecondaryTopbar title={"Match Settings"} showBackButton={true} />
         <div className="flex-grow min-h-0 p-4">

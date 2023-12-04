@@ -35,6 +35,7 @@ const UserProfile = ({ onContinueClick, onBackClick }) => {
 
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -63,15 +64,28 @@ const UserProfile = ({ onContinueClick, onBackClick }) => {
     </div>
   );
 
+  const success = () => {
+    messageApi
+      .open({
+        type: "loading",
+        content: "Saving in progress..",
+        duration: 1.5,
+      })
+      .then(() => message.success("Profile saved successfully", 2.5));
+  };
+
   return (
     <div className="h-full w-full flex flex-col">
+      {contextHolder}
       <SecondaryTopbar title={"Your Profile"} showBackButton={true} />
-
       <div className="flex-grow min-h-0 mt-4 px-4">
         <Form
           name="user_profile"
           form={form}
-          onFinish={(values) => onContinueClick(values, 4)}
+          onFinish={(values) => {
+            console.log(values);
+            success();
+          }}
           layout="vertical"
           scrollToFirstError={true}
           className="flex flex-col h-full"

@@ -1,12 +1,41 @@
 import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
-import { Avatar, Divider, Typography, Button } from "antd";
+import { useState } from "react";
+import { Avatar, Divider, Typography, Button, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 const { Text } = Typography;
 
 const AccountPage = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setOpen(false);
+    navigate("/");
+  };
+  const handleCancel = () => {
+    setOpen(false);
+  };
   return (
     <div className="h-full w-full flex flex-col">
+      <Modal
+        open={open}
+        title="Logout from PurrfectMate"
+        onOk={handleOk}
+        centered
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            Yes
+          </Button>,
+        ]}
+      >
+        <p>Are you sure you want to logout?</p>
+      </Modal>
       <div className="flex-grow min-h-0 p-4">
         <div className="h-full overflow-y-auto">
           <div
@@ -85,7 +114,7 @@ const AccountPage = () => {
         type="text"
         className="mb-2 mx-3"
         size="large"
-        onClick={() => navigate("/")}
+        onClick={() => showModal()}
       >
         Logout
       </Button>

@@ -1,4 +1,5 @@
 import { Avatar, Typography, Divider } from "antd";
+import { useState, useEffect } from "react";
 import {
   IoChevronForward,
   IoPersonOutline,
@@ -7,11 +8,23 @@ import {
   IoCalendarNumberOutline,
 } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import UpcomingPlayDateListShimmer from "./UpcomingPlayDateListShimmer";
 const { Title, Text } = Typography;
 
 const UpcomingPlayDateList = () => {
   const navigate = useNavigate();
-  return (
+  const [showComponent, setShowComponent] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowComponent(true);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return !showComponent ? (
+    <UpcomingPlayDateListShimmer />
+  ) : (
     <div className="h-full w-full flex flex-col overflow-y-auto">
       {Array(5)
         .fill("")

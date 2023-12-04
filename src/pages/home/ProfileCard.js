@@ -1,13 +1,26 @@
 import petImage from "../../assets/images/petProfileImage.jpeg";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { Avatar, Typography, Button, Image } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
+import ProfileCardShimmer from "./ProfileCardShimmer";
 const { Text } = Typography;
 
 const ProfileCard = () => {
   const navigate = useNavigate();
-  return (
+  const [showComponent, setShowComponent] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowComponent(true);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return !showComponent ? (
+    <ProfileCardShimmer />
+  ) : (
     <div className="h-full w-full flex flex-col bg-white shadow-md rounded-lg p-3 border border-solid border-gray-200">
       <div className="h-2/3 relative">
         <Image

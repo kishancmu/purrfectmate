@@ -1,13 +1,26 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
 import { Avatar, Typography, Button } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 import petImage from "../../assets/images/petProfileImage.jpeg";
+import ProfileListShimmer from "./ProfileListShimmer";
 const { Text } = Typography;
 
 const ProfileList = () => {
   const navigate = useNavigate();
-  return (
+  const [showComponent, setShowComponent] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowComponent(true);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return !showComponent ? (
+    <ProfileListShimmer />
+  ) : (
     <>
       <div
         className="shadow-lg rounded-md flex p-2 mb-5 border border-solid border-gray-200"
