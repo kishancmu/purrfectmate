@@ -16,7 +16,9 @@ import {
   Space,
   Switch,
   Upload,
-  Avatar, 
+  Avatar,
+  Empty,
+  Segmented,
 } from "antd";
 
 const StyleGuidePage = () => {
@@ -347,10 +349,18 @@ const StyleGuidePage = () => {
           </Form>
         </div>
         <div>
-        <p>Avatar</p>
-        <Space wrap size={16}>
-          <Avatar shape="square" size={64} icon={<UserOutlined />} />
-        </Space>
+          <p>Avatar</p>
+          <Space wrap size={16}>
+            <Avatar shape="square" size={64} icon={<UserOutlined />} />
+          </Space>
+        </div>
+        <div>
+          <p>Empty</p>
+          <Empty />
+        </div>
+        <div>
+          <p>Segment</p>
+          <Segmented options={[123, 456, 'longtext-longtext-longtext-longtext']} block />
         </div>
       </div>
     </div>
