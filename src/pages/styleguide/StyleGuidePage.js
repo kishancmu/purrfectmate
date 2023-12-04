@@ -19,10 +19,12 @@ import {
   Avatar,
   Empty,
   Segmented,
+  DatePicker,
 } from "antd";
 
 const StyleGuidePage = () => {
   const { Title } = Typography;
+  const { TextArea } = Input;  
   const { Option } = Select;
   const formItemLayout = {
     labelCol: {
@@ -313,6 +315,14 @@ const StyleGuidePage = () => {
                 <Button icon={<UploadOutlined />}>Click to upload</Button>
               </Upload>
             </Form.Item>
+            <div>
+              <p>Date Picker</p>
+              <DatePicker />
+            </div>
+            <div>
+              <p>Text Area</p>
+              <TextArea rows={4} placeholder="maxLength is 6" maxLength={6} />
+            </div>
             <Form.Item label="Dragger">
               <Form.Item
                 name="dragger"
@@ -360,7 +370,10 @@ const StyleGuidePage = () => {
         </div>
         <div>
           <p>Segment</p>
-          <Segmented options={[123, 456, 'longtext-longtext-longtext-longtext']} block />
+          <Segmented
+            options={[123, 456, "longtext-longtext-longtext-longtext"]}
+            block
+          />
         </div>
       </div>
     </div>
