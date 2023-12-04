@@ -9,9 +9,12 @@ const AccountPage = () => {
     <div className="h-full w-full flex flex-col">
       <div className="flex-grow min-h-0 p-4">
         <div className="h-full overflow-y-auto">
-          <div className="flex items-center mb-5">
+          <div
+            className="flex items-center mb-5"
+            onClick={() => navigate("user")}
+          >
             <div>
-              <Avatar size={64} icon={<IoPersonOutline />} />
+              <Avatar size={64} icon={<IoPersonOutline />} shape="square" />
             </div>
             <div className="flex flex-col ml-3">
               <span className="text-xl font-semibold">John Doe</span>
@@ -23,9 +26,12 @@ const AccountPage = () => {
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
-          <div className="flex items-center mb-5">
+          <div
+            className="flex items-center mb-5"
+            onClick={() => navigate("pet")}
+          >
             <div>
-              <Avatar size={64} icon={<IoPersonOutline />} />
+              <Avatar size={64} icon={<IoPersonOutline />} shape="square" />
             </div>
             <div className="flex flex-col ml-3">
               <span className="text-xl font-semibold">Coco</span>
@@ -37,7 +43,10 @@ const AccountPage = () => {
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
-          <div className="flex items-center mb-5">
+          <div
+            className="flex items-center mb-5"
+            onClick={() => navigate("match-settings")}
+          >
             <div className="flex flex-col">
               <span className="text-md">Match Settings</span>
             </div>
@@ -47,7 +56,10 @@ const AccountPage = () => {
           </div>
           <Text className="text-base text-gray-800">Support</Text>
           <Divider className="mt-1" />
-          <div className="flex items-center mb-5">
+          <div
+            className="flex items-center mb-5"
+            onClick={() => navigate("help")}
+          >
             <div className="flex flex-col">
               <span className="text-md">Help</span>
             </div>
@@ -55,7 +67,10 @@ const AccountPage = () => {
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
-          <div className="flex items-center mb-5">
+          <div
+            className="flex items-center mb-5"
+            onClick={() => navigate("message-us")}
+          >
             <div className="flex flex-col">
               <span className="text-md">Message Us</span>
             </div>

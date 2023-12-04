@@ -126,7 +126,11 @@ const MatchSettings = () => {
                     ]}
                   ></Select>
                 </Form.Item>
-                <Form.Item name="vaccination" label="Vaccination">
+                <Form.Item
+                  name="vaccination"
+                  label="Vaccination"
+                  className="basis-1/2"
+                >
                   <Select
                     placeholder="Select vaccination"
                     allowClear

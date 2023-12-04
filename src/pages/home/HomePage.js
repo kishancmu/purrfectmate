@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Segmented, Button } from "antd";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import { CgCardHearts } from "react-icons/cg";
+import { TbLayoutList } from "react-icons/tb";
+import { CreditCardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import ProfileCard from "./ProfileCard";
 import ProfileList from "./ProfileList";
 
@@ -14,8 +17,16 @@ const HomePage = () => {
         <div className="flex justify-center relative">
           <Segmented
             options={[
-              { label: "Card View", value: 1 },
-              { label: "List View", value: 2 },
+              {
+                label: "Card View",
+                value: 1,
+                icon: <CreditCardOutlined className="text-base" />,
+              },
+              {
+                label: "List View",
+                value: 2,
+                icon: <UnorderedListOutlined className="text-base" />,
+              },
             ]}
             onChange={() => setIsListView(!isListView)}
             size="large"

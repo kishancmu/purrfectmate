@@ -20,6 +20,12 @@ import PlayDateProfile from "./pages/playdate/PlayDateProfile";
 import SchedulePlaydate from "./pages/playdate/SchedulePlaydate";
 import PastPlayDateDetail from "./pages/playdate/PastPlayDateDetail";
 import RatePlayDate from "./pages/playdate/RatePlayDate";
+import PackPlaydate from "./pages/playdate/PackPlaydate";
+import UserProfile from "./pages/account/UserProfile";
+import MessageUs from "./pages/account/MessageUs";
+import Help from "./pages/account/Help";
+import PetProfile from "./pages/account/PetProfile";
+import ChattingScreen from "./pages/chat/ChattingScreen";
 
 const appRouter = createBrowserRouter([
   {
@@ -51,7 +57,16 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "chats",
-        element: <ChatsPage />,
+        children: [
+          {
+            path: "",
+            element: <ChatsPage />,
+          },
+          {
+            path: ":chatID",
+            element: <ChattingScreen />,
+          },
+        ],
       },
       {
         path: "notifications",
@@ -59,23 +74,30 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "account",
-        element: <AccountPage />,
         children: [
           {
+            path: "",
+            element: <AccountPage />,
+          },
+          {
             path: "user",
-            element: <PlayDatePage />,
+            element: <UserProfile />,
           },
           {
             path: "pet",
-            element: <PlayDatePage />,
+            element: <PetProfile />,
           },
           {
             path: "match-settings",
-            element: <PlayDatePage />,
+            element: <MatchSettings />,
           },
           {
             path: "help",
-            element: <PlayDatePage />,
+            element: <Help />,
+          },
+          {
+            path: "message-us",
+            element: <MessageUs />,
           },
         ],
       },
@@ -85,6 +107,10 @@ const appRouter = createBrowserRouter([
           {
             path: "",
             element: <PlayDatePage />,
+          },
+          {
+            path: "pack",
+            element: <PackPlaydate />,
           },
           {
             path: "profile/:id",

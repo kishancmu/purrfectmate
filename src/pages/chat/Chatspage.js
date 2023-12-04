@@ -7,7 +7,7 @@ const ChatsPage = () => {
   const [isListView, setIsListView] = useState(1);
   return (
     <div className="h-full w-full flex flex-col p-4">
-      <div className="text-center">
+      <div className="w-[220px] mx-auto">
         <Segmented
           options={[
             { label: "Private", value: 1 },
@@ -15,6 +15,7 @@ const ChatsPage = () => {
           ]}
           onChange={(value) => setIsListView(value)}
           size="large"
+          block
           defaultValue={1}
         />
       </div>
