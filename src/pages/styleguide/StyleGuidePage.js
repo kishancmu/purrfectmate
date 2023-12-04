@@ -15,13 +15,11 @@ const StyleGuidePage = () => {
         <Title level={4}>Heading 4</Title>
         <Title level={5}>Heading 5</Title>
         <h2>Buttons</h2>
-        <Button type="primary" size="large">
-          Primary Button
-        </Button>
-        <Button size="large">Secondary Button</Button>
-        <Button danger type="text">
-          Tertiary Button
-        </Button>
+        <Button type="primary" size="large">Primary</Button>
+        <Button size="large">Secondary</Button>
+        <Button type="text">Tertiary</Button>
+        <Button type="link">Link</Button>        
+        <Button disabled size="large">Disabled</Button>
         <h2>Inputs</h2>
         <div>
           <p>Checkboxes</p>
