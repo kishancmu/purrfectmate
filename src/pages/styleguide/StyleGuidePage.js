@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { InboxOutlined, UploadOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -20,11 +20,15 @@ import {
   Empty,
   Segmented,
   DatePicker,
+  message,
+  Modal,
+  Image,
+  Skeleton,
 } from "antd";
 
 const StyleGuidePage = () => {
   const { Title } = Typography;
-  const { TextArea } = Input;  
+  const { TextArea } = Input;
   const { Option } = Select;
   const formItemLayout = {
     labelCol: {
@@ -44,11 +48,31 @@ const StyleGuidePage = () => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <div>
         <h1>Style Guide</h1>
-        {/* TBD: <h2>Colors</h2> */}
+        <div>
+          <h2>Colors</h2>
+          <div></div>
+        </div>
         <h2>Typography</h2>
         <Title>Heading 1</Title>
         <Title level={2}>Heading 2</Title>
@@ -374,6 +398,47 @@ const StyleGuidePage = () => {
             options={[123, 456, "longtext-longtext-longtext-longtext"]}
             block
           />
+        </div>
+        <div>
+          <p>Success Message</p>
+          {contextHolder}
+          <Space>
+            <Button onClick={success}>Success</Button>
+          </Space>
+        </div>
+        <div>
+          <p>Modal</p>
+          <Button type="primary" onClick={showModal}>
+            Open Modal
+          </Button>
+          <Modal
+            title="Basic Modal"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
+        </div>
+        <div>
+          <p>Image</p>
+          <Image
+            width={200}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div>
+          <p>Skeleton</p>
+          <Skeleton.Image active="true" className="w-16 h-16" />
+          <Skeleton.Button
+            active="true"
+            size="large"
+            shape="square"
+            className="ml-2 h-6"
+          />
+          <Skeleton.Avatar active="true" size="default" shape="circle" />
         </div>
       </div>
     </div>
