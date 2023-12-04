@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const [Screen, setScreen] = useState(4);
+  const [Screen, setScreen] = useState(1);
 
   const handleContinueClick = (values, index) => {
     console.log(`Success from Screen ${index - 1}:`, values);
