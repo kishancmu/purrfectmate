@@ -10,7 +10,11 @@ const SecondaryTopbar = ({ title, showBackButton }) => {
       {showBackButton && (
         <div
           className="absolute left-0 top-0 h-full flex items-center pr-4"
-          onClick={() => navigate(-1)}
+          onClick={() =>
+            navigate(-1, {
+              replace: true,
+            })
+          }
         >
           <IoChevronBackOutline className="text-white text-3xl " />
         </div>

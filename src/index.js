@@ -16,16 +16,17 @@ import NotificationsPage from "./pages/notification/NotificationsPage";
 import StyleGuidePage from "./pages/styleguide/StyleGuidePage";
 import MatchSettings from "./components/matchSettings/MatchSettings";
 import ChatsPage from "./pages/chat/Chatspage";
-import PlayDateProfile from "./pages/playdate/PlayDateProfile";
-import SchedulePlaydate from "./pages/playdate/SchedulePlaydate";
-import PastPlayDateDetail from "./pages/playdate/PastPlayDateDetail";
-import RatePlayDate from "./pages/playdate/RatePlayDate";
-import PackPlaydate from "./pages/playdate/PackPlaydate";
+import SchedulePlaydate from "./pages/playdate/matches/SchedulePlaydate";
+import PastPlayDateDetail from "./pages/playdate/past/PastPlayDateDetail";
+import RatePlayDate from "./pages/playdate/past/RatePlayDate";
+import PackPlaydate from "./pages/playdate/pack/PackPlaydate";
 import UserProfile from "./pages/account/UserProfile";
 import MessageUs from "./pages/account/MessageUs";
 import Help from "./pages/account/Help";
 import PetProfile from "./pages/account/PetProfile";
 import ChattingScreen from "./pages/chat/ChattingScreen";
+import PlayDateProfile from "./pages/playdate/matches/PlayDateProfile";
+import UpcomingPlayDate from "./pages/playdate/upcoming/UpcomingPlayDate";
 
 const appRouter = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const appRouter = createBrowserRouter([
           {
             path: "past/:id",
             element: <PastPlayDateDetail />,
+          },
+          {
+            path: "upcoming/:playdateID",
+            element: <UpcomingPlayDate />,
           },
           {
             path: "past/:id/rate",

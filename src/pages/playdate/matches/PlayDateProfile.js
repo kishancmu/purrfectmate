@@ -1,22 +1,21 @@
-import petImage from "../../assets/images/petProfileImage.jpeg";
-import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
-import { Avatar, Typography, Button, Rate, Image } from "antd";
-import { CloseOutlined, HeartFilled } from "@ant-design/icons";
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import petImage from "../../../assets/images/petProfileImage.jpeg";
+import { useNavigate } from "react-router-dom";
+import { Typography, Button, Rate } from "antd";
+import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 const { Text } = Typography;
 
-const Profile = () => {
+const PlayDateProfile = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-full w-full flex flex-col">
       <SecondaryTopbar title={"Coco Profile"} showBackButton={true} />
       <div className="flex-grow min-h-0 p-3 overflow-y-auto">
         <div className="w-auto h-56">
-          <Image
-            width="100%"
-            height="100%"
+          <img
+            className="h-full w-full bg-cover rounded-lg bg-no-repeat"
             src={petImage}
-            className="rounded-lg"
-          />
+            alt="a dog profile"
+          ></img>
         </div>
         <div className="mt-3">
           <Text className="font-semibold text-xl text-gray-700">
@@ -90,23 +89,14 @@ const Profile = () => {
         <Button
           type="primary"
           className="flex-grow basis-1/2"
-          danger
-          icon={<CloseOutlined />}
           size="large"
+          onClick={() => navigate("schedule")}
         >
-          Dislike
-        </Button>
-        <Button
-          type="primary"
-          className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2"
-          icon={<HeartFilled />}
-          size="large"
-        >
-          Like
+          Schedule Playdate
         </Button>
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default PlayDateProfile;

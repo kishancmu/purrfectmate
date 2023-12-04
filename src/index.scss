@@ -41,3 +41,12 @@ code {
     height: 100%;
   }
 }
+
+.passwordStrength{
+  div{
+    margin-top: 0 !important;
+    div{
+      height: 4px !important;
+    }
+  }
+}

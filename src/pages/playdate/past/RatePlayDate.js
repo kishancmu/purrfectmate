@@ -1,6 +1,6 @@
 import { Button, Form, Typography, Select, Rate } from "antd";
 import { useNavigate } from "react-router-dom";
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 const { Title, Text } = Typography;
 
 const RatePlayDate = () => {

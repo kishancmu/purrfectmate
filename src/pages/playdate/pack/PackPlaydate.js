@@ -9,7 +9,7 @@ import {
   Checkbox,
   Select,
 } from "antd";
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -40,9 +40,9 @@ const PackPlaydate = () => {
               label="Pack Name"
               name="name"
               className="mt-4"
-              rules={[{ required: true, message: "Location is required" }]}
+              rules={[{ required: true, message: "Name is required" }]}
             >
-              <Input placeholder="Enter location" size="large" />
+              <Input placeholder="Enter name" size="large" />
             </Form.Item>
             <Form.Item
               label="Proposed Playdate Location"
@@ -58,7 +58,7 @@ const PackPlaydate = () => {
                 className="basis-1/2"
                 rules={[{ required: true, message: "Date is required" }]}
               >
-                <DatePicker className="w-full" />
+                <DatePicker className="w-full" size="large" />
               </Form.Item>
               <Form.Item
                 label="Time"
@@ -66,14 +66,21 @@ const PackPlaydate = () => {
                 className="basis-1/2"
                 rules={[{ required: true, message: "Time is required" }]}
               >
-                <TimePicker use12Hours format="h:mm a" className="w-full" />
+                <TimePicker
+                  use12Hours
+                  format="h:mm a"
+                  className="w-full"
+                  size="large"
+                />
               </Form.Item>
             </div>
             <Form.Item label="Notes" name="notes">
               <TextArea
+                size="large"
                 rows={3}
                 placeholder="Write your notes for playdate"
-                maxLength={6}
+                showCount
+                maxLength={100}
               />
             </Form.Item>
             <Form.Item name="remember" valuePropName="checked">
@@ -81,7 +88,7 @@ const PackPlaydate = () => {
             </Form.Item>
             <Form.Item name="members" label="Pack Members (matched pet owners)">
               <Select
-                placeholder="Select gender"
+                placeholder="Select members"
                 allowClear
                 mode="multiple"
                 maxTagCount="responsive"

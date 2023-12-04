@@ -1,12 +1,11 @@
 import { Button, Form, Input, Typography } from "antd";
+import PasswordStrengthBar from "react-password-strength-bar";
+import { useState } from "react";
 const { Title } = Typography;
 
-const SignupPageAccountScreen = ({
-  onContinueClick,
-  onBackClick,
-  setScreen,
-}) => {
+const SignupPageAccountScreen = ({ onContinueClick, onBackClick }) => {
   const [form] = Form.useForm();
+  const [password, setPassword] = useState("");
   return (
     <div className="h-full w-full">
       <div className="h-full w-full flex flex-col">
@@ -49,8 +48,19 @@ const SignupPageAccountScreen = ({
             ]}
             hasFeedback
           >
-            <Input.Password size="large" placeholder="Enter password" />
+            <Input.Password
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              size="large"
+              placeholder="Enter password"
+            />
           </Form.Item>
+          <PasswordStrengthBar
+            password={password}
+            className="passwordStrength"
+            scoreWordClassName="sds"
+          />
           <Form.Item className="mt-auto mb-2">
             <Button type="primary" htmlType="submit" size="large" block>
               Continue

@@ -10,11 +10,16 @@ function App() {
   const navigate = useNavigate();
   return (
     <div className="h-full w-full flex relative">
-      <div className="m-auto flex flex-col p-5 items-center">
+      <div className="m-auto flex flex-col py-5 px-6 items-center">
         <div className="h-36 w-36">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
-        <Title className="mt-2 text-blue-600">PurrfectMate</Title>
+        <Title className="mt-2 text-gray-700 mb-0 font-bold text-5xl" >
+          PurrfectMate
+        </Title>
+        <Text className="text-base text-gray-600">
+          Where every tail finds its tale
+        </Text>
         <div className="mt-5">
           <img
             className="h-full w-full"
@@ -31,12 +36,15 @@ function App() {
         >
           Create an Account
         </Button>
-        <Text className="mt-5">
+        <Text className="mt-5 text-base">
           Already have an account? <Link to="/login">Login</Link>
         </Text>
 
         <div className="absolute bottom-0 left-0 w-full p-2 text-center">
-          <Text> Made with ❤️ for your furry friends</Text>
+          <Text className="text-gray-600">
+            {" "}
+            Made with ❤️ for your furry friends
+          </Text>
         </div>
       </div>
     </div>

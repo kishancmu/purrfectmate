@@ -1,20 +1,22 @@
 import petImage from "../../assets/images/petProfileImage.jpeg";
 import { useNavigate } from "react-router-dom";
-import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
-import { Avatar, Typography, Button } from "antd";
+import { IoPersonOutline } from "react-icons/io5";
+import { Avatar, Typography, Button, Image } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 const { Text } = Typography;
 
 const ProfileCard = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-full w-full flex flex-col bg-white shadow-md rounded-lg p-3 border-solid border-gray-200">
-      <div className="h-3/4 relative">
-        <img
-          className="w-full h-full rounded-lg bg-cover bg-no-repeat"
+    <div className="h-full w-full flex flex-col bg-white shadow-md rounded-lg p-3 border border-solid border-gray-200">
+      <div className="h-2/3 relative">
+        <Image
+          width="100%"
+          height="100%"
           src={petImage}
-          alt="a dog"
+          className="rounded-lg"
         />
+
         <div className="absolute bottom-0 left-0 pb-3 pl-3 bg-[#00000069] w-full">
           <div>
             <Text className="text-white text-2xl font-semibold">Moda</Text>
@@ -33,7 +35,7 @@ const ProfileCard = () => {
         </div>
       </div>
       <div className="flex my-4 items-center">
-        <Avatar size={42} icon={<IoPersonOutline />} />
+        <Avatar size={42} icon={<IoPersonOutline />} shape="square" />
         <Text className="ml-2 font-semibold">John Doe</Text>
         <div className="ml-auto">
           <Button

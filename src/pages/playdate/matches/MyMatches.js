@@ -6,7 +6,7 @@ const { Title } = Typography;
 const MyMatches = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-full w-full flex flex-col pt-5 overflow-y-auto">
+    <div className="h-full w-full flex flex-col overflow-y-auto">
       {Array(5)
         .fill("")
         .map((_, index) => (
@@ -16,9 +16,9 @@ const MyMatches = () => {
               onClick={() => navigate("profile/23")}
             >
               <div>
-                <Avatar size={64} icon={<IoPersonOutline />} shape="square" />
+                <Avatar size={84} icon={<IoPersonOutline />} shape="square" />
               </div>
-              <Title level={5} className="m-0 ml-3 text-gray-900">
+              <Title level={4} className="m-0 ml-3 text-gray-900">
                 Jane
               </Title>
               <div className="h-full flex ml-auto items-center">

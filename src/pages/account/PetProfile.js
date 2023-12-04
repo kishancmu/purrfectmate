@@ -84,146 +84,171 @@ const PetProfile = () => {
             <Form.Item
               label="Name"
               name="name"
-              rules={[{ required: true, message: "Name cannot be empty!" }]}
+              rules={[{ required: true, message: "Name is required" }]}
             >
               <Input placeholder="Enter name" size="large" />
             </Form.Item>
-            <Form.Item
-              name="gender"
-              label="Gender"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select gender"
-                allowClear
-                size="large"
-                options={[
-                  { value: "male", label: "Male" },
-                  { value: "female", label: "Female" },
+            <div className="flex">
+              <Form.Item
+                name="gender"
+                label="Gender"
+                className="w-1/2 pr-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Gender is required",
+                  },
                 ]}
-              ></Select>
-            </Form.Item>
-            <Form.Item
-              name="breed"
-              label="Breed"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select breed"
-                allowClear
-                size="large"
-                options={[
-                  { value: "boxer", label: "Boxer" },
-                  { value: "labrador", label: "Labrador" },
-                  { value: "pug", label: "Pug" },
+              >
+                <Select
+                  placeholder="Select gender"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
+                  ]}
+                ></Select>
+              </Form.Item>
+              <Form.Item
+                name="size"
+                label="Size"
+                className="w-1/2 pl-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Size is required",
+                  },
                 ]}
-              ></Select>
-            </Form.Item>
-            <Form.Item
-              name="size"
-              label="Size"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select size"
-                allowClear
-                size="large"
-                options={[
-                  { value: "small", label: "Small" },
-                  { value: "medium", label: "Medium" },
-                  { value: "large", label: "Large" },
+              >
+                <Select
+                  placeholder="Select size"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "small", label: "Small" },
+                    { value: "medium", label: "Medium" },
+                    { value: "large", label: "Large" },
+                  ]}
+                ></Select>
+              </Form.Item>
+            </div>
+
+            <div className="flex">
+              <Form.Item
+                name="breed"
+                label="Breed"
+                className="w-1/2 pr-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Breed is required",
+                  },
                 ]}
-              ></Select>
-            </Form.Item>
-            <Form.Item
-              name="age"
-              label="Age"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select age"
-                allowClear
-                size="large"
-                options={[
-                  { value: "0", label: "Less than 1 year" },
-                  { value: "1", label: "1" },
-                  { value: "2", label: "2" },
-                  { value: "3", label: "3" },
+              >
+                <Select
+                  placeholder="Select breed"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "boxer", label: "Boxer" },
+                    { value: "labrador", label: "Labrador" },
+                    { value: "pug", label: "Pug" },
+                  ]}
+                ></Select>
+              </Form.Item>
+
+              <Form.Item
+                name="age"
+                label="Age"
+                className="w-1/2 pl-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Age is required",
+                  },
                 ]}
-              ></Select>
-            </Form.Item>
-            <Form.Item
-              name="energy"
-              label="Energy Level"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select Energy Level"
-                allowClear
-                size="large"
-                options={[
-                  { value: "low", label: "Low" },
-                  { value: "medium", label: "Medium" },
-                  { value: "high", label: "High" },
+              >
+                <Select
+                  placeholder="Select age"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "0", label: "Less than 1 year" },
+                    { value: "1", label: "1" },
+                    { value: "2", label: "2" },
+                    { value: "3", label: "3" },
+                  ]}
+                ></Select>
+              </Form.Item>
+            </div>
+
+            <div className="flex">
+              <Form.Item
+                name="energy"
+                label="Energy Level"
+                className="w-1/2 pr-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Energy is required",
+                  },
                 ]}
-              ></Select>
-            </Form.Item>
+              >
+                <Select
+                  placeholder="Select Energy  Level"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "low", label: "Low" },
+                    { value: "medium", label: "Medium" },
+                    { value: "high", label: "High" },
+                  ]}
+                ></Select>
+              </Form.Item>
+              <Form.Item
+                name="vaccination"
+                label="Vaccination"
+                className="w-1/2 pl-2"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vaccination is required",
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select vaccination"
+                  allowClear
+                  size="large"
+                  options={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
+                  ]}
+                ></Select>
+              </Form.Item>
+            </div>
+
             <Form.Item
               name="personality"
               label="Personality"
               rules={[
                 {
                   required: true,
+                  message: "Personality is required",
                 },
               ]}
             >
               <Select
                 placeholder="Select Personality"
                 allowClear
+                mode="multiple"
+                maxTagCount="responsive"
                 size="large"
                 options={[
                   { value: "active", label: "Active" },
                   { value: "playful", label: "Playful" },
                   { value: "goofy", label: "Goofy" },
-                ]}
-              ></Select>
-            </Form.Item>
-            <Form.Item
-              name="vaccination"
-              label="Vaccination"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select vaccination"
-                allowClear
-                size="large"
-                options={[
-                  { value: "yes", label: "Yes" },
-                  { value: "no", label: "No" },
                 ]}
               ></Select>
             </Form.Item>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form, Input, Typography, DatePicker, TimePicker } from "antd";
-import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -50,7 +50,8 @@ const SchedulePlaydate = ({ onContinueClick, onBackClick }) => {
               <TextArea
                 rows={4}
                 placeholder="Write your notes for playdate"
-                maxLength={6}
+                showCount
+                maxLength={100}
               />
             </Form.Item>
           </div>

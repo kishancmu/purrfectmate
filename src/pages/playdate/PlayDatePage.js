@@ -1,17 +1,17 @@
 import { Button, Segmented } from "antd";
-import UpcomingPlayDate from "./UpcomingPlayDate";
-import MyMatches from "./MyMatches";
-import { CalendarOutlined, HeartOutlined } from "@ant-design/icons";
-import PastPlayDate from "./PastPlayDateList";
-import { useState } from "react";
+import UpcomingPlayDateList from "./upcoming/UpcomingPlayDateList";
+import MyMatches from "./matches/MyMatches";
+import { useContext } from "react";
+import PastPlayDate from "./past/PastPlayDateList";
 import { useNavigate } from "react-router-dom";
+import appContext from "../../utils/appContext";
 
 const PlayDatePage = () => {
-  const [isListView, setIsListView] = useState(2);
+  const { playdateTab, setPlaydateTab } = useContext(appContext);
   const navigate = useNavigate();
   return (
     <div className="h-full w-full flex flex-col p-4">
-      <div className="mx-auto w-[380px] ">
+      <div className="mx-auto w-[340px]">
         <Segmented
           options={[
             { label: "Upcoming", value: 1 },
@@ -19,17 +19,22 @@ const PlayDatePage = () => {
             { label: "Past", value: 3 },
           ]}
           block
-          onChange={(value) => setIsListView(value)}
+          onChange={(value) => setPlaydateTab({ currentTab: value })}
           size="large"
-          defaultValue={2}
+          defaultValue={playdateTab.currentTab}
         />
       </div>
-      <div className="flex flex-grow min-h-0">
-        {isListView === 1 && <UpcomingPlayDate />}
-        {isListView === 2 && <MyMatches />}
-        {isListView === 3 && <PastPlayDate />}
+      <div className="flex flex-grow min-h-0 pt-5">
+        {playdateTab.currentTab === 1 && <UpcomingPlayDateList />}
+        {playdateTab.currentTab === 2 && <MyMatches />}
+        {playdateTab.currentTab === 3 && <PastPlayDate />}
       </div>
-      <Button type="primary" size="large" onClick={() => navigate("pack")}>
+      <Button
+        type="primary"
+        size="large"
+        onClick={() => navigate("pack")}
+        className="mt-2"
+      >
         Create Pack Playdate
       </Button>
     </div>

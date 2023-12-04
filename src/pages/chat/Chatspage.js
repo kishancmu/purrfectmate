@@ -1,10 +1,11 @@
-import { Tabs, Segmented } from "antd";
-import { useState } from "react";
+import { Segmented } from "antd";
+import { useContext } from "react";
+import appContext from "../../utils/appContext";
 import PrivateChatList from "./PrivateChatList";
 import PackChatList from "./PackChatList";
 
 const ChatsPage = () => {
-  const [isListView, setIsListView] = useState(1);
+  const { chatPageTab, setChatPageTab } = useContext(appContext);
   return (
     <div className="h-full w-full flex flex-col p-4">
       <div className="w-[220px] mx-auto">
@@ -13,14 +14,14 @@ const ChatsPage = () => {
             { label: "Private", value: 1 },
             { label: "Pack", value: 2 },
           ]}
-          onChange={(value) => setIsListView(value)}
+          onChange={(value) => setChatPageTab({ currentTab: value })}
           size="large"
           block
-          defaultValue={1}
+          defaultValue={chatPageTab.currentTab}
         />
       </div>
       <div className="flex-grow min-h-0 pt-5">
-        {isListView === 1 ? <PrivateChatList /> : <PackChatList />}
+        {chatPageTab.currentTab === 1 ? <PrivateChatList /> : <PackChatList />}
       </div>
     </div>
   );

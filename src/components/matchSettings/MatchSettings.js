@@ -1,13 +1,4 @@
-import {
-  Tabs,
-  Typography,
-  Input,
-  Button,
-  Divider,
-  Select,
-  Form,
-  Slider,
-} from "antd";
+import { Typography, Input, Button, Divider, Select, Form, Slider } from "antd";
 import { useNavigate } from "react-router-dom";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 
@@ -25,23 +16,23 @@ const MatchSettings = () => {
         <SecondaryTopbar title={"Match Settings"} showBackButton={true} />
         <div className="flex-grow min-h-0 p-4">
           <Form
-            name="normal_login"
+            name="match_settings"
             onFinish={onFormSubmit}
             layout="vertical"
             scrollToFirstError={true}
             className="flex flex-col h-full"
           >
             <div className="flex-grow min-h-0 overflow-y-auto">
-              <div className="flex gap-4">
+              <div className="flex">
                 <Form.Item
-                  className="basis-1/2"
+                  className="w-1/2 pr-2"
                   label="Location"
                   name="location"
                 >
                   <Input placeholder="Enter name" size="large" />
                 </Form.Item>
                 <Form.Item
-                  className="basis-1/2"
+                  className="w-1/2 pl-2"
                   label="Range(miles)"
                   name="range"
                 >
@@ -50,12 +41,12 @@ const MatchSettings = () => {
               </div>
 
               <Divider />
-              <Text className="text-xl">Pet Owners</Text>
-              <div className="flex gap-4 mt-4">
+              <Text className="text-xl">Pet Owner Setting</Text>
+              <div className="flex mt-4">
                 <Form.Item
                   name="owner_gender"
                   label="Gender"
-                  className="basis-1/2"
+                  className="w-1/2 pr-2"
                 >
                   <Select
                     placeholder="Select gender"
@@ -71,7 +62,7 @@ const MatchSettings = () => {
                   ></Select>
                 </Form.Item>
                 <Form.Item
-                  className="basis-1/2"
+                  className="w-1/2 pl-2"
                   label="Age(18-80)"
                   name="owner_age"
                 >
@@ -82,8 +73,8 @@ const MatchSettings = () => {
               <Divider />
               <Text className="text-xl">Pet Settings</Text>
 
-              <div className="flex gap-3 mt-3">
-                <Form.Item name="gender" className="basis-1/2" label="Gender">
+              <div className="flex mt-3">
+                <Form.Item name="gender" className="w-1/2 pr-2" label="Gender">
                   <Select
                     placeholder="Select gender"
                     allowClear
@@ -96,7 +87,7 @@ const MatchSettings = () => {
                     ]}
                   ></Select>
                 </Form.Item>
-                <Form.Item name="size" className="basis-1/2" label="Size">
+                <Form.Item name="size" className="w-1/2 pl-2" label="Size">
                   <Select
                     placeholder="Select size"
                     allowClear
@@ -112,8 +103,8 @@ const MatchSettings = () => {
                 </Form.Item>
               </div>
 
-              <div className="flex gap-4 mt-4">
-                <Form.Item name="breed" className="basis-1/2" label="Breed">
+              <div className="flex mt-4">
+                <Form.Item name="breed" className="w-1/2 pr-2" label="Breed">
                   <Select
                     placeholder="Select breed"
                     allowClear
@@ -129,7 +120,7 @@ const MatchSettings = () => {
                 <Form.Item
                   name="vaccination"
                   label="Vaccination"
-                  className="basis-1/2"
+                  className="w-1/2 pl-2"
                 >
                   <Select
                     placeholder="Select vaccination"
@@ -162,37 +153,38 @@ const MatchSettings = () => {
                     ]}
                   ></Select>
                 </Form.Item>
-
                 <Form.Item
-                  name="personality"
-                  label="Personality"
-                  className="basis-1/2"
+                  className="basis-1/2 px-2"
+                  label="Age "
+                  name="age"
+                  extra="Less than 1 year to 30"
                 >
-                  <Select
-                    placeholder="Select Personality"
-                    allowClear
-                    size="large"
-                    mode="multiple"
-                    maxTagCount="responsive"
-                    options={[
-                      { value: "active", label: "Active" },
-                      { value: "playful", label: "Playful" },
-                      { value: "goofy", label: "Goofy" },
-                    ]}
-                  ></Select>
+                  <Slider />
                 </Form.Item>
               </div>
+
               <Form.Item
-                className="basis-1/2 px-2"
-                label="Age (Less than 1 year - 30)"
-                name="age"
+                name="personality"
+                label="Personality"
+                className="basis-1/2"
               >
-                <Slider />
+                <Select
+                  placeholder="Select Personality"
+                  allowClear
+                  size="large"
+                  mode="multiple"
+                  maxTagCount="responsive"
+                  options={[
+                    { value: "active", label: "Active" },
+                    { value: "playful", label: "Playful" },
+                    { value: "goofy", label: "Goofy" },
+                  ]}
+                ></Select>
               </Form.Item>
             </div>
 
             <div className="pt-2">
-              <Form.Item className="mt-auto mb-2">
+              <Form.Item className="mt-auto mb-0">
                 <Button type="primary" htmlType="submit" size="large" block>
                   Save
                 </Button>

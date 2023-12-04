@@ -65,8 +65,8 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
   return (
     <div className="h-full w-full">
       <div className="h-full w-full flex flex-col">
-        <Title className="mt-0">And a little about you</Title>
-        <Text>
+        <Title className="mt-0 text-gray-800">And a little about you</Title>
+        <Text className="text-base text-gray-700">
           Please add a profile photo of yours taken in a well lit environment
         </Text>
         <div className="flex-grow min-h-0 mt-4">
@@ -101,38 +101,50 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
               >
                 <Input placeholder="Enter name" size="large" />
               </Form.Item>
-              <Form.Item
-                label="Age"
-                name="age"
-                rules={[{ required: true, message: "Age is required" }]}
-              >
-                <InputNumber min={18} max={120} defaultValue={0} size="large" />
-              </Form.Item>
+              <div className="flex">
+                <Form.Item
+                  label="Age"
+                  name="age"
+                  className="w-1/2 pr-2"
+                  rules={[{ required: true, message: "Age is required" }]}
+                >
+                  <InputNumber
+                    min={18}
+                    max={120}
+                    className="w-full"
+                    defaultValue={0}
+                    size="large"
+                  />
+                </Form.Item>
 
-              <Form.Item
-                name="gender"
-                label="Gender"
-                rules={[
-                  {
-                    required: true,
-                    message: "Gender is required",
-                  },
-                ]}
-              >
-                <Select
-                  placeholder="Select a option and change input text above"
-                  allowClear
-                  size="large"
-                  options={[
-                    { value: "male", label: "Male" },
-                    { value: "female", label: "Female" },
-                    { value: "other", label: "Other" },
+                <Form.Item
+                  name="gender"
+                  label="Gender"
+                  className="w-1/2 pl-2"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Gender is required",
+                    },
                   ]}
-                ></Select>
-              </Form.Item>
+                >
+                  <Select
+                    placeholder="Select gender"
+                    allowClear
+                    size="large"
+                    options={[
+                      { value: "male", label: "Male" },
+                      { value: "female", label: "Female" },
+                      { value: "other", label: "Other" },
+                    ]}
+                  ></Select>
+                </Form.Item>
+              </div>
+
               <Form.Item
                 label="Location"
                 name="location"
+                extra="We'll use this to find pet owners near you"
                 rules={[{ required: true, message: "Location is required" }]}
               >
                 <Input placeholder="Enter locaiton" size="large" />

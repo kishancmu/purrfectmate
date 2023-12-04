@@ -14,13 +14,13 @@ const AccountPage = () => {
             onClick={() => navigate("user")}
           >
             <div>
-              <Avatar size={64} icon={<IoPersonOutline />} shape="square" />
+              <Avatar size={84} icon={<IoPersonOutline />} shape="square" />
             </div>
             <div className="flex flex-col ml-3">
-              <span className="text-xl font-semibold">John Doe</span>
-              <span className="text-sm text-gray-500">
+              <Text className="text-xl font-semibold">John Doe</Text>
+              <Text className="text-sm text-gray-500">
                 Edit personal picture and details
-              </span>
+              </Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
@@ -31,48 +31,48 @@ const AccountPage = () => {
             onClick={() => navigate("pet")}
           >
             <div>
-              <Avatar size={64} icon={<IoPersonOutline />} shape="square" />
+              <Avatar size={84} icon={<IoPersonOutline />} shape="square" />
             </div>
             <div className="flex flex-col ml-3">
-              <span className="text-xl font-semibold">Coco</span>
-              <span className="text-sm text-gray-500">
+              <Text className="text-xl font-semibold">Coco</Text>
+              <Text className="text-sm text-gray-500">
                 Edit personal picture and details
-              </span>
+              </Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
           <div
-            className="flex items-center mb-5"
+            className="flex items-center py-4"
             onClick={() => navigate("match-settings")}
           >
             <div className="flex flex-col">
-              <span className="text-md">Match Settings</span>
+              <Text className="text-lg text-gray-700">Match Settings</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
-          <Text className="text-base text-gray-800">Support</Text>
-          <Divider className="mt-1" />
+          <Text className="text-xl text-gray-900">Support</Text>
+          <Divider className="mt-1 mb-2" />
           <div
-            className="flex items-center mb-5"
+            className="flex items-center py-4"
             onClick={() => navigate("help")}
           >
             <div className="flex flex-col">
-              <span className="text-md">Help</span>
+              <Text className="text-lg text-gray-700">Help</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
             </div>
           </div>
           <div
-            className="flex items-center mb-5"
+            className="flex items-center py-4"
             onClick={() => navigate("message-us")}
           >
             <div className="flex flex-col">
-              <span className="text-md">Message Us</span>
+              <Text className="text-lg text-gray-700">Message Us</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />

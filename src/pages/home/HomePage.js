@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Segmented, Button } from "antd";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
-import { CgCardHearts } from "react-icons/cg";
-import { TbLayoutList } from "react-icons/tb";
 import { CreditCardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import ProfileCard from "./ProfileCard";
 import ProfileList from "./ProfileList";
+import appContext from "../../utils/appContext";
 
 const HomePage = () => {
-  const [isListView, setIsListView] = useState(false);
+  const { homePageTab, setHomePageTab } = useContext(appContext);
+
   const navigate = useNavigate();
   return (
     <div className="h-full w-full">
@@ -20,17 +20,15 @@ const HomePage = () => {
               {
                 label: "Card View",
                 value: 1,
-                icon: <CreditCardOutlined className="text-base" />,
               },
               {
                 label: "List View",
                 value: 2,
-                icon: <UnorderedListOutlined className="text-base" />,
               },
             ]}
-            onChange={() => setIsListView(!isListView)}
+            onChange={(value) => setHomePageTab({ currentTab: value })}
             size="large"
-            defaultValue={1}
+            defaultValue={homePageTab.currentTab}
           />
           <Button
             icon={<HiOutlineAdjustmentsHorizontal className="text-2xl" />}
@@ -43,7 +41,7 @@ const HomePage = () => {
         </div>
         <div className="flex-grow min-h-[400px]">
           <div className="h-full w-full overflow-y-auto py-3 ">
-            {!isListView ? <ProfileCard /> : <ProfileList />}
+            {homePageTab.currentTab === 1 ? <ProfileCard /> : <ProfileList />}
           </div>
         </div>
       </div>
