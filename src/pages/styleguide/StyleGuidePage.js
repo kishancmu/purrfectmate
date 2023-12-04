@@ -1,5 +1,5 @@
 import React from "react";
-import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
+import { InboxOutlined, UploadOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
   Typography,
@@ -16,6 +16,7 @@ import {
   Space,
   Switch,
   Upload,
+  Avatar, 
 } from "antd";
 
 const StyleGuidePage = () => {
@@ -344,6 +345,12 @@ const StyleGuidePage = () => {
               </Space>
             </Form.Item>
           </Form>
+        </div>
+        <div>
+        <p>Avatar</p>
+        <Space wrap size={16}>
+          <Avatar shape="square" size={64} icon={<UserOutlined />} />
+        </Space>
         </div>
       </div>
     </div>
