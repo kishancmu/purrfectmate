@@ -11,6 +11,7 @@ function ChattingScreen() {
   const { chatID } = useParams();
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const username = localStorage.getItem('username') || 'Unknown User';
 
   // Load messages from localStorage when the component mounts
   useEffect(() => {
@@ -24,7 +25,8 @@ function ChattingScreen() {
 
     const newMessage = {
       text: message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      user: username
     };
 
     const newMessages = [...messages, newMessage];
@@ -34,7 +36,7 @@ function ChattingScreen() {
   };
 
   return (
-    <div className="h-full w-full flex flex-col overflow-x-hidden">
+    <div className="h-full w-full flex flex-col">
       <SecondaryTopbar title={chatID} showBackButton={true} />
 
       <div className="flex-grow overflow-y-auto px-4 py-2">
@@ -43,6 +45,7 @@ function ChattingScreen() {
           renderItem={(item, index) => (
             <List.Item key={index} className="mb-2">
               <Card className="w-full">
+                <div className="font-semibold">{item.user}</div>
                 <p>{item.text}</p>
                 <div className="text-right text-sm text-gray-500">
                   <div>{moment(item.timestamp).tz('America/Los_Angeles').format('MM/DD/YYYY')}</div>

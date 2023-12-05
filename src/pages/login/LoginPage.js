@@ -8,6 +8,7 @@ const LoginPage = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     navigate("/main/home");
+    localStorage.setItem('username', values.username);
   };
 
   return (
