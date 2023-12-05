@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import defaultUserImage from "../../assets/images/defaultUser.png";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import {
   Button,
@@ -30,30 +31,19 @@ const beforeUpload = (file) => {
   return isJpgOrPng && isLt2M;
 };
 
-const UserProfile = ({ onContinueClick, onBackClick }) => {
+const UserProfile = () => {
   const [form] = Form.useForm();
-
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(defaultUserImage);
   const [messageApi, contextHolder] = message.useMessage();
+  const userDetails = JSON.parse(localStorage.getItem("userProfileDetails"));
 
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+  const handleChange = () => {
+    setImageUrl(defaultUserImage);
   };
 
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <PlusOutlined />
       <div
         style={{
           marginTop: 8,
@@ -82,8 +72,10 @@ const UserProfile = ({ onContinueClick, onBackClick }) => {
         <Form
           name="user_profile"
           form={form}
+          initialValues={userDetails}
           onFinish={(values) => {
             console.log(values);
+            localStorage.setItem("userProfileDetails", JSON.stringify(values));
             success();
           }}
           layout="vertical"
@@ -91,27 +83,34 @@ const UserProfile = ({ onContinueClick, onBackClick }) => {
           className="flex flex-col h-full"
         >
           <div className="flex-grow min-h-0 overflow-y-auto">
-            <Upload
-              name="avatar"
-              listType="picture-circle"
-              className="avatar-uploader text-center"
-              showUploadList={false}
-              action=""
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-            >
-              {imageUrl ? (
-                <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-              ) : (
-                uploadButton
-              )}
-            </Upload>
+            <div>
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader text-center"
+                showUploadList={false}
+                action=""
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+              >
+                {imageUrl ? (
+                  <img
+                    src={imageUrl}
+                    alt="avatar"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
+            </div>
+
             <Form.Item
               label="Name"
               name="name"
               rules={[{ required: true, message: "Name is required" }]}
             >
-              <Input placeholder="Enter name" size="large" />
+              <Input placeholder="John Doe" size="large" />
             </Form.Item>
 
             <div className="flex gap-4">
@@ -158,9 +157,9 @@ const UserProfile = ({ onContinueClick, onBackClick }) => {
               label="Location"
               name="location"
               rules={[{ required: true, message: "Location is required" }]}
-              extra="We will need your locaiton to suggest nearby pet owners"
+              extra="We'll use this to find pet owners near you. You can enter your address or just the city and state"
             >
-              <Input placeholder="Enter location" size="large" />
+              <Input placeholder="Mountain View, CA" size="large" />
             </Form.Item>
           </div>
 

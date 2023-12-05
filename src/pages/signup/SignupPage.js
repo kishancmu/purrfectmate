@@ -12,6 +12,15 @@ const SignupPage = () => {
 
   const handleContinueClick = (values, index) => {
     console.log(`Success from Screen ${index - 1}:`, values);
+    if (index === 2) {
+      localStorage.setItem("accountDetails", JSON.stringify(values));
+    }
+    if (index === 3) {
+      localStorage.setItem("petProfileDetails", JSON.stringify(values));
+    }
+    if (index === 4) {
+      localStorage.setItem("userProfileDetails", JSON.stringify(values));
+    }
     setScreen(index);
   };
 

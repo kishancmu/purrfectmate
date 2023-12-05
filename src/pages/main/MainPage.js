@@ -3,15 +3,24 @@ import { useState } from "react";
 import BottomBar from "../../components/bottombar/BottomBar";
 import Topbar from "../../components/topbar/Topbar";
 import appContext from "../../utils/appContext";
+import { NOTIFICATION_LIST } from "../../mocks/notificationList";
+import { PROFILE_LIST } from "../../mocks/profileList";
+import { MATCH_SETTINGS } from "../../mocks/matchSettings";
 
 function MainPage() {
   const [playdateTab, setPlaydateTab] = useState({ currentTab: 2 });
   const [homePageTab, setHomePageTab] = useState({ currentTab: 1 });
   const [chatPageTab, setChatPageTab] = useState({ currentTab: 1 });
-  const [user, setUser] = useState({
-    name: "kishan",
-    email: "sad",
-  });
+  const [notifyFilterLimit, setNotifyFilterLimit] = useState(false);
+  if (localStorage.getItem("notificationList") === null)
+    localStorage.setItem("notificationList", JSON.stringify(NOTIFICATION_LIST));
+
+  if (localStorage.getItem("profileList") === null)
+    localStorage.setItem("profileList", JSON.stringify(PROFILE_LIST));
+
+  if (localStorage.getItem("matchSettings") === null)
+    localStorage.setItem("matchSettings", JSON.stringify(MATCH_SETTINGS));
+
   return (
     <appContext.Provider
       value={{
@@ -21,8 +30,8 @@ function MainPage() {
         setHomePageTab: setHomePageTab,
         chatPageTab: chatPageTab,
         setChatPageTab: setChatPageTab,
-        user: user,
-        setUser: setUser,
+        notifyFilterLimit: notifyFilterLimit,
+        setNotifyFilterLimit: setNotifyFilterLimit,
       }}
     >
       <div className="h-full w-full flex flex-col">

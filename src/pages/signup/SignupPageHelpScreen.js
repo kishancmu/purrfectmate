@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 const SignupPageHelpScreen = ({ onContinueClick }) => {
   return (
     <div className="h-full w-full flex flex-col">
-      <Title className="mt-0">Start with Basics</Title>
+      <Title className="mt-0 text-center">Start with Basics</Title>
       <div className="flex-grow min-h-0 pb-4">
         <div className="flex flex-col h-full overflow-y-auto p-4">
           <Text className="text-base">

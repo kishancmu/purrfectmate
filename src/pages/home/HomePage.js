@@ -1,16 +1,59 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Segmented, Button } from "antd";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
-import { CreditCardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import ProfileCard from "./ProfileCard";
 import ProfileList from "./ProfileList";
 import appContext from "../../utils/appContext";
-import ProfileCardShimmer from "./ProfileCardShimmer";
-import ProfileListShimmer from "./ProfileListShimmer";
 
 const HomePage = () => {
   const { homePageTab, setHomePageTab } = useContext(appContext);
+  const [profileList, setProfileList] = useState([]);
+  const [cardData, setCardData] = useState({});
+  const matchSettings = JSON.parse(localStorage.getItem("matchSettings"));
+
+  useEffect(() => {
+    const rawListFromStorage = JSON.parse(localStorage.getItem("profileList"));
+    const likedProfileList = rawListFromStorage.filter((profile) => {
+      if (
+        matchSettings?.gender &&
+        matchSettings?.gender.length > 0 &&
+        matchSettings?.age
+      ) {
+        return (
+          profile.isLiked === false &&
+          profile.isDisliked === false &&
+          matchSettings.gender.includes(profile.pet_details.gender) &&
+          profile.pet_details.age <= matchSettings.age
+        );
+      } else {
+        return profile.isLiked === false && profile.isDisliked === false;
+      }
+    });
+    setProfileList(likedProfileList);
+    setCardData(likedProfileList[0]);
+  }, []);
+
+  const onCardChoiceClick = (choice) => {
+    const rawListFromStorage = JSON.parse(localStorage.getItem("profileList"));
+    const updatedList = rawListFromStorage.map((profile) => {
+      if (profile.id === cardData.id) {
+        if (choice === "liked") {
+          return { ...profile, isLiked: true };
+        } else {
+          return { ...profile, isDisliked: true };
+        }
+      } else {
+        return profile;
+      }
+    });
+    localStorage.setItem("profileList", JSON.stringify(updatedList));
+    const likedProfileList = updatedList.filter(
+      (profile) => profile.isLiked === false && profile.isDisliked === false
+    );
+    setProfileList(likedProfileList);
+    setCardData(likedProfileList[0]);
+  };
 
   const navigate = useNavigate();
   return (
@@ -43,7 +86,14 @@ const HomePage = () => {
         </div>
         <div className="flex-grow min-h-[400px]">
           <div className="h-full w-full overflow-y-auto py-3 ">
-            {homePageTab.currentTab === 1 ? <ProfileCard /> : <ProfileList />}
+            {homePageTab.currentTab === 1 ? (
+              <ProfileCard
+                cardData={cardData}
+                handleChoiceClick={(choice) => onCardChoiceClick(choice)}
+              />
+            ) : (
+              <ProfileList profileObjectList={profileList} />
+            )}
           </div>
         </div>
       </div>

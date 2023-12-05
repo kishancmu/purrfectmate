@@ -2,12 +2,13 @@ import petImage from "../../assets/images/petProfileImage.jpeg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
+import { CgSmileSad } from "react-icons/cg";
 import { Avatar, Typography, Button, Image } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 import ProfileCardShimmer from "./ProfileCardShimmer";
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
-const ProfileCard = () => {
+const ProfileCard = ({ cardData, handleChoiceClick }) => {
   const navigate = useNavigate();
   const [showComponent, setShowComponent] = useState(false);
 
@@ -16,11 +17,11 @@ const ProfileCard = () => {
       setShowComponent(true);
     }, 500);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [cardData]);
 
   return !showComponent ? (
     <ProfileCardShimmer />
-  ) : (
+  ) : cardData ? (
     <div className="h-full w-full flex flex-col bg-white shadow-md rounded-lg p-3 border border-solid border-gray-200">
       <div className="h-2/3 relative">
         <Image
@@ -32,28 +33,32 @@ const ProfileCard = () => {
 
         <div className="absolute bottom-0 left-0 pb-3 pl-3 bg-[#00000069] w-full">
           <div>
-            <Text className="text-white text-2xl font-semibold">Moda</Text>
+            <Text className="text-white text-2xl font-semibold">
+              {cardData.pet_details?.name}
+            </Text>
           </div>
           <div className="flex mt-2">
             <Text className="bg-gray-950 text-white text-xs py-1 px-2 rounded-md mr-3">
-              Age
+              {cardData.pet_details?.age}
             </Text>
             <Text className="bg-gray-950 text-white text-xs py-1 px-2 rounded-md mr-3">
-              Female
+              {cardData.pet_details?.gender}
             </Text>
             <Text className="bg-gray-950 text-white text-xs py-1 px-2 rounded-md mr-3">
-              Breed
+              {cardData.pet_details?.breed}
             </Text>
           </div>
         </div>
       </div>
       <div className="flex my-4 items-center">
         <Avatar size={42} icon={<IoPersonOutline />} shape="square" />
-        <Text className="ml-2 font-semibold">John Doe</Text>
+        <Text className="ml-2 font-semibold">
+          {cardData.user_details?.name}
+        </Text>
         <div className="ml-auto">
           <Button
             onClick={() => {
-              navigate("profile/23");
+              navigate("profile/" + cardData.id);
             }}
           >
             See full profile
@@ -68,6 +73,7 @@ const ProfileCard = () => {
           danger
           icon={<CloseOutlined />}
           size="large"
+          onClick={() => handleChoiceClick("disliked")}
         >
           Dislike
         </Button>
@@ -76,9 +82,19 @@ const ProfileCard = () => {
           className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2"
           icon={<HeartFilled />}
           size="large"
+          onClick={() => handleChoiceClick("disliked")}
         >
           Like
         </Button>
+      </div>
+    </div>
+  ) : (
+    <div className="h-full w-full flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
+        <CgSmileSad className="text-8xl text-gray-400" />
+        <Title level={4} className="text-gray-600">
+          Oops we're out of profile. Try again later
+        </Title>
       </div>
     </div>
   );

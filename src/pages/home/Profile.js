@@ -1,12 +1,44 @@
 import petImage from "../../assets/images/petProfileImage.jpeg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import { Typography, Button, Rate, Image } from "antd";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import { useEffect } from "react";
 const { Text } = Typography;
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [profileData, setProfileData] = useState({});
+  const { profileID } = useParams();
+
+  useEffect(() => {
+    const raw = JSON.parse(localStorage.getItem("profileList"));
+    console.log(raw);
+    let rawd = raw.filter((n) => n.id === parseInt(profileID));
+    console.log(rawd);
+    setProfileData(rawd[0]);
+  }, []);
+
+  const handleChoiceClick = (choice) => {
+    const raw = JSON.parse(localStorage.getItem("profileList"));
+    const updatedList = raw.map((profile) => {
+      if (profile.id === parseInt(profileID)) {
+        console.log("entered herer");
+        if (choice === "liked") {
+          return { ...profile, isLiked: true };
+        } else {
+          return { ...profile, isDisliked: true };
+        }
+      } else {
+        return profile;
+      }
+    });
+    console.log("this", updatedList);
+    localStorage.setItem("profileList", JSON.stringify(updatedList));
+    navigate(-1);
+  };
+
   return (
     <div className="h-full w-full flex flex-col">
       <SecondaryTopbar title={"Coco Profile"} showBackButton={true} />
@@ -25,32 +57,40 @@ const Profile = () => {
           </Text>
           <div className="bg-gray-100 rounded-lg flex flex-col p-3 mt-1">
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Name:</span> Coco
+              <span className="font-semibold text-gray-600">Name: </span>
+              {profileData.pet_details?.name}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Age:</span> Coco
+              <span className="font-semibold text-gray-600">Age: </span>{" "}
+              {profileData.pet_details?.age}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Breed:</span> Coco
+              <span className="font-semibold text-gray-600">Gender: </span>{" "}
+              {profileData.pet_details?.gender}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Vacciantion:</span>{" "}
-              Coco
+              <span className="font-semibold text-gray-600">Breed: </span>{" "}
+              {profileData.pet_details?.breed}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Size:</span> Medium
+              <span className="font-semibold text-gray-600">Vacciantion: </span>
+              {profileData.pet_details?.vaccination}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Energy Level:</span>{" "}
-              Mountain View
+              <span className="font-semibold text-gray-600">Size: </span>{" "}
+              {profileData.pet_details?.size}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">PlayStyle:</span>{" "}
-              Mountain View
+              <span className="font-semibold text-gray-600">Energy Level:</span>
+              {profileData.pet_details?.energy}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Location:</span>{" "}
-              Mountain View
+              <span className="font-semibold text-gray-600">PlayStyle: </span>
+              {profileData.pet_details?.playstyle}
+            </Text>
+            <Text className="text-base">
+              <span className="font-semibold text-gray-600">Location: </span>
+              {profileData.pet_details?.location}
             </Text>
           </div>
         </div>
@@ -61,11 +101,11 @@ const Profile = () => {
           <div className="bg-gray-100 rounded-lg flex flex-col p-3 mt-1">
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Rating:</span>
-              <Rate disabled defaultValue={2} className="mb-0" />
+              <Rate disabled defaultValue={4} className="mb-0" />
             </Text>
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Badges: </span>
-              Superstar, Powerhouse
+              {profileData.playdate_details?.badges}
             </Text>
           </div>
         </div>
@@ -75,14 +115,16 @@ const Profile = () => {
           </Text>
           <div className="bg-gray-100 rounded-lg flex flex-col p-3 mt-1">
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Name: </span> John
-              Doe
+              <span className="font-semibold text-gray-600">Name: </span>
+              {profileData.user_details?.name}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Age: </span> 24
+              <span className="font-semibold text-gray-600">Age: </span>
+              {profileData.user_details?.age}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Gender: </span> Male
+              <span className="font-semibold text-gray-600">Gender: </span>
+              {profileData.user_details?.age}
             </Text>
           </div>
         </div>
@@ -94,10 +136,7 @@ const Profile = () => {
           danger
           icon={<CloseOutlined />}
           size="large"
-          onClick={() => {
-            navigate(-1);
-            console.log("clicked");
-          }}
+          onClick={() => handleChoiceClick("disliked")}
         >
           Dislike
         </Button>
@@ -106,9 +145,7 @@ const Profile = () => {
           className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2"
           icon={<HeartFilled />}
           size="large"
-          onClick={() => {
-            navigate(-1);
-          }}
+          onClick={() => handleChoiceClick("liked")}
         >
           Like
         </Button>

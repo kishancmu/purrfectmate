@@ -19,6 +19,7 @@ const appContext = createContext({
   chatPageTab: {
     currentTab: 1,
   },
+  notifyFilterLimit: false,
 });
 
 // NOTE: this will make sure that react developer tool shows proper name for the context

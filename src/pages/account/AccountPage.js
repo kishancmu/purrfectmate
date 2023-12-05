@@ -1,4 +1,12 @@
-import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
+import { IoChevronForward } from "react-icons/io5";
+import defaultUserImage from "../../assets/images/defaultUser.png";
+import defaultPetImage from "../../assets/images/defaultPet.png";
+import {
+  HiOutlineAdjustmentsHorizontal,
+  HiOutlineQuestionMarkCircle,
+  HiOutlineChatBubbleBottomCenterText,
+} from "react-icons/hi2";
+
 import { useState } from "react";
 import { Avatar, Divider, Typography, Button, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +15,11 @@ const { Text } = Typography;
 const AccountPage = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const petName =
+    JSON.parse(localStorage.getItem("petProfileDetails")).name ?? "NA";
+  const userName =
+    JSON.parse(localStorage.getItem("userProfileDetails")).name ?? "NA";
+
   const showModal = () => {
     setOpen(true);
   };
@@ -17,6 +30,7 @@ const AccountPage = () => {
   const handleCancel = () => {
     setOpen(false);
   };
+
   return (
     <div className="h-full w-full flex flex-col">
       <Modal
@@ -43,10 +57,10 @@ const AccountPage = () => {
             onClick={() => navigate("user")}
           >
             <div>
-              <Avatar size={84} icon={<IoPersonOutline />} shape="square" />
+              <Avatar size={84} src={defaultUserImage} shape="square" />
             </div>
             <div className="flex flex-col ml-3">
-              <Text className="text-xl font-semibold">John Doe</Text>
+              <Text className="text-xl font-semibold">{userName}</Text>
               <Text className="text-sm text-gray-500">
                 Edit personal picture and details
               </Text>
@@ -60,10 +74,15 @@ const AccountPage = () => {
             onClick={() => navigate("pet")}
           >
             <div>
-              <Avatar size={84} icon={<IoPersonOutline />} shape="square" />
+              <Avatar
+                size={84}
+                src={defaultPetImage}
+                shape="square"
+                className="flex justify-center items-center"
+              />
             </div>
             <div className="flex flex-col ml-3">
-              <Text className="text-xl font-semibold">Coco</Text>
+              <Text className="text-xl font-semibold">{petName}</Text>
               <Text className="text-sm text-gray-500">
                 Edit personal picture and details
               </Text>
@@ -76,8 +95,9 @@ const AccountPage = () => {
             className="flex items-center py-4"
             onClick={() => navigate("match-settings")}
           >
-            <div className="flex flex-col">
-              <Text className="text-lg text-gray-700">Match Settings</Text>
+            <div className="flex items-center">
+              <HiOutlineAdjustmentsHorizontal className="text-xl" />
+              <Text className="ml-2 text-lg text-gray-700">Match Settings</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
@@ -89,8 +109,9 @@ const AccountPage = () => {
             className="flex items-center py-4"
             onClick={() => navigate("help")}
           >
-            <div className="flex flex-col">
-              <Text className="text-lg text-gray-700">Help</Text>
+            <div className="flex items-center">
+              <HiOutlineQuestionMarkCircle className="text-xl" />
+              <Text className="text-lg text-gray-700 ml-2">Help</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />
@@ -100,8 +121,9 @@ const AccountPage = () => {
             className="flex items-center py-4"
             onClick={() => navigate("message-us")}
           >
-            <div className="flex flex-col">
-              <Text className="text-lg text-gray-700">Message Us</Text>
+            <div className="flex items-center">
+              <HiOutlineChatBubbleBottomCenterText className="text-xl" />
+              <Text className="text-lg text-gray-700 ml-2">Message Us</Text>
             </div>
             <div className="h-full flex ml-auto">
               <IoChevronForward className="text-2xl text-gray-700" />

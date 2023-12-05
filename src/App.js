@@ -14,7 +14,7 @@ function App() {
         <div className="h-36 w-36">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
-        <Title className="mt-2 text-gray-700 mb-0 font-bold text-5xl" >
+        <Title className="mt-2 text-gray-700 mb-0 font-bold text-5xl">
           PurrfectMate
         </Title>
         <Text className="text-base text-gray-600">

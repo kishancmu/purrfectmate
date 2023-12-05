@@ -47,7 +47,7 @@ const appRouter = createBrowserRouter([
             element: <HomePage />,
           },
           {
-            path: "profile/:id",
+            path: "profile/:profileID",
             element: <Profile />,
           },
           {
@@ -161,7 +161,7 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={appRouter} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={appRouter} />
+  // </React.StrictMode>
 );

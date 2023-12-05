@@ -1,15 +1,9 @@
-import { Button, Form, Input, Typography, Select, message, Upload } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Select, message, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
+import defaultPetImage from "../../assets/images/defaultPet.png";
 
-const { Title, Text } = Typography;
-
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
 const beforeUpload = (file) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
@@ -24,26 +18,16 @@ const beforeUpload = (file) => {
 
 const PetProfile = () => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(defaultPetImage);
   const [messageApi, contextHolder] = message.useMessage();
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+  const petDetails = JSON.parse(localStorage.getItem("petProfileDetails"));
+  const handleChange = () => {
+    setImageUrl(defaultPetImage);
   };
 
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <PlusOutlined />
       <div
         style={{
           marginTop: 8,
@@ -72,8 +56,10 @@ const PetProfile = () => {
         <Form
           name="normal_login"
           form={form}
+          initialValues={petDetails}
           onFinish={(values) => {
             console.log(values);
+            localStorage.setItem("petProfileDetails", JSON.stringify(values));
             success();
           }}
           layout="vertical"
@@ -83,7 +69,7 @@ const PetProfile = () => {
           <div className="flex-grow min-h-0 overflow-y-auto">
             <Upload
               name="avatar"
-              listType="picture-circle"
+              listType="picture-card"
               className="avatar-uploader text-center"
               showUploadList={false}
               action=""
@@ -91,7 +77,11 @@ const PetProfile = () => {
               onChange={handleChange}
             >
               {imageUrl ? (
-                <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                <img
+                  src={defaultPetImage}
+                  alt="avatar"
+                  style={{ width: "100%", height: "100%" }}
+                />
               ) : (
                 uploadButton
               )}

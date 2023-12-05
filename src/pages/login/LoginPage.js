@@ -23,9 +23,15 @@ const LoginPage = () => {
           className="flex flex-col h-full"
         >
           <Form.Item
-            label="Username"
-            name="username"
-            rules={[{ required: true, message: "Username cannot be empty!" }]}
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Email cannot be empty!" },
+              {
+                pattern: new RegExp(/^\S+@\S+\.\S+$/),
+                message: "Enter valid email address!",
+              },
+            ]}
           >
             <Input placeholder="Enter Username" size="large" />
           </Form.Item>

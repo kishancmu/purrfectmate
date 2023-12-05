@@ -9,14 +9,10 @@ import {
   Upload,
   InputNumber,
 } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
+import defaultUserImage from "../../assets/images/defaultUser.png";
 const { Title, Text } = Typography;
 
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
 const beforeUpload = (file) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
@@ -32,26 +28,14 @@ const beforeUpload = (file) => {
 const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
   const [form] = Form.useForm();
 
-  const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
-
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+  const handleChange = () => {
+    setImageUrl(defaultUserImage);
   };
 
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <PlusOutlined />
       <div
         style={{
           marginTop: 8,
@@ -81,15 +65,18 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
             <div className="flex-grow min-h-0 overflow-y-auto">
               <Upload
                 name="avatar"
-                listType="picture-circle"
+                listType="picture-card"
                 className="avatar-uploader text-center"
                 showUploadList={false}
-                action=""
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
               >
                 {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                  <img
+                    src={defaultUserImage}
+                    alt="avatar"
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 ) : (
                   uploadButton
                 )}
@@ -97,9 +84,15 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
               <Form.Item
                 label="Name"
                 name="name"
-                rules={[{ required: true, message: "Name is required" }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Name is required",
+                    whitespace: true,
+                  },
+                ]}
               >
-                <Input placeholder="Enter name" size="large" />
+                <Input placeholder="John Doe" size="large" />
               </Form.Item>
               <div className="flex">
                 <Form.Item
@@ -144,10 +137,10 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
               <Form.Item
                 label="Location"
                 name="location"
-                extra="We'll use this to find pet owners near you"
+                extra="We'll use this to find pet owners near you. You can enter your address or just the city and state"
                 rules={[{ required: true, message: "Location is required" }]}
               >
-                <Input placeholder="Enter locaiton" size="large" />
+                <Input placeholder="Mountain View, CA" size="large" />
               </Form.Item>
             </div>
             <div className="pt-2">

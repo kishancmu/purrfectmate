@@ -1,14 +1,9 @@
 import { Button, Form, Input, Typography, Select, message, Upload } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
-
+import defaultPetImage from "../../assets/images/defaultPet.png";
 const { Title, Text } = Typography;
 
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
 const beforeUpload = (file) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
@@ -23,25 +18,16 @@ const beforeUpload = (file) => {
 
 const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
+
   const [imageUrl, setImageUrl] = useState();
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+
+  const handleChange = () => {
+    setImageUrl(defaultPetImage);
   };
 
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <PlusOutlined />
       <div
         style={{
           marginTop: 8,
@@ -72,15 +58,18 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
             <div className="flex-grow min-h-0 overflow-y-auto">
               <Upload
                 name="avatar"
-                listType="picture-circle"
+                listType="picture-card"
                 className="avatar-uploader text-center"
                 showUploadList={false}
-                action=""
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
               >
                 {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                  <img
+                    src={imageUrl}
+                    alt="avatar"
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 ) : (
                   uploadButton
                 )}
@@ -158,6 +147,24 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
                       { value: "boxer", label: "Boxer" },
                       { value: "labrador", label: "Labrador" },
                       { value: "pug", label: "Pug" },
+                      {
+                        value: "golden_retriever",
+                        label: "Golden Retriever",
+                      },
+                      {
+                        value: "german_shepherd",
+                        label: "German Shepherd",
+                      },
+                      { value: "bulldog", label: "Bulldog" },
+                      { value: "beagle", label: "Beagle" },
+                      { value: "rottweiler", label: "Rottweiler" },
+                      { value: "poodle", label: "Poodle" },
+                      { value: "dachshund", label: "Dachshund" },
+                      { value: "chihuahua", label: "Chihuahua" },
+                      {
+                        value: "siberian_husky",
+                        label: "Siberian Husky",
+                      },
                     ]}
                   ></Select>
                 </Form.Item>
@@ -182,6 +189,16 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
                       { value: "1", label: "1" },
                       { value: "2", label: "2" },
                       { value: "3", label: "3" },
+                      { value: "4", label: "4" },
+                      { value: "5", label: "5" },
+                      { value: "6", label: "6" },
+                      { value: "7", label: "7" },
+                      { value: "8", label: "8" },
+                      { value: "9", label: "9" },
+                      { value: "10", label: "10" },
+                      { value: "11", label: "11" },
+                      { value: "12", label: "12" },
+                      { value: "13", label: "13" },
                     ]}
                   ></Select>
                 </Form.Item>
@@ -250,9 +267,15 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
                   maxTagCount="responsive"
                   size="large"
                   options={[
-                    { value: "active", label: "Active" },
-                    { value: "playful", label: "Playful" },
-                    { value: "goofy", label: "Goofy" },
+                    { value: "Active", label: "Active" },
+                    { value: "Playful", label: "Playful" },
+                    { value: "Runner", label: "Runner" },
+                    { value: "Shy", label: "Shy" },
+                    { value: "Calm", label: "Calm" },
+                    { value: "Friendly", label: "Friendly" },
+                    { value: "Aggressive", label: "Aggressive" },
+                    { value: "Protective", label: "Protective" },
+                    { value: "Affectionate", label: "Affectionate" },
                   ]}
                 ></Select>
               </Form.Item>
