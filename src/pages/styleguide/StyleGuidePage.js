@@ -24,6 +24,7 @@ import {
   Modal,
   Image,
   Skeleton,
+  Divider,
 } from "antd";
 
 const StyleGuidePage = () => {
@@ -66,30 +67,35 @@ const StyleGuidePage = () => {
     setIsModalOpen(false);
   };
   return (
-    <div>
+    <div className="h-full w-full overflow-x-hidden overflow-y-auto p-4">
       <div>
-        <h1>Style Guide</h1>
+        <h1 className="text-blue-600">Style Guide</h1>
         <div>
-          <h2>Colors</h2>
+          <h2 className="bg-blue-600 py-3 px-3 text-white">Colors</h2>
           <div></div>
         </div>
-        <h2>Typography</h2>
+        <Divider />
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Typography</h2>
         <Title>Heading 1</Title>
         <Title level={2}>Heading 2</Title>
         <Title level={3}>Heading 3</Title>
         <Title level={4}>Heading 4</Title>
         <Title level={5}>Heading 5</Title>
-        <h2>Buttons</h2>
-        <Button type="primary" size="large">
-          Primary
-        </Button>
-        <Button size="large">Secondary</Button>
-        <Button type="text">Tertiary</Button>
-        <Button type="link">Link</Button>
-        <Button disabled size="large">
-          Disabled
-        </Button>
-        <h2>Inputs</h2>
+        <Divider />
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Buttons</h2>
+        <div className="flex gap-4 flex-wrap">
+          <Button type="primary" size="large">
+            Primary
+          </Button>
+          <Button size="large">Secondary</Button>
+          <Button type="text">Tertiary</Button>
+          <Button type="link">Link</Button>
+          <Button disabled size="large">
+            Disabled
+          </Button>
+        </div>
+
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Inputs</h2>
         <div>
           <p>Checkboxes</p>
           <Checkbox>Checkbox (active)</Checkbox>
@@ -382,32 +388,36 @@ const StyleGuidePage = () => {
             </Form.Item>
           </Form>
         </div>
+        <Divider />
         <div>
-          <p>Avatar</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Avatar</p>
           <Space wrap size={16}>
             <Avatar shape="square" size={64} icon={<UserOutlined />} />
           </Space>
         </div>
+        <Divider />
         <div>
-          <p>Empty</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Empty</p>
           <Empty />
         </div>
         <div>
-          <p>Segment</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Segment</p>
           <Segmented
             options={[123, 456, "longtext-longtext-longtext-longtext"]}
             block
           />
         </div>
+        <Divider />
         <div>
-          <p>Success Message</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Success Message</p>
           {contextHolder}
           <Space>
             <Button onClick={success}>Success</Button>
           </Space>
         </div>
+        <Divider />
         <div>
-          <p>Modal</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Modal</p>
           <Button type="primary" onClick={showModal}>
             Open Modal
           </Button>
@@ -422,15 +432,17 @@ const StyleGuidePage = () => {
             <p>Some contents...</p>
           </Modal>
         </div>
+        <Divider />
         <div>
-          <p>Image</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Image</p>
           <Image
             width={200}
             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
           />
         </div>
+        <Divider />
         <div>
-          <p>Skeleton</p>
+          <p className="bg-blue-600 py-3 px-3 text-white">Skeleton</p>
           <Skeleton.Image active="true" className="w-16 h-16" />
           <Skeleton.Button
             active="true"

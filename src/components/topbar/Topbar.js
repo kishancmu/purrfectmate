@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import appContext from "../../utils/appContext";
 import { IoNotifications } from "react-icons/io5";
 import { Typography, Button, Badge } from "antd";
