@@ -38,7 +38,7 @@ const NotificationsPage = () => {
       <div className="flex-grow min-h-0 p-3">
         <div className="h-full overflow-y-auto">
           {notificationList.map((notification) => (
-            <>
+            <div key={notification.id}>
               <div
                 className={
                   "flex items-cente p-2 rounded-md " +
@@ -67,7 +67,7 @@ const NotificationsPage = () => {
                 </div>
               </div>
               <Divider className="my-2" />
-            </>
+            </div>
           ))}
         </div>
       </div>

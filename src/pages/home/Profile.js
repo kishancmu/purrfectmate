@@ -14,7 +14,6 @@ const Profile = () => {
 
   useEffect(() => {
     const raw = JSON.parse(localStorage.getItem("profileList"));
-    console.log(raw);
     let rawd = raw.filter((n) => n.id === parseInt(profileID));
     console.log(rawd);
     setProfileData(rawd[0]);
@@ -101,7 +100,11 @@ const Profile = () => {
           <div className="bg-gray-100 rounded-lg flex flex-col p-3 mt-1">
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Rating:</span>
-              <Rate disabled defaultValue={4} className="mb-0" />
+              <Rate
+                disabled
+                defaultValue={profileData?.playdate_details?.rate}
+                className="mb-0"
+              />
             </Text>
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Badges: </span>

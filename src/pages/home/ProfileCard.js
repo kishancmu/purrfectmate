@@ -27,7 +27,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
         <Image
           width="100%"
           height="100%"
-          src={petImage}
+          src={cardData.pet_details?.image}
           className="rounded-lg"
         />
 

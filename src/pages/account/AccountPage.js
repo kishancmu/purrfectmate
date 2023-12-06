@@ -15,16 +15,22 @@ const { Text } = Typography;
 const AccountPage = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [isDeleteAccount, setIsDeleteAccount] = useState(false);
   const petName =
     JSON.parse(localStorage.getItem("petProfileDetails")).name ?? "NA";
   const userName =
     JSON.parse(localStorage.getItem("userProfileDetails")).name ?? "NA";
 
-  const showModal = () => {
+  const showModal = (check) => {
     setOpen(true);
+    if (check === "delete") setIsDeleteAccount(true);
+    else setIsDeleteAccount(false);
   };
   const handleOk = () => {
     setOpen(false);
+    if (isDeleteAccount) {
+      localStorage.clear();
+    }
     navigate("/");
   };
   const handleCancel = () => {
@@ -35,7 +41,11 @@ const AccountPage = () => {
     <div className="h-full w-full flex flex-col">
       <Modal
         open={open}
-        title="Logout from PurrfectMate"
+        title={
+          isDeleteAccount
+            ? "Delete PurrfectMate Account"
+            : "Logout from PurrfectMate"
+        }
         onOk={handleOk}
         centered
         onCancel={handleCancel}
@@ -48,7 +58,14 @@ const AccountPage = () => {
           </Button>,
         ]}
       >
-        <p>Are you sure you want to logout?</p>
+        {isDeleteAccount ? (
+          <p>
+            Are you sure you want to delete the account? This action is
+            irreversible
+          </p>
+        ) : (
+          <p>Are you sure you want to logout?</p>
+        )}
       </Modal>
       <div className="flex-grow min-h-0 p-4">
         <div className="h-full overflow-y-auto">
@@ -136,9 +153,18 @@ const AccountPage = () => {
         type="text"
         className="mb-2 mx-3"
         size="large"
-        onClick={() => showModal()}
+        onClick={() => showModal("logout")}
       >
         Logout
+      </Button>
+      <Button
+        danger
+        type="text"
+        className="mt-3 mb-2 mx-3"
+        size="large"
+        onClick={() => showModal("delete")}
+      >
+        Delete Account
       </Button>
     </div>
   );

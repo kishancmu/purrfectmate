@@ -8,7 +8,7 @@ const NotificationShimmer = () => {
           {Array(5)
             .fill("")
             .map((item, index) => (
-              <>
+              <div key={index}>
                 <div className="flex items-center p-2 rounded-md ">
                   <div>
                     <Skeleton.Avatar
@@ -42,7 +42,7 @@ const NotificationShimmer = () => {
                   </div>
                 </div>
                 <Divider className="my-2" />
-              </>
+              </div>
             ))}
         </div>
       </div>
