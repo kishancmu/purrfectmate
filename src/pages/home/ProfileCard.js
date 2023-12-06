@@ -93,7 +93,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
       <div className="flex flex-col justify-center items-center">
         <CgSmileSad className="text-8xl text-gray-400" />
         <Title level={4} className="text-gray-600">
-          Oops we're out of profile. Try again later
+          Oops we're out of profiles. Try again later
         </Title>
       </div>
     </div>

@@ -37,6 +37,7 @@ const SchedulePlaydate = () => {
         isAccepted: true,
         isPending: true,
         isCreator: true,
+        isGroup: false,
         isRejected: false,
       },
     });

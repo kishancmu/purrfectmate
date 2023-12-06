@@ -14,9 +14,18 @@ function MainPage() {
   const [playdateTab, setPlaydateTab] = useState({ currentTab: 2 });
   const [homePageTab, setHomePageTab] = useState({ currentTab: 1 });
   const [chatPageTab, setChatPageTab] = useState({ currentTab: 1 });
+
   const [notifyFilterLimit, setNotifyFilterLimit] = useState(false);
   if (localStorage.getItem("notificationList") === null)
     localStorage.setItem("notificationList", JSON.stringify(NOTIFICATION_LIST));
+
+  const [notificationCount, setNotificationCount] = useState(
+    localStorage.getItem("notificationList") === null
+      ? 0
+      : JSON.parse(localStorage.getItem("notificationList")).filter(
+          (n) => !n.viewed
+        ).length
+  );
 
   if (localStorage.getItem("profileList") === null)
     localStorage.setItem("profileList", JSON.stringify(PROFILE_LIST));
@@ -53,6 +62,8 @@ function MainPage() {
         setChatPageTab: setChatPageTab,
         notifyFilterLimit: notifyFilterLimit,
         setNotifyFilterLimit: setNotifyFilterLimit,
+        setNotificationCount: setNotificationCount,
+        notificationCount: notificationCount,
       }}
     >
       <div className="h-full w-full flex flex-col">

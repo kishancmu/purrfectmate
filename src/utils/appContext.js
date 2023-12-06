@@ -19,6 +19,7 @@ const appContext = createContext({
   chatPageTab: {
     currentTab: 1,
   },
+  notificationCount: 3,
   notifyFilterLimit: false,
 });
 

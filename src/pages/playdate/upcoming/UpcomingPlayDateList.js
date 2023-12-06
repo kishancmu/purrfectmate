@@ -22,7 +22,11 @@ const UpcomingPlayDateList = () => {
       const upcomingPlayDateList = JSON.parse(
         localStorage.getItem("upcomingPlaydateList")
       );
-      setUpcomingPlayDateList(upcomingPlayDateList);
+      const filteredUpcomingPlayDateList = upcomingPlayDateList.filter(
+        (item) => item.upcoming_playdate.isRejected === false
+      );
+
+      setUpcomingPlayDateList(filteredUpcomingPlayDateList);
     }, 500);
     return () => clearTimeout(timeout);
   }, []);

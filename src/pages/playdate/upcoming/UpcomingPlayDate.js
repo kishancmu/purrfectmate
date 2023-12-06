@@ -1,4 +1,4 @@
-import { Avatar, Typography, Divider } from "antd";
+import { Avatar, Typography, Divider, Modal, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
@@ -11,6 +11,7 @@ const UpcomingPlayDate = () => {
   const { playdateID } = useParams();
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
+  const [open, setOpen] = useState(false);
   const [isPackEdit, setIsPackEdit] = useState(false);
   const [upcomingPlayDateDetail, setUpcomingPlayDateDetail] = useState({});
 
@@ -19,9 +20,7 @@ const UpcomingPlayDate = () => {
       localStorage.getItem("upcomingPlaydateList")
     );
     const upcomingPlayDate = upcomingPlayDateList.find(
-      (item) =>
-        item.id === parseInt(playdateID) &&
-        item.upcoming_playdate.isRejected === false
+      (item) => item.id === parseInt(playdateID)
     );
 
     setUpcomingPlayDateDetail(upcomingPlayDate);
@@ -38,7 +37,7 @@ const UpcomingPlayDate = () => {
 
   const handleSaveButtonClick = (values) => {
     setIsEdit(false);
-    console.log("is this calling");
+
     const upcomingPlayDateList = JSON.parse(
       localStorage.getItem("upcomingPlaydateList")
     );
@@ -95,7 +94,14 @@ const UpcomingPlayDate = () => {
   };
 
   const onRejectClick = () => {
-    console.log("request rejected clicked");
+    showModal();
+  };
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOk = () => {
     const upcomingPlayDateList = JSON.parse(
       localStorage.getItem("upcomingPlaydateList")
     );
@@ -107,10 +113,32 @@ const UpcomingPlayDate = () => {
       "upcomingPlaydateList",
       JSON.stringify(upcomingPlayDateList)
     );
+    navigate(-1);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
   };
 
   return (
     <div className="h-full w-full flex flex-col">
+      <Modal
+        open={open}
+        title={"Reject Playdate"}
+        onOk={handleOk}
+        centered
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            Yes
+          </Button>,
+        ]}
+      >
+        Are you sure you want to reject the playdate?
+      </Modal>
       <SecondaryTopbar
         title={
           "Upcoming Playdate with " + upcomingPlayDateDetail.pet_details?.name
@@ -119,7 +147,7 @@ const UpcomingPlayDate = () => {
       />
       <div className="flex-grow min-h-0">
         {upcomingPlayDateDetail.upcoming_playdate?.isCreator === false &&
-          upcomingPlayDateDetail.upcoming_playdate?.isCreator === false && (
+          upcomingPlayDateDetail.upcoming_playdate?.isGroup === false && (
             <UpcomingPlayDateDetail
               playDateDetail={upcomingPlayDateDetail}
               isRequestAccepted={

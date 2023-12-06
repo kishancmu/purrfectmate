@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import appContext from "../../utils/appContext";
 import { useNavigate } from "react-router-dom";
 import { IoHeart } from "react-icons/io5";
 import { PiBoneFill } from "react-icons/pi";
@@ -10,6 +11,7 @@ const { Title, Text } = Typography;
 const NotificationsPage = () => {
   const navigate = useNavigate();
   const [showComponent, setShowComponent] = useState(false);
+  const { notificationCount, setNotificationCount } = useContext(appContext);
   const [notificationList, setNotificationList] = useState([]);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const NotificationsPage = () => {
     notification.viewed = true;
     localStorage.setItem("notificationList", JSON.stringify(notificationList));
     setNotificationList(notificationList);
+    setNotificationCount(notificationList.filter((n) => !n.viewed).length);
     navigate("/main/playdate");
   };
 
