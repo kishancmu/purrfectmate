@@ -40,7 +40,10 @@ const Profile = () => {
 
   return (
     <div className="h-full w-full flex flex-col">
-      <SecondaryTopbar title={"Coco Profile"} showBackButton={true} />
+      <SecondaryTopbar
+        title={profileData.pet_details?.name + "'s Profile"}
+        showBackButton={true}
+      />
       <div className="flex-grow min-h-0 p-3 overflow-y-auto">
         <div className="w-auto h-56">
           <Image

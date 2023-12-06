@@ -51,7 +51,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
         </div>
       </div>
       <div className="flex my-4 items-center">
-        <Avatar size={42} icon={<IoPersonOutline />} shape="square" />
+        <Avatar size={64} src={cardData.user_details?.image} shape="square" />
         <Text className="ml-2 font-semibold">
           {cardData.user_details?.name}
         </Text>

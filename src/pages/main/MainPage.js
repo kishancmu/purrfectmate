@@ -6,7 +6,9 @@ import appContext from "../../utils/appContext";
 import { NOTIFICATION_LIST } from "../../mocks/notificationList";
 import { PROFILE_LIST } from "../../mocks/profileList";
 import { MATCH_SETTINGS } from "../../mocks/matchSettings";
-import { MY_MATCHES } from "../../mocks/mymatches";
+import { MY_MATCHES_PROFILE_LIST } from "../../mocks/mymatchesprofilelist";
+import { PAST_PLAYDATE_LIST } from "../../mocks/pastplaydatelist";
+import { UPCOMING_PLAYDATE_LIST } from "../../mocks/upcomingplaydatelist";
 
 function MainPage() {
   const [playdateTab, setPlaydateTab] = useState({ currentTab: 2 });
@@ -22,8 +24,23 @@ function MainPage() {
   if (localStorage.getItem("matchSettings") === null)
     localStorage.setItem("matchSettings", JSON.stringify(MATCH_SETTINGS));
 
-  if (localStorage.getItem("myMatches") === null)
-    localStorage.setItem("myMatches", JSON.stringify(MY_MATCHES));
+  if (localStorage.getItem("myMatchesProfileList") === null)
+    localStorage.setItem(
+      "myMatchesProfileList",
+      JSON.stringify(MY_MATCHES_PROFILE_LIST)
+    );
+
+  if (localStorage.getItem("pastPlaydateList") === null)
+    localStorage.setItem(
+      "pastPlaydateList",
+      JSON.stringify(PAST_PLAYDATE_LIST)
+    );
+
+  if (localStorage.getItem("upcomingPlaydateList") === null)
+    localStorage.setItem(
+      "upcomingPlaydateList",
+      JSON.stringify(UPCOMING_PLAYDATE_LIST)
+    );
 
   return (
     <appContext.Provider

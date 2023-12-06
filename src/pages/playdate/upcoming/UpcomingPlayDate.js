@@ -1,49 +1,156 @@
 import { Avatar, Typography, Divider } from "antd";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 import UpcomingPlayDateEdit from "./UpcomingPlayDateEdit";
 import UpcomingPlayDateDetail from "./UpcomingPlayDateDetail";
+import PackPlaydateEdit from "../pack/PackPlaydateEdit";
 const { Title, Text } = Typography;
 
 const UpcomingPlayDate = () => {
   const { playdateID } = useParams();
+  const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
-  console.log(playdateID);
+  const [isPackEdit, setIsPackEdit] = useState(false);
+  const [upcomingPlayDateDetail, setUpcomingPlayDateDetail] = useState({});
+
+  useEffect(() => {
+    const upcomingPlayDateList = JSON.parse(
+      localStorage.getItem("upcomingPlaydateList")
+    );
+    const upcomingPlayDate = upcomingPlayDateList.find(
+      (item) =>
+        item.id === parseInt(playdateID) &&
+        item.upcoming_playdate.isRejected === false
+    );
+
+    setUpcomingPlayDateDetail(upcomingPlayDate);
+  }, []);
 
   const handleEditButtonClick = () => {
-    console.log("come here");
     setIsEdit(true);
+    setIsPackEdit(true);
   };
 
-  const handleSaveButtonClick = () => {
+  const handlePackEditButtonClick = () => {
+    setIsPackEdit(true);
+  };
+
+  const handleSaveButtonClick = (values) => {
     setIsEdit(false);
+    console.log("is this calling");
+    const upcomingPlayDateList = JSON.parse(
+      localStorage.getItem("upcomingPlaydateList")
+    );
+    const upcomingPlayDate = upcomingPlayDateList.find(
+      (item) => item.id === parseInt(playdateID)
+    );
+    upcomingPlayDate.upcoming_playdate = {
+      ...upcomingPlayDate.upcoming_playdate,
+      ...values,
+      date: values.date.format("DD-MM-YYYY"),
+      time: values.time.format("HH:mm"),
+    };
+    localStorage.setItem(
+      "upcomingPlaydateList",
+      JSON.stringify(upcomingPlayDateList)
+    );
+  };
+
+  const handlePackSaveButtonClick = (values) => {
+    setIsPackEdit(false);
+    console.log("thsi is valueso fpac", values);
+    const upcomingPlayDateList = JSON.parse(
+      localStorage.getItem("upcomingPlaydateList")
+    );
+    const upcomingPlayDate = upcomingPlayDateList.find(
+      (item) => item.id === parseInt(playdateID)
+    );
+    upcomingPlayDate.pet_details.name = values.name;
+    upcomingPlayDate.upcoming_playdate = {
+      ...upcomingPlayDate.upcoming_playdate,
+      ...values,
+      date: values.date.format("DD-MM-YYYY"),
+      time: values.time.format("HH:mm"),
+    };
+    localStorage.setItem(
+      "upcomingPlaydateList",
+      JSON.stringify(upcomingPlayDateList)
+    );
   };
 
   const onAcceptClick = () => {
-    console.log("request accepted clicked");
+    const upcomingPlayDateList = JSON.parse(
+      localStorage.getItem("upcomingPlaydateList")
+    );
+    const upcomingPlayDate = upcomingPlayDateList.find(
+      (item) => item.id === parseInt(playdateID)
+    );
+    upcomingPlayDate.upcoming_playdate.isAccepted = true;
+    localStorage.setItem(
+      "upcomingPlaydateList",
+      JSON.stringify(upcomingPlayDateList)
+    );
+    navigate(-1);
   };
 
   const onRejectClick = () => {
     console.log("request rejected clicked");
+    const upcomingPlayDateList = JSON.parse(
+      localStorage.getItem("upcomingPlaydateList")
+    );
+    const upcomingPlayDate = upcomingPlayDateList.find(
+      (item) => item.id === parseInt(playdateID)
+    );
+    upcomingPlayDate.upcoming_playdate.isRejected = true;
+    localStorage.setItem(
+      "upcomingPlaydateList",
+      JSON.stringify(upcomingPlayDateList)
+    );
   };
+
   return (
     <div className="h-full w-full flex flex-col">
-      <SecondaryTopbar title="Upcoming Playdate" showBackButton={true} />
+      <SecondaryTopbar
+        title={
+          "Upcoming Playdate with " + upcomingPlayDateDetail.pet_details?.name
+        }
+        showBackButton={true}
+      />
       <div className="flex-grow min-h-0">
-        {playdateID === "0" ? (
-          <UpcomingPlayDateDetail
-            isRequestAccepted={false}
-            onAcceptClick={onAcceptClick}
-            onRejectClick={onRejectClick}
-          />
-        ) : (
-          <UpcomingPlayDateEdit
-            isEdit={isEdit}
-            editButtonClick={handleEditButtonClick}
-            saveButtonClick={handleSaveButtonClick}
-          />
-        )}
+        {upcomingPlayDateDetail.upcoming_playdate?.isCreator === false &&
+          upcomingPlayDateDetail.upcoming_playdate?.isCreator === false && (
+            <UpcomingPlayDateDetail
+              playDateDetail={upcomingPlayDateDetail}
+              isRequestAccepted={
+                upcomingPlayDateDetail.upcoming_playdate?.isAccepted
+              }
+              onAcceptClick={onAcceptClick}
+              onRejectClick={onRejectClick}
+            />
+          )}
+
+        {upcomingPlayDateDetail.upcoming_playdate?.isCreator === true &&
+          upcomingPlayDateDetail.upcoming_playdate?.isGroup === false && (
+            <UpcomingPlayDateEdit
+              isEdit={isEdit}
+              playDateDetail={upcomingPlayDateDetail}
+              editButtonClick={handleEditButtonClick}
+              saveButtonClick={(values) => handleSaveButtonClick(values)}
+            />
+          )}
+
+        {upcomingPlayDateDetail.upcoming_playdate?.isCreator === true &&
+          upcomingPlayDateDetail.upcoming_playdate?.isGroup === true && (
+            <PackPlaydateEdit
+              isPackEdit={isPackEdit}
+              packDetails={upcomingPlayDateDetail}
+              packEditButtonClick={handlePackEditButtonClick}
+              packSaveButtonClick={(values) =>
+                handlePackSaveButtonClick(values)
+              }
+            />
+          )}
       </div>
     </div>
   );

@@ -1,23 +1,32 @@
-import { Button, Form, Typography, Select, Rate } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Button, Form, Select, Rate } from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
 import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
-const { Title, Text } = Typography;
 
 const RatePlayDate = () => {
   const navigate = useNavigate();
+
+  const playdateID = useLocation().pathname.split("/")[4];
+
+  const handleRateFinish = () => {
+    const pastPlaydatesList = JSON.parse(
+      localStorage.getItem("pastPlaydateList")
+    );
+    const playdate = pastPlaydatesList.find(
+      (playdate) => playdate.id === parseInt(playdateID)
+    );
+    playdate.past_playdates[0].isRated = true;
+    localStorage.setItem("pastPlaydateList", JSON.stringify(pastPlaydatesList));
+    navigate(-1);
+  };
+
   return (
     <div className="h-full w-full flex flex-col">
       <SecondaryTopbar title={"Rate Playdate"} showBackButton={true} />
-      <Title className="mt-4 px-4" level={3}>
-        Rate your playdate with Coco
-      </Title>
-
       <div className="flex-grow min-h-0 p-4">
         <Form
           name="ratingForm"
           onFinish={(values) => {
-            console.log(values);
-            navigate("/main/playdate");
+            handleRateFinish(values);
           }}
           layout="vertical"
           scrollToFirstError={true}

@@ -30,6 +30,8 @@ const AccountPage = () => {
     setOpen(false);
     if (isDeleteAccount) {
       localStorage.clear();
+    } else {
+      localStorage.removeItem("profileList");
     }
     navigate("/");
   };

@@ -1,17 +1,39 @@
-import { useState } from "react";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 import { Button, Form, Input, DatePicker, TimePicker } from "antd";
 const { TextArea } = Input;
 
-const UpcomingPlayDateEdit = ({ isEdit, editButtonClick, saveButtonClick }) => {
+const UpcomingPlayDateEdit = ({
+  playDateDetail,
+  isEdit,
+  editButtonClick,
+  saveButtonClick,
+}) => {
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    console.log("this is op", playDateDetail);
+    if (playDateDetail) {
+      form.setFieldsValue({
+        ...playDateDetail.upcoming_playdate,
+        date: dayjs(playDateDetail.upcoming_playdate?.date, "DD-MM-YYYY"),
+        time: dayjs(playDateDetail.upcoming_playdate?.time, "HH:mm"),
+      });
+    }
+  }, [playDateDetail]);
+
+  const disabledDate = (current) => {
+    // Can not select days before today
+    return current.add(1, "day") < dayjs().endOf("day");
+  };
+
   return (
-    <div className="h-full w-full flex flex-col">
-      <div className="flex-grow min-h-0 p-4">
+    <div className="h-full w-full flex flex-col p-4">
+      <div className="flex-grow min-h-0">
         <Form
           name="edit_playdate"
           form={form}
-          onFinish={(values) => console.log(values)}
+          onFinish={(values) => saveButtonClick(values)}
           layout="vertical"
           scrollToFirstError={true}
           className="flex flex-col h-full"
@@ -35,6 +57,7 @@ const UpcomingPlayDateEdit = ({ isEdit, editButtonClick, saveButtonClick }) => {
                   disabled={!isEdit}
                   className="w-full"
                   size="large"
+                  disabledDate={disabledDate}
                 />
               </Form.Item>
               <Form.Item
@@ -45,8 +68,7 @@ const UpcomingPlayDateEdit = ({ isEdit, editButtonClick, saveButtonClick }) => {
               >
                 <TimePicker
                   disabled={!isEdit}
-                  use12Hours
-                  format="h:mm a"
+                  format="HH:mm"
                   className="w-full"
                   size="large"
                 />
@@ -64,31 +86,20 @@ const UpcomingPlayDateEdit = ({ isEdit, editButtonClick, saveButtonClick }) => {
           </div>
           <div className="pt-2">
             <Form.Item className="mt-auto mb-0">
-              {isEdit ? (
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  size="large"
-                  block
-                  onClick={saveButtonClick}
-                >
+              {isEdit && (
+                <Button type="primary" htmlType="submit" size="large" block>
                   Save
-                </Button>
-              ) : (
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  size="large"
-                  block
-                  onClick={editButtonClick}
-                >
-                  Edit
                 </Button>
               )}
             </Form.Item>
           </div>
         </Form>
       </div>
+      {!isEdit && (
+        <Button type="primary" size="large" block onClick={editButtonClick}>
+          Edit
+        </Button>
+      )}
     </div>
   );
 };

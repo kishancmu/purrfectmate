@@ -1,10 +1,9 @@
-import { Button, Form, Input, Typography, DatePicker, TimePicker } from "antd";
-import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
-import { useNavigate } from "react-router-dom";
+import { Button, Typography } from "antd";
+
 const { Title, Text } = Typography;
-const { TextArea } = Input;
 
 const UpcomingPlayDateDetail = ({
+  playDateDetail,
   isRequestAccepted,
   onRejectClick,
   onAcceptClick,
@@ -16,20 +15,27 @@ const UpcomingPlayDateDetail = ({
           <Title level={4} className="m-0 text-gray-900">
             Location
           </Title>
-          <Text className="text-base">Mountain View</Text>
+          <Text className="text-base">
+            {playDateDetail.upcoming_playdate?.location}
+          </Text>
         </div>
         <div className="mt-5 flex gap-4">
           <div className="flex flex-col basis-1/2">
             <Title level={4} className="m-0 text-gray-900">
               Date
             </Title>
-            <Text className="text-base">23rd November 2023</Text>
+            <Text className="text-base">
+              {playDateDetail.upcoming_playdate?.date}
+            </Text>
           </div>
           <div className="flex flex-col basis-1/2">
             <Title level={4} className="m-0 text-gray-900">
               Time
             </Title>
-            <Text className="text-base">06:20PM</Text>
+            <Text className="text-base">
+              {" "}
+              {playDateDetail.upcoming_playdate?.time}
+            </Text>
           </div>
         </div>
 
@@ -37,7 +43,10 @@ const UpcomingPlayDateDetail = ({
           <Title level={4} className="m-0 text-gray-900">
             Notes
           </Title>
-          <Text className="text-base">Some notes from pet owners</Text>
+          <Text className="text-base">
+            {" "}
+            {playDateDetail.upcoming_playdate?.notes}
+          </Text>
         </div>
       </div>
       {isRequestAccepted ? (

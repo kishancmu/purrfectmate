@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 import {
   Button,
   Form,
@@ -8,74 +9,44 @@ import {
   DatePicker,
   TimePicker,
   Checkbox,
-  message,
   Select,
 } from "antd";
-import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
 
 const { Text } = Typography;
 const { TextArea } = Input;
 
-const PackPlaydate = () => {
+const PackPlaydateEdit = ({
+  packDetails,
+  isPackEdit,
+  packEditButtonClick,
+  packSaveButtonClick,
+}) => {
   const [form] = Form.useForm();
-  const [messageApi, contextHolder] = message.useMessage();
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (packDetails) {
+      form.setFieldsValue({
+        ...packDetails.upcoming_playdate,
+        name: packDetails.pet_details?.name,
+        date: dayjs(packDetails.upcoming_playdate?.date, "DD-MM-YYYY"),
+        time: dayjs(packDetails.upcoming_playdate?.time, "HH:mm"),
+      });
+    }
+  }, [packDetails]);
+
   const disabledDate = (current) => {
     // Can not select days before today
     return current.add(1, "day") < dayjs().endOf("day");
   };
 
-  const handleCreatePackButtonClick = (values) => {
-    const upcomingPlayDateList = JSON.parse(
-      localStorage.getItem("upcomingPlaydateList")
-    );
-    upcomingPlayDateList.push({
-      id: upcomingPlayDateList.length + 1,
-      pet_details: {
-        name: values.name,
-        image: "/petimages/packImage.webp",
-      },
-      upcoming_playdate: {
-        isGroup: true,
-        isAccepted: true,
-        isRejected: false,
-        isPending: false,
-        isCreator: true,
-        location: values.location,
-        date: values.date.format("DD-MM-YYYY"),
-        time: values.time.format("HH:mm"),
-        notes: values.notes,
-        members: values.members,
-      },
-    });
-    localStorage.setItem(
-      "upcomingPlaydateList",
-      JSON.stringify(upcomingPlayDateList)
-    );
-    success();
-  };
-
-  const success = () => {
-    messageApi
-      .open({
-        type: "loading",
-        content: "Creating Pack Playdate..",
-        duration: 1.5,
-      })
-      .then(() => message.success("Pack created successfully", 1.5))
-      .then(() => navigate("/main/playdate"));
-  };
-
   return (
-    <div className="h-full w-full flex flex-col">
-      {contextHolder}
-      <SecondaryTopbar title={"Create Pack Playdate"} showBackButton={true} />
-
-      <div className="flex-grow min-h-0 p-4">
+    <div className="h-full w-full flex flex-col p-4">
+      <div className="flex-grow min-h-0">
         <Form
           name="pack-playdate"
           form={form}
-          onFinish={(values) => handleCreatePackButtonClick(values)}
+          disabled={!isPackEdit}
+          onFinish={(values) => packSaveButtonClick(values)}
           layout="vertical"
           scrollToFirstError={true}
           className="flex flex-col h-full"
@@ -135,13 +106,7 @@ const PackPlaydate = () => {
             {/* <Form.Item name="remember" valuePropName="checked">
               <Checkbox>Set as recurring pack playdate</Checkbox>
             </Form.Item> */}
-            <Form.Item
-              name="members"
-              label="Pack Members (matched pet owners)"
-              rules={[
-                { required: true, message: "Atleast one member is required" },
-              ]}
-            >
+            <Form.Item name="members" label="Pack Members (matched pet owners)">
               <Select
                 placeholder="Select members"
                 allowClear
@@ -160,15 +125,22 @@ const PackPlaydate = () => {
           </div>
           <div className="pt-2">
             <Form.Item className="mt-auto mb-0">
-              <Button type="primary" htmlType="submit" size="large" block>
-                Create
-              </Button>
+              {isPackEdit && (
+                <Button type="primary" htmlType="submit" size="large" block>
+                  Save
+                </Button>
+              )}
             </Form.Item>
           </div>
         </Form>
       </div>
+      {!isPackEdit && (
+        <Button type="primary" size="large" block onClick={packEditButtonClick}>
+          Edit
+        </Button>
+      )}
     </div>
   );
 };
 
-export default PackPlaydate;
+export default PackPlaydateEdit;

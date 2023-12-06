@@ -10,7 +10,7 @@ export const NOTIFICATION_LIST = [
     id: 2,
     type: 2,
     title: "PlayDate Request",
-    description: "Jake has requested a playdate with your pet ",
+    description: "Rony's pet Danny has requested a playdate with your pet ",
     viewed: false,
   },
   {
@@ -31,7 +31,7 @@ export const NOTIFICATION_LIST = [
     id: 5,
     type: 2,
     title: "PlayDate Request",
-    description: "Jake has requested a playdate with your ",
+    description: "Jake has requested a playdate with your pet",
     viewed: true,
   },
   {

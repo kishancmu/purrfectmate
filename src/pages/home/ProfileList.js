@@ -36,16 +36,17 @@ const ProfileList = ({ profileObjectList }) => {
               size={96}
               src={profileObject.pet_details.image}
               shape="square"
+              className="min-w-[94px] min-h-[94px]"
             />
             <div className="flex flex-col ml-3 justify-center">
               <Text className="text-2xl font-semibold">
                 {profileObject.pet_details.name}
               </Text>
-              <div className="flex mt-3">
-                <Text className="bg-gray-200 px-2 py-1 mr-3 rounded-md text-xs">
-                  {profileObject.pet_details.age}
+              <div className="flex  flex-wrap gap-2 mt-3">
+                <Text className="bg-gray-200 px-2 py-1 rounded-md text-xs">
+                  {profileObject.pet_details.age} Years
                 </Text>
-                <Text className="bg-gray-200 px-2 py-1 mr-3 rounded-md text-xs">
+                <Text className="bg-gray-200 px-2 py-1 rounded-md text-xs">
                   {profileObject.pet_details.breed}
                 </Text>
                 <Text className="bg-gray-200 px-2 py-1 rounded-md text-xs">

@@ -1,0 +1,76 @@
+export const PAST_PLAYDATE_LIST = [
+  {
+    id: 1,
+    isLiked: true,
+    isDisliked: false,
+    pet_details: {
+      name: "Danny",
+      age: 1,
+      breed: "Golden Retriever",
+      vaccination: "Yes",
+      energy: "High",
+      gender: "Male",
+      personality: "Shy",
+      location: "Santa Clara, CA",
+      size: "Small",
+      image: "/petimages/petProfileImage2.webp",
+    },
+    user_details: {
+      name: "Rony Jackson",
+      age: 26,
+      gender: "Female",
+      image: "/userimages/userProfileImage2.webp",
+    },
+    playdate_details: {
+      rating: 3,
+      badges: "Gentleman, Powerhouse",
+    },
+    past_playdates: [
+      {
+        creator: "Rony Jackson",
+        date: "05-11-2023",
+        time: "13:00",
+        location: "Central Park",
+        notes: "Bring a ball",
+        isRated: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    isLiked: true,
+    isDisliked: false,
+    pet_details: {
+      name: "Maddy",
+      age: 7,
+      breed: "Golden Retriever",
+      vaccination: "Yes",
+      gender: "Female",
+      energy: "Medium",
+      personality: "Calm",
+      location: "Milbrae, CA",
+      size: "Large",
+      image: "/petimages/petProfileImage3.webp",
+    },
+    user_details: {
+      name: "Mark Russel",
+      age: 45,
+      gender: "Male",
+      image: "/userimages/userProfileImage3.webp",
+    },
+    playdate_details: {
+      rating: 2,
+      badges: "Powerhouse",
+    },
+    past_playdates: [
+      {
+        creator: "Mark Russel",
+        date: "20-11-2023",
+        time: "19:00",
+        location: "Wishman Park",
+        notes: "Bring frizbee",
+        isRated: false,
+      },
+    ],
+  },
+];

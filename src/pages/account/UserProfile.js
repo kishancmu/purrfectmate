@@ -97,6 +97,7 @@ const UserProfile = () => {
                   <img
                     src={imageUrl}
                     alt="avatar"
+                    className="rounded-lg"
                     style={{ width: "100%", height: "100%" }}
                   />
                 ) : (
