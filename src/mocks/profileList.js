@@ -46,7 +46,7 @@ export const PROFILE_LIST = [
       name: "Mary",
       age: 26,
       gender: "Female",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage2.webp",
     },
     playdate_details: {
       rating: 3,
@@ -73,7 +73,7 @@ export const PROFILE_LIST = [
       name: "David",
       age: 45,
       gender: "Male",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage3.webp",
     },
     playdate_details: {
       rating: 2,
@@ -100,7 +100,7 @@ export const PROFILE_LIST = [
       name: "Hugh",
       age: 32,
       gender: "Male",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage4.webp",
     },
     playdate_details: {
       rating: 4,
@@ -127,7 +127,7 @@ export const PROFILE_LIST = [
       name: "Ryan",
       age: 50,
       gender: "Male",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage5.webp",
     },
     playdate_details: {
       rating: 2,
@@ -154,7 +154,7 @@ export const PROFILE_LIST = [
       name: "Sheila",
       age: 20,
       gender: "Others",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage6.webp",
     },
     playdate_details: {
       rating: 3,
@@ -181,7 +181,7 @@ export const PROFILE_LIST = [
       name: "Ivory",
       age: 23,
       gender: "Others",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage7.webp",
     },
     playdate_details: {
       rating: 5,
@@ -208,7 +208,7 @@ export const PROFILE_LIST = [
       name: "Emma",
       age: 33,
       gender: "Female",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage8.webp",
     },
     playdate_details: {
       rating: 2,
@@ -235,7 +235,7 @@ export const PROFILE_LIST = [
       name: "Uma",
       age: 48,
       gender: "Female",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage9.webp",
     },
     playdate_details: {
       rating: 2,
@@ -262,7 +262,7 @@ export const PROFILE_LIST = [
       name: "Margot",
       age: 30,
       gender: "Female",
-      image: "/userimages/userProfileImage1.webp",
+      image: "/userimages/userProfileImage10.webp",
     },
     playdate_details: {
       rating: 5,
