@@ -32,7 +32,11 @@ const ProfileList = ({ profileObjectList }) => {
             }}
             key={profileObject.id}
           >
-            <Avatar size={96} src={petImage} shape="square" />
+            <Avatar
+              size={96}
+              src={profileObject.pet_details.image}
+              shape="square"
+            />
             <div className="flex flex-col ml-3 justify-center">
               <Text className="text-2xl font-semibold">
                 {profileObject.pet_details.name}

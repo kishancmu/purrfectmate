@@ -46,7 +46,7 @@ const Profile = () => {
           <Image
             width="100%"
             height="100%"
-            src={petImage}
+            src={profileData.pet_details?.image}
             className="rounded-lg"
           />
         </div>
@@ -102,7 +102,7 @@ const Profile = () => {
               <span className="font-semibold text-gray-600">Rating:</span>
               <Rate
                 disabled
-                defaultValue={profileData?.playdate_details?.rate}
+                value={profileData?.playdate_details?.rating}
                 className="mb-0"
               />
             </Text>

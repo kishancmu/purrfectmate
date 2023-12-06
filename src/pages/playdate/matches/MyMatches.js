@@ -1,13 +1,15 @@
-import { Avatar, Typography, Divider } from "antd";
+import { Avatar, Typography, Divider, Tag } from "antd";
 import { useState, useEffect } from "react";
 import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import MyMatchesShimmer from "./MyMatchesShimmer";
+
 const { Title } = Typography;
 
 const MyMatches = () => {
   const navigate = useNavigate();
   const [showComponent, setShowComponent] = useState(false);
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -34,6 +36,9 @@ const MyMatches = () => {
               <Title level={4} className="m-0 ml-3 text-gray-900">
                 Jane
               </Title>
+              <Tag className="ml-2" color="#ff9800">
+                New Match
+              </Tag>
               <div className="h-full flex ml-auto items-center">
                 <IoChevronForward className="text-2xl text-gray-700" />
               </div>

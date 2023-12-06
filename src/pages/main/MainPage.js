@@ -6,6 +6,7 @@ import appContext from "../../utils/appContext";
 import { NOTIFICATION_LIST } from "../../mocks/notificationList";
 import { PROFILE_LIST } from "../../mocks/profileList";
 import { MATCH_SETTINGS } from "../../mocks/matchSettings";
+import { MY_MATCHES } from "../../mocks/mymatches";
 
 function MainPage() {
   const [playdateTab, setPlaydateTab] = useState({ currentTab: 2 });
@@ -20,6 +21,9 @@ function MainPage() {
 
   if (localStorage.getItem("matchSettings") === null)
     localStorage.setItem("matchSettings", JSON.stringify(MATCH_SETTINGS));
+
+  if (localStorage.getItem("myMatches") === null)
+    localStorage.setItem("myMatches", JSON.stringify(MY_MATCHES));
 
   return (
     <appContext.Provider

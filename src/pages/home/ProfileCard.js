@@ -31,7 +31,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
           className="rounded-lg"
         />
 
-        <div className="absolute bottom-0 left-0 pb-3 pl-3 bg-[#00000069] w-full">
+        <div className="absolute bottom-0 left-0 pb-3 pl-3 bg-[#00000069] w-full rounded-br-lg rounded-bl-lg">
           <div>
             <Text className="text-white text-2xl font-semibold">
               {cardData.pet_details?.name}
