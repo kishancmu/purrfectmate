@@ -6,8 +6,27 @@ import {
   CloseOutlined,
   HeartFilled,
 } from "@ant-design/icons";
-import { IoPersonOutline } from "react-icons/io5";
+
+import { FaDog } from "react-icons/fa";
 import Topbar from "../../components/topbar/Topbar";
+import {
+  IoPaw,
+  IoPawOutline,
+  IoChatbubblesOutline,
+  IoChatbubbles,
+  IoPersonCircleOutline,
+  IoPersonCircle,
+  IoChevronForward,
+  IoPersonOutline,
+  IoLocationOutline,
+  IoTimeOutline,
+  IoCalendarNumberOutline,
+  IoHeart,
+  IoNotifications,
+} from "react-icons/io5";
+
+import { PiBoneFill } from "react-icons/pi";
+import { FaShieldDog } from "react-icons/fa6";
 import {
   Button,
   Typography,
@@ -132,7 +151,6 @@ const StyleGuidePage = () => {
         <div className="h-28 w-28">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
-
         <p className="text-blue-600  text-xl">Landing Page Image</p>
         <div className="mt-5">
           <img
@@ -195,6 +213,20 @@ const StyleGuidePage = () => {
           </Button>
         </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Icons</h2>
+        <IoPaw className="text-2xl" /> <IoPawOutline className="text-2xl" />
+        <IoChatbubblesOutline className="text-2xl" />
+        <IoChatbubbles className="text-2xl" />
+        <IoPersonCircleOutline className="text-2xl" />
+        <IoPersonCircle className="text-2xl" /> <IoHeart className="text-2xl" />{" "}
+        <PiBoneFill className="text-2xl" />
+        <IoChevronForward className="text-2xl" />
+        <FaShieldDog className="text-2xl" /> <FaDog className="text-2xl" />
+        <IoLocationOutline className="text-2xl" />
+        <IoTimeOutline className="text-2xl" />
+        <IoCalendarNumberOutline className="text-2xl" />
+        <HiOutlineAdjustmentsHorizontal className="text-2xl" />
+        <IoNotifications className="text-2xl" />
+        <CloseOutlined className="text-2xl" />
         <h2 className="bg-blue-600 py-3 px-3 text-white">Dialogs</h2>
         <div>
           <p className="text-blue-600 text-xl">Modal</p>
@@ -396,7 +428,6 @@ const StyleGuidePage = () => {
             </div>
           </Form>
         </div>
-
         <h2 className="bg-blue-600 py-3 px-3 text-white">Design Patterns</h2>
         <p className="text-blue-600 my-4 text-xl">Password Strength Meter</p>
         <div className="flex flex-col w-60">
@@ -414,7 +445,6 @@ const StyleGuidePage = () => {
             scoreWordClassName="sds"
           />
         </div>
-
         <p className="text-blue-600 my-4 text-xl">Input Feedback</p>
         <Form
           name="normal_login"
@@ -436,19 +466,15 @@ const StyleGuidePage = () => {
             <Input placeholder="Enter Email Address" size="large" />
           </Form.Item>
         </Form>
-
         <p className="text-blue-600 my-4 text-xl">Navigation Tabs</p>
         <div className="w-fit">
           <BottomBar />
         </div>
-
         <p className="text-blue-600 my-4 text-xl">Search Filters</p>
-
         <div className="flex justify-start items-center">
           <IoPersonOutline className="text-2xl mr-1" />
           <Text className="text-xl font-semibold">Owner Settings</Text>
         </div>
-
         <div className="flex mt-4">
           <Form.Item name="owner_gender" label="Gender" className="w-1/2 pr-2">
             <Select
@@ -468,7 +494,6 @@ const StyleGuidePage = () => {
             <Slider min={18} max={80} />
           </Form.Item>
         </div>
-
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Loader Screens</h2>
           <div>
@@ -492,7 +517,6 @@ const StyleGuidePage = () => {
             shape="circle"
           />
         </div>
-
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Miscellaneous</h2>
           <div>
