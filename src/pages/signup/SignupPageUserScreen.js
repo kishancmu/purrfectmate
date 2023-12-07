@@ -92,7 +92,7 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
                   },
                 ]}
               >
-                <Input placeholder="John Doe" size="large" />
+                <Input placeholder="Enter your full name" size="large" />
               </Form.Item>
               <div className="flex">
                 <Form.Item
@@ -102,10 +102,9 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
                   rules={[{ required: true, message: "Age is required" }]}
                 >
                   <InputNumber
-                    min={18}
+                    min={1}
                     max={120}
                     className="w-full"
-                    defaultValue={0}
                     size="large"
                   />
                 </Form.Item>
@@ -137,10 +136,10 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
               <Form.Item
                 label="Location"
                 name="location"
-                extra="We'll use this to find pet owners near you. You can enter your address or just the city and state"
+                extra="We'll use this to find pet owners near you. You can enter your city and state"
                 rules={[{ required: true, message: "Location is required" }]}
               >
-                <Input placeholder="Mountain View, CA" size="large" />
+                <Input placeholder="City, State" size="large" />
               </Form.Item>
             </div>
             <div className="pt-2">
@@ -149,11 +148,11 @@ const SignupPageUserScreen = ({ onContinueClick, onBackClick }) => {
                   Continue
                 </Button>
               </Form.Item>
-              <Form.Item className="mb-0">
+              {/* <Form.Item className="mb-0">
                 <Button size="large" block onClick={() => onBackClick(2)}>
                   Back
                 </Button>
-              </Form.Item>
+              </Form.Item> */}
             </div>
           </Form>
         </div>

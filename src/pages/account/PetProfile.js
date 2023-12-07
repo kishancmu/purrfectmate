@@ -1,6 +1,7 @@
 import { Button, Form, Input, Select, message, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import defaultPetImage from "../../assets/images/defaultPet.png";
 
@@ -20,6 +21,7 @@ const PetProfile = () => {
   const [form] = Form.useForm();
   const [imageUrl, setImageUrl] = useState(defaultPetImage);
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
   const petDetails = JSON.parse(localStorage.getItem("petProfileDetails"));
   const handleChange = () => {
     setImageUrl(defaultPetImage);
@@ -42,10 +44,11 @@ const PetProfile = () => {
     messageApi
       .open({
         type: "loading",
-        content: "Saving in progress..",
-        duration: 1.5,
+        content: "Saving your changes..",
+        duration: 1,
       })
-      .then(() => message.success("Profile saved successfully", 2.5));
+      .then(() => message.success("Profile saved successfully", 1))
+      .then(() => navigate(-1));
   };
 
   return (
@@ -159,6 +162,24 @@ const PetProfile = () => {
                     { value: "boxer", label: "Boxer" },
                     { value: "labrador", label: "Labrador" },
                     { value: "pug", label: "Pug" },
+                    {
+                      value: "golden_retriever",
+                      label: "Golden Retriever",
+                    },
+                    {
+                      value: "german_shepherd",
+                      label: "German Shepherd",
+                    },
+                    { value: "bulldog", label: "Bulldog" },
+                    { value: "beagle", label: "Beagle" },
+                    { value: "rottweiler", label: "Rottweiler" },
+                    { value: "poodle", label: "Poodle" },
+                    { value: "dachshund", label: "Dachshund" },
+                    { value: "chihuahua", label: "Chihuahua" },
+                    {
+                      value: "siberian_husky",
+                      label: "Siberian Husky",
+                    },
                   ]}
                 ></Select>
               </Form.Item>
@@ -183,6 +204,16 @@ const PetProfile = () => {
                     { value: "1", label: "1" },
                     { value: "2", label: "2" },
                     { value: "3", label: "3" },
+                    { value: "4", label: "4" },
+                    { value: "5", label: "5" },
+                    { value: "6", label: "6" },
+                    { value: "7", label: "7" },
+                    { value: "8", label: "8" },
+                    { value: "9", label: "9" },
+                    { value: "10", label: "10" },
+                    { value: "11", label: "11" },
+                    { value: "12", label: "12" },
+                    { value: "13", label: "13" },
                   ]}
                 ></Select>
               </Form.Item>
@@ -251,9 +282,15 @@ const PetProfile = () => {
                 maxTagCount="responsive"
                 size="large"
                 options={[
-                  { value: "active", label: "Active" },
-                  { value: "playful", label: "Playful" },
-                  { value: "goofy", label: "Goofy" },
+                  { value: "Active", label: "Active" },
+                  { value: "Playful", label: "Playful" },
+                  { value: "Runner", label: "Runner" },
+                  { value: "Shy", label: "Shy" },
+                  { value: "Calm", label: "Calm" },
+                  { value: "Friendly", label: "Friendly" },
+                  { value: "Aggressive", label: "Aggressive" },
+                  { value: "Protective", label: "Protective" },
+                  { value: "Affectionate", label: "Affectionate" },
                 ]}
               ></Select>
             </Form.Item>

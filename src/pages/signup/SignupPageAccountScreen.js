@@ -45,6 +45,7 @@ const SignupPageAccountScreen = ({ onContinueClick, onBackClick }) => {
                 message: "Password cannot be empty!",
                 whitespace: true,
               },
+              { min: 11, message: "Password should be of min. 11 characters!" },
             ]}
             hasFeedback
           >

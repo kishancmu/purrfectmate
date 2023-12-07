@@ -55,7 +55,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input placeholder="Enter Username" size="large" />
+            <Input placeholder="Enter Email Address" size="large" />
           </Form.Item>
           <Form.Item
             label="Password"
@@ -64,7 +64,7 @@ const LoginPage = () => {
           >
             <Input.Password placeholder="Enter Password" size="large" />
           </Form.Item>
-          <div className="text-center">
+          <div className="text-center hidden">
             <Link to="/forgotpassword">Forgot Password?</Link>
           </div>
           <Form.Item className="mt-auto mb-2">

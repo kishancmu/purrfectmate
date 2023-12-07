@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  LoadingOutlined,
-  PlusOutlined,
-  UploadOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Button,
   Typography,
@@ -278,99 +273,7 @@ const StyleGuidePage = () => {
                 }}
               />
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Radio Button (Type 1)</p>
-            <Form.Item name="radio-group" label="Sex">
-              <Radio.Group>
-                <Radio value="a">Male</Radio>
-                <Radio value="b">Female</Radio>
-                <Radio value="c">Others</Radio>
-              </Radio.Group>
-            </Form.Item>
-            <p className="text-blue-600 bold text-xl">Radio Button (Type 2)</p>
-            <Form.Item
-              name="radio-button"
-              label="Eye Color"
-              rules={[
-                {
-                  required: true,
-                  message: "Please pick an item!",
-                },
-              ]}
-            >
-              <Radio.Group>
-                <Radio.Button value="a">Black</Radio.Button>
-                <Radio.Button value="b">Brown</Radio.Button>
-                <Radio.Button value="c">Other</Radio.Button>
-              </Radio.Group>
-            </Form.Item>
-            <p className="text-blue-600 bold text-xl">Checkboxes</p>
-            <Form.Item name="checkbox-group" label="Nationality">
-              <Checkbox.Group>
-                <Row>
-                  <Col span={8}>
-                    <Checkbox
-                      value="A"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                    >
-                      Indian
-                    </Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox
-                      value="B"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                      disabled
-                    >
-                      American
-                    </Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox
-                      value="C"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                    >
-                      Chinese
-                    </Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox
-                      value="D"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                    >
-                      Dutch
-                    </Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox
-                      value="E"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                    >
-                      Filipino
-                    </Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox
-                      value="F"
-                      style={{
-                        lineHeight: "32px",
-                      }}
-                    >
-                      German
-                    </Checkbox>
-                  </Col>
-                </Row>
-              </Checkbox.Group>
-            </Form.Item>
+
             <p className="text-blue-600 bold text-xl">Rating</p>
             <Form.Item name="rate" label="Rate your driver">
               <Rate />

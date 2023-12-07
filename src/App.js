@@ -9,9 +9,9 @@ const { Title, Text } = Typography;
 function App() {
   const navigate = useNavigate();
   return (
-    <div className="h-full w-full flex relative">
+    <div className="h-full w-full flex relative overflow-y-auto">
       <div className="m-auto flex flex-col py-5 px-6 items-center">
-        <div className="h-36 w-36">
+        <div className="h-28 w-28">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
         <Title className="mt-2 text-gray-700 mb-0 font-bold text-5xl">
@@ -22,7 +22,7 @@ function App() {
         </Text>
         <div className="mt-5">
           <img
-            className="h-full w-full"
+            className="h-[250px] w-full"
             src={signupBackground}
             alt="girl with a dog"
           />
@@ -30,7 +30,7 @@ function App() {
         <Button
           type="primary"
           block
-          className="mt-5"
+          className="mt-5 font-semibold"
           size="large"
           onClick={() => navigate("/signup")}
         >

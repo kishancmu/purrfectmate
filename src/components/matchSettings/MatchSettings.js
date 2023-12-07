@@ -12,6 +12,9 @@ import {
 
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import { useContext, useEffect, useState } from "react";
+import { PiDog } from "react-icons/pi";
+import { IoPersonOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import appContext from "../../utils/appContext";
 const { Text } = Typography;
 
@@ -19,7 +22,9 @@ const MatchSettings = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { notifyFilterLimit, setNotifyFilterLimit } = useContext(appContext);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const matchSettings = JSON.parse(localStorage.getItem("matchSettings"));
+
   const onFormSubmit = (values) => {
     console.log(values);
     localStorage.setItem("matchSettings", JSON.stringify(values));
@@ -48,17 +53,18 @@ const MatchSettings = () => {
     messageApi
       .open({
         type: "loading",
-        content: "Saving in progress..",
-        duration: 1.5,
+        content: "Saving your settings...",
+        duration: 1,
       })
-      .then(() => message.success("Match Settings save successfully", 2.5));
+      .then(() => message.success("Match Settings saved successfully", 1))
+      .then(() => navigate(-1));
   };
   return (
     <div className="h-full w-full">
       {contextHolder}
       <Modal
         open={open}
-        title="Feature Coming Soon"
+        title="Match Settings Restrictions"
         onOk={handleOk}
         centered
         onCancel={handleCancel}
@@ -69,9 +75,10 @@ const MatchSettings = () => {
         ]}
       >
         <p>
-          Please note currently you can only filter profiles based on Pet's
-          Gender and Pet's age in Pet Settings Section. However, feel free to
-          look through other available filters.
+          Please note currently you can only filter profiles based on
+          <strong> Pet's Gender</strong> and <strong>Pet's age</strong> in Pet
+          Settings Section. However, feel free to look through other available
+          filters.
         </p>
       </Modal>
       <div className="h-full w-full flex flex-col">
@@ -104,7 +111,11 @@ const MatchSettings = () => {
               </div>
 
               <Divider />
-              <Text className="text-xl">Pet Owner Setting</Text>
+              <div className="flex justify-start items-center">
+                <IoPersonOutline className="text-2xl mr-1" />
+                <Text className="text-xl font-semibold">Owner Setting</Text>
+              </div>
+
               <div className="flex mt-4">
                 <Form.Item
                   name="owner_gender"
@@ -134,7 +145,10 @@ const MatchSettings = () => {
               </div>
 
               <Divider />
-              <Text className="text-xl">Pet Settings</Text>
+              <div className="flex justify-start items-center">
+                <PiDog className="text-2xl mr-1" />
+                <Text className="text-xl font-semibold">Pet Settings</Text>
+              </div>
 
               <div className="flex mt-3">
                 <Form.Item name="gender" className="w-1/2 pr-2" label="Gender">

@@ -79,7 +79,7 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
                 name="name"
                 rules={[{ required: true, message: "Name is required" }]}
               >
-                <Input placeholder="Enter name" size="large" />
+                <Input placeholder="Enter pet name" size="large" />
               </Form.Item>
               <div className="flex">
                 <Form.Item
@@ -285,11 +285,6 @@ const SignupPagePetScreen = ({ onContinueClick, onBackClick }) => {
               <Form.Item className="mt-auto mb-2">
                 <Button type="primary" htmlType="submit" size="large" block>
                   Continue
-                </Button>
-              </Form.Item>
-              <Form.Item className="mb-0">
-                <Button size="large" block onClick={() => onBackClick(1)}>
-                  Back
                 </Button>
               </Form.Item>
             </div>

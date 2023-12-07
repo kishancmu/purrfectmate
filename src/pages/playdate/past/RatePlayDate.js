@@ -55,10 +55,30 @@ const RatePlayDate = () => {
                 mode="multiple"
                 size="large"
                 options={[
-                  { value: "powerhouse", label: "Powerhouse" },
-                  { value: "superstar", label: "Superstar" },
-                  { value: "gentleman", label: "Gentlemen" },
+                  {
+                    value: "powerhouse",
+                    label: "Powerhouse",
+                    desc: "For pets exuding boundless energy and strength, showcasing exceptional vitality",
+                  },
+                  {
+                    value: "superstar",
+                    label: "Superstar",
+                    desc: "Awarded to pets with impeccable manners and a charming demeanor, embodying true canine sophistication",
+                  },
+                  {
+                    value: "gentleman",
+                    label: "Gentlemen",
+                    desc: "Conferred upon pets shining with charisma and an undeniable star quality, capturing hearts effortlessly",
+                  },
                 ]}
+                optionRender={(option) => (
+                  <div className="flex flex-col">
+                    <span>{option.data.label}</span>
+                    <span className="text-gray-500 whitespace-normal text-xs">
+                      {option.data.desc}
+                    </span>
+                  </div>
+                )}
               ></Select>
             </Form.Item>
           </div>

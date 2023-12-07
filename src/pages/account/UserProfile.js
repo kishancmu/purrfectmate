@@ -1,24 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import defaultUserImage from "../../assets/images/defaultUser.png";
 import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 import {
   Button,
   Form,
   Input,
-  Typography,
   Select,
   message,
   Upload,
   InputNumber,
 } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-const { Title, Text } = Typography;
+import { PlusOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
 const beforeUpload = (file) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
@@ -35,6 +29,7 @@ const UserProfile = () => {
   const [form] = Form.useForm();
   const [imageUrl, setImageUrl] = useState(defaultUserImage);
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
   const userDetails = JSON.parse(localStorage.getItem("userProfileDetails"));
 
   const handleChange = () => {
@@ -58,10 +53,11 @@ const UserProfile = () => {
     messageApi
       .open({
         type: "loading",
-        content: "Saving in progress..",
-        duration: 1.5,
+        content: "Saving your changes..",
+        duration: 1,
       })
-      .then(() => message.success("Profile saved successfully", 2.5));
+      .then(() => message.success("Profile saved successfully", 1))
+      .then(() => navigate(-1));
   };
 
   return (
@@ -111,7 +107,7 @@ const UserProfile = () => {
               name="name"
               rules={[{ required: true, message: "Name is required" }]}
             >
-              <Input placeholder="John Doe" size="large" />
+              <Input placeholder="Enter your full name" size="large" />
             </Form.Item>
 
             <div className="flex gap-4">
@@ -158,9 +154,9 @@ const UserProfile = () => {
               label="Location"
               name="location"
               rules={[{ required: true, message: "Location is required" }]}
-              extra="We'll use this to find pet owners near you. You can enter your address or just the city and state"
+              extra="We'll use this to find pet owners near you. You can enter city and state"
             >
-              <Input placeholder="Mountain View, CA" size="large" />
+              <Input placeholder="City, States" size="large" />
             </Form.Item>
           </div>
 

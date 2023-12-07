@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IoChevronForward, IoPersonOutline } from "react-icons/io5";
 import { Avatar, Typography, Button } from "antd";
-import { CgSmileSad } from "react-icons/cg";
+import { PiDog } from "react-icons/pi";
 import { CloseOutlined, HeartFilled } from "@ant-design/icons";
 import petImage from "../../assets/images/petProfileImage.jpeg";
 import ProfileListShimmer from "./ProfileListShimmer";
@@ -62,9 +62,11 @@ const ProfileList = ({ profileObjectList }) => {
       ) : (
         <div className="h-full w-full flex justify-center items-center">
           <div className="flex flex-col justify-center items-center">
-            <CgSmileSad className="text-8xl text-gray-400" />
-            <Title level={4} className="text-gray-600">
-              Oops we're out of profiles. Try again later
+            <PiDog className="text-9xl text-gray-400" />
+            <Title level={5} className="text-gray-600 text-center">
+              Pawsitively fantastic! You’ve swiped through all the doggie
+              profiles. New furry friends join daily, so sniff around later for
+              more tail-wagging connections. Happy woofing!
             </Title>
           </div>
         </div>
