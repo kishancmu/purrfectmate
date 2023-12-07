@@ -146,7 +146,7 @@ const StyleGuidePage = () => {
             icon={<CloseOutlined />}
             size="large"
           >
-            Dislike
+            Danger
           </Button>
           <Button
             type="primary"
@@ -154,7 +154,7 @@ const StyleGuidePage = () => {
             icon={<HeartFilled />}
             size="large"
           >
-            Dislike
+            Success
           </Button>
         </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Form Inputs</h2>

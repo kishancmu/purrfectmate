@@ -26,7 +26,6 @@ const MatchSettings = () => {
   const matchSettings = JSON.parse(localStorage.getItem("matchSettings"));
 
   const onFormSubmit = (values) => {
-    console.log(values);
     localStorage.setItem("matchSettings", JSON.stringify(values));
     success();
   };
@@ -96,10 +95,10 @@ const MatchSettings = () => {
               <div className="flex">
                 <Form.Item
                   className="w-1/2 pr-2"
-                  label="Location"
+                  label="Location"  
                   name="location"
                 >
-                  <Input placeholder="Mountain View" size="large" />
+                  <Input placeholder="City, State" size="large" />
                 </Form.Item>
                 <Form.Item
                   className="w-1/2 px-2"
@@ -113,7 +112,7 @@ const MatchSettings = () => {
               <Divider />
               <div className="flex justify-start items-center">
                 <IoPersonOutline className="text-2xl mr-1" />
-                <Text className="text-xl font-semibold">Owner Setting</Text>
+                <Text className="text-xl font-semibold">Owner Settings</Text>
               </div>
 
               <div className="flex mt-4">
@@ -146,7 +145,7 @@ const MatchSettings = () => {
 
               <Divider />
               <div className="flex justify-start items-center">
-                <PiDog className="text-2xl mr-1" />
+                <PiDog className="text-3xl mr-1" />
                 <Text className="text-xl font-semibold">Pet Settings</Text>
               </div>
 
@@ -255,7 +254,7 @@ const MatchSettings = () => {
                   name="age"
                   extra="Less than 1 year to 15"
                 >
-                  <Slider min={1} max={15} />
+                  <Slider min={0} max={15} />
                 </Form.Item>
               </div>
 

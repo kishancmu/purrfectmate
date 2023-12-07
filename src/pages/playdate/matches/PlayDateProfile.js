@@ -40,35 +40,37 @@ const PlayDateProfile = () => {
           </Text>
           <div className="bg-gray-100 rounded-lg flex flex-col p-3 mt-1">
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Name:</span>
+              <span className="font-semibold text-gray-600">Name: </span>
               {matchedProfile.pet_details?.name}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Age:</span>
-              {matchedProfile.pet_details?.age}
+              <span className="font-semibold text-gray-600">Age: </span>
+              {matchedProfile.pet_details?.age} years
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Breed:</span>
+              <span className="font-semibold text-gray-600">Breed: </span>
               {matchedProfile.pet_details?.breed}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Vacciantion:</span>
+              <span className="font-semibold text-gray-600">Vaccination: </span>
               {matchedProfile.pet_details?.vaccination}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Size:</span>
+              <span className="font-semibold text-gray-600">Size: </span>
               {matchedProfile.pet_details?.size}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Energy Level:</span>
+              <span className="font-semibold text-gray-600">
+                Energy Level:{" "}
+              </span>
               {matchedProfile.pet_details?.energy}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">PlayStyle:</span>
+              <span className="font-semibold text-gray-600">PlayStyle: </span>
               {matchedProfile.pet_details?.personality}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Location:</span>
+              <span className="font-semibold text-gray-600">Location: </span>
               {matchedProfile.pet_details?.location}
             </Text>
           </div>

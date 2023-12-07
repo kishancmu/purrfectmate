@@ -2,13 +2,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Form, Input, DatePicker, TimePicker, message } from "antd";
 import dayjs from "dayjs";
 import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
-
+import { useContext } from "react";
+import appContext from "../../../utils/appContext";
 const { TextArea } = Input;
 
 const SchedulePlaydate = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const { playdateTab, setPlaydateTab } = useContext(appContext);
   const currentUser = JSON.parse(
     localStorage.getItem("userProfileDetails")
   ).name;
@@ -54,9 +56,9 @@ const SchedulePlaydate = () => {
       .open({
         type: "loading",
         content: "Sending Playdate Request..",
-        duration: 1.5,
+        duration: 1,
       })
-      .then(() => message.success("Request sent successfully", 1.5))
+      .then(() => message.success("Request sent successfully", 1))
       .then(() => navigate("/main/playdate"));
   };
 
@@ -80,9 +82,9 @@ const SchedulePlaydate = () => {
         >
           <div className="flex-grow min-h-0 overflow-y-auto">
             <Form.Item
-              label="Location"
+              label="Playdate Location"
               name="location"
-              rules={[{ required: true, message: "Name is required" }]}
+              rules={[{ required: true, message: "Location is required" }]}
             >
               <Input placeholder="Enter name" size="large" />
             </Form.Item>
@@ -121,7 +123,7 @@ const SchedulePlaydate = () => {
           <div className="pt-2">
             <Form.Item className="mt-auto mb-0">
               <Button type="primary" htmlType="submit" size="large" block>
-                Request
+                Schedule Playdate
               </Button>
             </Form.Item>
           </div>

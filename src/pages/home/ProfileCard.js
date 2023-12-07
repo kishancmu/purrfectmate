@@ -69,7 +69,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
       <div className="flex justify-center gap-3 mt-auto">
         <Button
           type="primary"
-          className="flex-grow basis-1/2"
+          className="flex-grow basis-1/2 "
           danger
           icon={<CloseOutlined />}
           size="large"
@@ -79,7 +79,7 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
         </Button>
         <Button
           type="primary"
-          className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2"
+          className="bg-green-600 hover:bg-green-500 active:bg-green-700 flex-grow basis-1/2 "
           icon={<HeartFilled />}
           size="large"
           onClick={() => handleChoiceClick("disliked")}
@@ -92,9 +92,9 @@ const ProfileCard = ({ cardData, handleChoiceClick }) => {
     <div className="h-full w-full flex justify-center items-center">
       <div className="flex flex-col justify-center items-center">
         <PiDog className="text-9xl text-gray-400" />
-        <Title level={5 } className="text-gray-600 text-center">
-          Pawsitively fantastic! You’ve swiped through all the doggie
-          profiles. New furry friends join daily, so sniff around later for more
+        <Title level={5} className="text-gray-600 text-center">
+          Pawsitively fantastic! You’ve swiped through all the doggie profiles.
+          New furry friends join daily, so sniff around later for more
           tail-wagging connections. Happy woofing!
         </Title>
       </div>

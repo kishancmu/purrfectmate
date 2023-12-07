@@ -64,7 +64,7 @@ const Profile = () => {
             </Text>
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Age: </span>{" "}
-              {profileData.pet_details?.age}
+              {profileData.pet_details?.age} years
             </Text>
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Gender: </span>{" "}
@@ -75,15 +75,17 @@ const Profile = () => {
               {profileData.pet_details?.breed}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Vacciantion: </span>
+              <span className="font-semibold text-gray-600">Vaccination: </span>
               {profileData.pet_details?.vaccination}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Size: </span>{" "}
+              <span className="font-semibold text-gray-600">Size: </span>
               {profileData.pet_details?.size}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">Energy Level:</span>
+              <span className="font-semibold text-gray-600">
+                Energy Level:{" "}
+              </span>
               {profileData.pet_details?.energy}
             </Text>
             <Text className="text-base">

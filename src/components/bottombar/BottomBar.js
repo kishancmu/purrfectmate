@@ -23,7 +23,7 @@ const BottomBar = () => {
   return (
     <div className="flex items-center justify-center gap-10 bg-white min-h-[5rem] h-20 border border-solid border-r-0 border-l-0 border-b-0  border-gray-200">
       <div
-        className={"flex flex-col justify-center items-center"}
+        className={"flex flex-col justify-center items-center font-semibold"}
         onClick={() => handleTabClick("home")}
       >
         {pathName === "home" ? (
@@ -41,7 +41,7 @@ const BottomBar = () => {
         </span>
       </div>
       <div
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center font-semibold"
         onClick={() => handleTabClick("chats")}
       >
         {pathName === "chats" ? (
@@ -59,7 +59,7 @@ const BottomBar = () => {
         </span>
       </div>
       <div
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center font-semibold"
         onClick={() => handleTabClick("playdate")}
       >
         {pathName === "playdate" ? (
@@ -78,7 +78,7 @@ const BottomBar = () => {
       </div>
 
       <div
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center font-semibold"
         onClick={() => handleTabClick("account")}
       >
         {pathName === "account" ? (

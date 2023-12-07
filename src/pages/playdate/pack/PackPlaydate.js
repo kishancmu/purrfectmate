@@ -161,7 +161,7 @@ const PackPlaydate = () => {
           <div className="pt-2">
             <Form.Item className="mt-auto mb-0">
               <Button type="primary" htmlType="submit" size="large" block>
-                Create
+                Create Pack Playdate
               </Button>
             </Form.Item>
           </div>

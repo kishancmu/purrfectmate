@@ -156,7 +156,7 @@ const UserProfile = () => {
               rules={[{ required: true, message: "Location is required" }]}
               extra="We'll use this to find pet owners near you. You can enter city and state"
             >
-              <Input placeholder="City, States" size="large" />
+              <Input placeholder="City, State" size="large" />
             </Form.Item>
           </div>
 
