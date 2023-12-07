@@ -152,15 +152,13 @@ const StyleGuidePage = () => {
         <h2 className="bg-blue-600 py-3 px-3 text-white">Spacing</h2>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Buttons</h2>
         <div className="flex flex-col w-fit">
-          <Text className="text-blue-600  text-xl my-5">Primary Button</Text>
+          <p className="text-blue-600  text-xl my-5">Primary Button</p>
           <Button type="primary" size="large">
             Primary
           </Button>
-          <Text className="text-blue-600  text-xl my-5">Secondary Button</Text>
+          <p className="text-blue-600  text-xl my-5">Secondary Button</p>
           <Button size="large">Secondary</Button>
-          <Text className="text-blue-600  text-xl my-5">
-            Secondary Icon Button
-          </Text>
+          <p className="text-blue-600  text-xl my-5">Secondary Icon Button</p>
           <Button
             icon={<HiOutlineAdjustmentsHorizontal className="text-2xl" />}
             size="large"
@@ -196,6 +194,29 @@ const StyleGuidePage = () => {
         </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Icons</h2>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Dialogs</h2>
+        <div>
+          <p className="text-blue-600 text-xl">Modal</p>
+          <Button type="primary" onClick={showModal}>
+            Open Modal
+          </Button>
+          <Modal
+            title="Basic Modal"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
+        </div>
+        <div>
+          <p className="text-blue-600 text-xl">Success Message</p>
+          {contextHolder}
+          <Space>
+            <Button onClick={success}>Success</Button>
+          </Space>
+        </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Forms</h2>
         <div>
           <Form
@@ -466,29 +487,7 @@ const StyleGuidePage = () => {
               <Avatar shape="square" size={64} icon={<UserOutlined />} />
             </Space>
           </div>
-          <div>
-            <p className="text-blue-600 bold text-xl">Modal</p>
-            <Button type="primary" onClick={showModal}>
-              Open Modal
-            </Button>
-            <Modal
-              title="Basic Modal"
-              open={isModalOpen}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-            </Modal>
-          </div>
-          <div>
-            <p className="text-blue-600 bold text-xl">Success Message</p>
-            {contextHolder}
-            <Space>
-              <Button onClick={success}>Success</Button>
-            </Space>
-          </div>
+
           <div>
             <p className="text-blue-600 bold text-xl">Segment</p>
             <Segmented
