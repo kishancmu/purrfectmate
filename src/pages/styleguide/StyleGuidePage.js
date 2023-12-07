@@ -161,6 +161,72 @@ const StyleGuidePage = () => {
         </div>
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Color</h2>
+          <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col ">
+              <div className="bg-[#2563EB] w-28 h-28 "></div>
+              <p>#2563EB</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#1677FF] w-28 h-28 "></div>
+              <p>#1677FF</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#3B82F6] w-28 h-28 "></div>
+              <p>#3B82F6</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#DBEAFE] w-28 h-28 "></div>
+              <p>#DBEAFE</p>
+            </div>
+
+            <div className="flex flex-col ">
+              <div className="bg-[#030712] w-28 h-28 "></div>
+              <p>#030712</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#111827] w-28 h-28 "></div>
+              <p>#111827</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#000000E0] w-28 h-28 "></div>
+              <p>#000000E0</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#4B5563] w-28 h-28 "></div>
+              <p>#4B5563</p>
+            </div>
+
+            <div className="flex flex-col ">
+              <div className="bg-[#EFE7EB] w-28 h-28 "></div>
+              <p>#EFE7EB</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#F3F4F6] w-28 h-28 "></div>
+              <p>#F3F4F6</p>
+            </div>
+
+            <div className="flex flex-col ">
+              <div className="bg-[#E53935] w-28 h-28 "></div>
+              <p>#E53935</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#FF4D4F] w-28 h-28 "></div>
+              <p>#FF4D4F</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#FF9800] w-28 h-28 "></div>
+              <p>#FF9800</p>
+            </div>
+            <div className="flex flex-col ">
+              <div className="bg-[#F9A825] w-28 h-28 "></div>
+              <p>#F9A825</p>
+            </div>
+
+            <div className="flex flex-col ">
+              <div className="bg-[#16A34A] w-28 h-28 "></div>
+              <p>#16A34A</p>
+            </div>
+          </div>
         </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Typography</h2>
         <Title>Heading 1</Title>
