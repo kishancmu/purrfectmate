@@ -7,6 +7,7 @@ import {
   HeartFilled,
 } from "@ant-design/icons";
 import { IoPersonOutline } from "react-icons/io5";
+import Topbar from "../../components/topbar/Topbar";
 import {
   Button,
   Typography,
@@ -34,6 +35,7 @@ import signupBackground from "../../assets/images/signupBackground.svg";
 
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import BottomBar from "../../components/bottombar/BottomBar";
+import SecondaryTopbar from "../../components/secondary-topbar/SecondaryTopbar";
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -221,6 +223,7 @@ const StyleGuidePage = () => {
         <div>
           <Form
             name="basic"
+            layout="vertical"
             labelCol={{
               span: 8,
             }}
@@ -235,11 +238,11 @@ const StyleGuidePage = () => {
             }}
             autoComplete="off"
           >
-            <p className="text-blue-600 bold text-xl">Input (regular)</p>
+            <p className="text-blue-600 text-xl">Input (regular)</p>
             <Form.Item label="Username" name="username">
               <Input />
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Input (error)</p>
+            <p className="text-blue-600 text-xl">Input (error)</p>
             <Form.Item
               label="Username"
               name="username"
@@ -251,24 +254,27 @@ const StyleGuidePage = () => {
           </Form>
         </div>
         <div>
-          <p className="text-blue-600 bold text-xl">Password</p>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
+          <p className="text-blue-600 text-xl">Password</p>
+          <Form name="basic" layout="vertical">
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </Form>
         </div>
         <div>
           <Form
             name="validate_other"
             {...formItemLayout}
+            layout="vertical"
             onFinish={onFinish}
             initialValues={{
               "input-number": 33,
@@ -279,7 +285,7 @@ const StyleGuidePage = () => {
               maxWidth: 600,
             }}
           >
-            <p className="text-blue-600 bold text-xl">Dropdown List</p>
+            <p className="text-blue-600 text-xl">Dropdown List</p>
             <Form.Item
               name="select"
               label="Country"
@@ -297,7 +303,7 @@ const StyleGuidePage = () => {
                 <Option value="usa">United States of America</Option>
               </Select>
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">
+            <p className="text-blue-600 text-xl">
               Multiple Select Dropdown List
             </p>
             <Form.Item
@@ -320,7 +326,8 @@ const StyleGuidePage = () => {
                 <Option value="blue">Blue</Option>
               </Select>
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Numerical Input</p>
+
+            <p className="text-blue-600 text-xl">Numerical Input</p>
             <Form.Item label="Age">
               <Form.Item name="input-number" noStyle>
                 <InputNumber min={18} max={100} />
@@ -334,15 +341,15 @@ const StyleGuidePage = () => {
                 years
               </span>
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Slider</p>
-            <Form.Item className="px-2" label="Range(miles)" name="range">
+            <p className="text-blue-600 text-xl">Slider</p>
+            <Form.Item className="px-2" label="Range (miles)" name="range">
               <Slider min={1} max={100} />
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Rating</p>
-            <Form.Item name="rate" label="Rate your driver">
+            <p className="text-blue-600 text-xl">Rating</p>
+            <Form.Item name="rate" label="Rate your playdate">
               <Rate />
             </Form.Item>
-            <p className="text-blue-600 bold text-xl">Upload Photo</p>
+            <p className="text-blue-600 text-xl">Upload Photo</p>
             <Upload
               name="avatar"
               listType="picture-card"
@@ -365,11 +372,11 @@ const StyleGuidePage = () => {
               )}
             </Upload>
             <div>
-              <p className="text-blue-600 bold text-xl">Date Picker</p>
+              <p className="text-blue-600 text-xl">Date Picker</p>
               <DatePicker />
             </div>
             <div>
-              <p className="text-blue-600 bold text-xl">Time Picker</p>
+              <p className="text-blue-600 text-xl">Time Picker</p>
               <Form.Item
                 label="Time"
                 name="time"
@@ -380,7 +387,7 @@ const StyleGuidePage = () => {
               </Form.Item>
             </div>
             <div>
-              <p className="text-blue-600 bold text-xl">Text Area</p>
+              <p className="text-blue-600 text-xl">Text Area</p>
               <TextArea
                 rows={4}
                 placeholder="Fill in the description of your problem"
@@ -389,24 +396,7 @@ const StyleGuidePage = () => {
             </div>
           </Form>
         </div>
-        <div>
-          <h2 className="bg-blue-600 py-3 px-3 text-white">Loader Screens</h2>
-          <div>
-            <p className="text-blue-600 bold text-xl">Empty</p>
-            <Empty />
-          </div>
-        </div>
-        <div>
-          <p className="text-blue-600 bold text-xl">Skeleton</p>
-          <Skeleton.Image active="true" className="w-16 h-16" />
-          <Skeleton.Button
-            active="true"
-            size="large"
-            shape="square"
-            className="ml-2 h-6"
-          />
-          <Skeleton.Avatar active="true" size="default" shape="circle" />
-        </div>
+
         <h2 className="bg-blue-600 py-3 px-3 text-white">Design Patterns</h2>
         <p className="text-blue-600 my-4 text-xl">Password Strength Meter</p>
         <div className="flex flex-col w-60">
@@ -480,28 +470,57 @@ const StyleGuidePage = () => {
         </div>
 
         <div>
+          <h2 className="bg-blue-600 py-3 px-3 text-white">Loader Screens</h2>
+          <div>
+            <p className="text-blue-600 text-xl">Empty</p>
+            <Empty />
+          </div>
+        </div>
+        <p className="text-blue-600 text-xl">Skeleton</p>
+        <div className="flex items-center ">
+          <Skeleton.Image active="true" className="w-16 h-16" />
+          <Skeleton.Button
+            active="true"
+            size="large"
+            shape="square"
+            className="ml-2 h-6"
+          />
+          <Skeleton.Avatar
+            className="ml-4"
+            active="true"
+            size="default"
+            shape="circle"
+          />
+        </div>
+
+        <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Miscellaneous</h2>
           <div>
-            <p className="text-blue-600 bold text-xl">Avatar</p>
+            <p className="text-blue-600 text-xl">Avatar</p>
             <Space wrap size={16}>
               <Avatar shape="square" size={64} icon={<UserOutlined />} />
             </Space>
           </div>
 
           <div>
-            <p className="text-blue-600 bold text-xl">Segment</p>
+            <p className="text-blue-600 text-xl">Segment</p>
             <Segmented
               options={[123, 456, "longtext-longtext-longtext-longtext"]}
               block
             />
           </div>
           <div>
-            <p className="text-blue-600 bold text-xl">Image</p>
+            <p className="text-blue-600 text-xl">Image</p>
             <Image
               width={200}
               src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
             />
           </div>
+
+          <p className="text-blue-600 text-xl">Topbar</p>
+          <Topbar />
+          <p className="text-blue-600 text-xl">Secondary Topbar</p>
+          <SecondaryTopbar title="Secondary Topbar" showBackButton={true} />
         </div>
       </div>
     </div>
