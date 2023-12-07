@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { LoadingOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  UserOutlined,
+  CloseOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import {
   Button,
   Typography,
-  Checkbox,
   Form,
   Input,
-  Col,
   InputNumber,
-  Radio,
   Rate,
-  Row,
   Select,
   Slider,
   Space,
@@ -23,6 +25,7 @@ import {
   Modal,
   Image,
   Skeleton,
+  TimePicker,
 } from "antd";
 
 const getBase64 = (img, callback) => {
@@ -130,20 +133,31 @@ const StyleGuidePage = () => {
           </Button>
           <Button size="large">Secondary</Button>
           <Button type="text">Tertiary</Button>
-          <Button type="link">Link</Button>
+          <Button type="link" danger>
+            Link
+          </Button>
           <Button disabled size="large">
             Disabled
           </Button>
+          <Button
+            type="primary"
+            className="w-64"
+            danger
+            icon={<CloseOutlined />}
+            size="large"
+          >
+            Dislike
+          </Button>
+          <Button
+            type="primary"
+            className="bg-green-600 w-64"
+            icon={<HeartFilled />}
+            size="large"
+          >
+            Dislike
+          </Button>
         </div>
-
         <h2 className="bg-blue-600 py-3 px-3 text-white">Form Inputs</h2>
-        {/* <div>
-          <p className="text-blue-600 bold text-xl">Checkboxes</p>
-          <Checkbox>Checkbox (active)</Checkbox>
-          <Checkbox defaultChecked disabled>
-            Checkbox (inactive)
-          </Checkbox>
-        </div> */}
         <div>
           <Form
             name="basic"
@@ -261,35 +275,14 @@ const StyleGuidePage = () => {
               </span>
             </Form.Item>
             <p className="text-blue-600 bold text-xl">Slider</p>
-            <Form.Item name="slider" label="Score">
-              <Slider
-                marks={{
-                  0: "0%",
-                  20: "20%",
-                  40: "40%",
-                  60: "60%",
-                  80: "80%",
-                  100: "100%",
-                }}
-              />
+            <Form.Item className="px-2" label="Range(miles)" name="range">
+              <Slider min={1} max={100} />
             </Form.Item>
-
             <p className="text-blue-600 bold text-xl">Rating</p>
             <Form.Item name="rate" label="Rate your driver">
               <Rate />
             </Form.Item>
             <p className="text-blue-600 bold text-xl">Upload Photo</p>
-            {/* <Form.Item
-              name="upload"
-              label="Upload your photo"
-              valuePropName="fileList"
-              getValueFromEvent={normFile}
-              extra=".jpg, .jpeg, .png only"
-            >
-              <Upload name="logo" action="/upload.do" listType="picture">
-                <Button icon={<UploadOutlined />}>Click to upload</Button>
-              </Upload>
-            </Form.Item> */}
             <Upload
               name="avatar"
               listType="picture-card"
@@ -314,6 +307,17 @@ const StyleGuidePage = () => {
             <div>
               <p className="text-blue-600 bold text-xl">Date Picker</p>
               <DatePicker />
+            </div>
+            <div>
+              <p className="text-blue-600 bold text-xl">Time Picker</p>
+              <Form.Item
+                label="Time"
+                name="time"
+                className="basis-1/2"
+                rules={[{ required: true, message: "Time is required" }]}
+              >
+                <TimePicker format="HH:mm" className="w-full" size="large" />
+              </Form.Item>
             </div>
             <div>
               <p className="text-blue-600 bold text-xl">Text Area</p>
