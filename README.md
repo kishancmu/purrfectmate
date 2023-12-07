@@ -25,7 +25,16 @@
 ## Limitations
 
 **Incomplete or Hard-Coded Functionality**:
-1. **Real-time Communication**: No notification and online chat
-2. **Persistent Storage**: No database for saving user profiles, chat, pack information, etc
-3. **CRUD APIs**: No Restful endpoints or backened for passing/validating data
-4. **User Authentication**: No Login/Signup component to create or authenticate user profile via OAuth, email/password, etc.
+1. **Real-time Communication**: The application lacks real-time communication features, including notifications and online chat.
+2. **Persistent Storage**: There is no database implemented to store user profiles, chat history, pack information, playdates, etc.
+3. **CRUD APIs**: The absence of Restful endpoints or a backend system for passing and validating data.
+4. **User Authentication**: While login/signup functionality is present, it is limited to local storage for user authentication.
+
+**Additional Limitations**:
+5. **Location**: The application does not utilize location data to provide nearby match suggestions, and location auto-complete is not available. Users must manually input their location.
+6. **Notifications**: Real-time notifications for matches, playdates, and pack playdate requests are not implemented.
+7. **Real-time Matches**: The application lacks the capability for real-time matches; matches are hard-coded during user onboarding.
+8. **Profile Picture**: Users cannot upload profile pictures for pets and pet owners; all pictures in the app are hardcoded.
+9. **Search Filter**: Match settings only work for pets, gender, and age, limiting search criteria.
+10. **Single Account per Session**: Only one user account can be created and logged in at a time. Attempting to set up multiple user accounts on a single session will overwrite previous user data since the same local storage is used for the domain.
+11. **Device Compatibility**: The app is designed for mobile phones, and full functionality is only ensured in mobile view on the Google Chrome browser (with a minimum height of 667px and a width ranging from greater than 350px to less than 450px).
