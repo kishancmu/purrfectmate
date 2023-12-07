@@ -151,14 +151,13 @@ const StyleGuidePage = () => {
         <div className="h-28 w-28">
           <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
         </div>
-        <p className="text-blue-600  text-xl">Landing Page Image</p>
-        <div className="mt-5">
+        {/* <div className="mt-5">
           <img
             className="h-[250px] w-full"
             src={signupBackground}
             alt="girl with a dog"
           />
-        </div>
+        </div> */}
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Color</h2>
           <div className="flex flex-wrap gap-4">
@@ -235,6 +234,20 @@ const StyleGuidePage = () => {
         <Title level={4}>Heading 4</Title>
         <Title level={5}>Heading 5</Title>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Page Layout</h2>
+        <div className="h-[500px] w-[300px] border border-solid">
+          <div className="h-[10%] bg-blue-200 flex justify-center items-center">
+            Topbar
+          </div>
+          <div className="h-[10%] bg-blue-300 flex justify-center items-center">
+            Secondary Topbar
+          </div>
+          <div className="h-[70%] bg-blue-400 flex justify-center items-center">
+            Body
+          </div>
+          <div className="h-[10%] bg-blue-500 flex justify-center items-center">
+            Bottom Bar
+          </div>
+        </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Spacing</h2>
         <div className="flex gap-5">
           <span className="text-blue-600">Class</span>
