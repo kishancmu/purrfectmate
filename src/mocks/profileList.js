@@ -4,7 +4,7 @@ export const PROFILE_LIST = [
     isLiked: false,
     isDisliked: false,
     pet_details: {
-      name: "Coco",
+      name: "Tommy",
       age: 7,
       breed: "Labrador",
       vaccination: "Yes",
