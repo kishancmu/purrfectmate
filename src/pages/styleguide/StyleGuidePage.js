@@ -236,6 +236,45 @@ const StyleGuidePage = () => {
         <Title level={5}>Heading 5</Title>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Page Layout</h2>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Spacing</h2>
+        <div className="flex gap-5">
+          <span className="text-blue-600">Class</span>
+          <span className="text-blue-600">Size</span>
+          <span className="text-blue-600">Example</span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-0</span>
+          <span>0px</span>
+          <span></span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-1</span>
+          <span>4px</span>
+          <span className="w-[4px] h-[4px] bg-red-400"></span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-2</span>
+          <span>8px</span>
+          <span className="w-[8px] h-[8px] bg-red-400"></span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-5</span>
+          <span>12px</span>
+          <span className="w-[12px] h-[12px] bg-red-400"></span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-4</span>
+          <span>16px</span>
+          <span className="w-[16px] h-[16px] bg-red-400"></span>
+        </div>
+        <div className="flex gap-5">
+          <span>m/p[axis]-5</span>
+          <span>20px</span>
+          <span className="w-[20px] h-[20px] bg-red-400"></span>
+        </div>
+        <span className=" block mt-2">
+          p means padding, m means margin and axis are right, left, top, and
+          bottom{" "}
+        </span>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Buttons</h2>
         <div className="flex flex-col w-fit">
           <p className="text-blue-600  text-xl my-5">Primary Button</p>
