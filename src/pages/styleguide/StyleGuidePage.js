@@ -6,6 +6,7 @@ import {
   CloseOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import { IoPersonOutline } from "react-icons/io5";
 import {
   Button,
   Typography,
@@ -27,6 +28,10 @@ import {
   Skeleton,
   TimePicker,
 } from "antd";
+import PasswordStrengthBar from "react-password-strength-bar";
+
+import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import BottomBar from "../../components/bottombar/BottomBar";
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -47,9 +52,11 @@ const beforeUpload = (file) => {
 };
 
 const StyleGuidePage = () => {
-  const { Title } = Typography;
+  const { Title, Text } = Typography;
   const { TextArea } = Input;
+  const [password, setPassword] = useState("");
   const { Option } = Select;
+  const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const handleChange = (info) => {
@@ -115,10 +122,10 @@ const StyleGuidePage = () => {
   return (
     <div className="h-full w-full overflow-x-hidden overflow-y-auto p-4">
       <div>
-        <h1 className="text-blue-600">Style Guide</h1>
+        <h1 className="text-blue-600 text-center">Style Guide</h1>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Logo</h2>
         <div>
-          <h2 className="bg-blue-600 py-3 px-3 text-white">Colors</h2>
-          <div></div>
+          <h2 className="bg-blue-600 py-3 px-3 text-white">Color</h2>
         </div>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Typography</h2>
         <Title>Heading 1</Title>
@@ -126,19 +133,31 @@ const StyleGuidePage = () => {
         <Title level={3}>Heading 3</Title>
         <Title level={4}>Heading 4</Title>
         <Title level={5}>Heading 5</Title>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Page Layout</h2>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Spacing</h2>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Buttons</h2>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex flex-col w-fit">
+          <Text className="text-blue-600  text-xl my-5">Primary Button</Text>
           <Button type="primary" size="large">
             Primary
           </Button>
+          <Text className="text-blue-600  text-xl my-5">Secondary Button</Text>
           <Button size="large">Secondary</Button>
-          <Button type="text">Tertiary</Button>
-          <Button type="link" danger>
-            Link
+          <Text className="text-blue-600  text-xl my-5">
+            Secondary Icon Button
+          </Text>
+          <Button
+            icon={<HiOutlineAdjustmentsHorizontal className="text-2xl" />}
+            size="large"
+          ></Button>
+          <Text className="text-blue-600  text-xl my-5">
+            Tertiary Button (Danger)
+          </Text>
+          <Button type="text" danger size="large">
+            Tertiary
           </Button>
-          <Button disabled size="large">
-            Disabled
-          </Button>
+
+          <Text className="text-blue-600  text-xl my-5">Danger Button</Text>
           <Button
             type="primary"
             className="w-64"
@@ -148,6 +167,9 @@ const StyleGuidePage = () => {
           >
             Danger
           </Button>
+          <Text className="text-blue-600  text-xl my-5">
+            Success Button (Large)
+          </Text>
           <Button
             type="primary"
             className="bg-green-600 w-64"
@@ -157,7 +179,9 @@ const StyleGuidePage = () => {
             Success
           </Button>
         </div>
-        <h2 className="bg-blue-600 py-3 px-3 text-white">Form Inputs</h2>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Icons</h2>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Dialogs</h2>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Forms</h2>
         <div>
           <Form
             name="basic"
@@ -347,6 +371,78 @@ const StyleGuidePage = () => {
           />
           <Skeleton.Avatar active="true" size="default" shape="circle" />
         </div>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Design Patterns</h2>
+        <p className="text-blue-600 my-4 text-xl">Password Strength Meter</p>
+        <div className="flex flex-col w-60">
+          <Input.Password
+            placeholder="input password"
+            className="mb-2"
+            size="large"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <PasswordStrengthBar
+            password={password}
+            className="passwordStrength"
+            scoreWordClassName="sds"
+          />
+        </div>
+
+        <p className="text-blue-600 my-4 text-xl">Input Feedback</p>
+        <Form
+          name="normal_login"
+          form={form}
+          layout="vertical"
+          scrollToFirstError={true}
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Email cannot be empty!" },
+              {
+                pattern: new RegExp(/^\S+@\S+\.\S+$/),
+                message: "Enter valid email address!",
+              },
+            ]}
+          >
+            <Input placeholder="Enter Email Address" size="large" />
+          </Form.Item>
+        </Form>
+
+        <p className="text-blue-600 my-4 text-xl">Navigation Tabs</p>
+        <div className="w-fit">
+          <BottomBar />
+        </div>
+
+        <p className="text-blue-600 my-4 text-xl">Search Filters</p>
+
+        <div className="flex justify-start items-center">
+          <IoPersonOutline className="text-2xl mr-1" />
+          <Text className="text-xl font-semibold">Owner Settings</Text>
+        </div>
+
+        <div className="flex mt-4">
+          <Form.Item name="owner_gender" label="Gender" className="w-1/2 pr-2">
+            <Select
+              placeholder="Select gender"
+              allowClear
+              mode="multiple"
+              maxTagCount="responsive"
+              size="large"
+              options={[
+                { value: "Male", label: "Male" },
+                { value: "Female", label: "Female" },
+                { value: "Others", label: "Others" },
+              ]}
+            ></Select>
+          </Form.Item>
+          <Form.Item className="w-1/2 px-2" label="Age(18-80)" name="owner_age">
+            <Slider min={18} max={80} />
+          </Form.Item>
+        </div>
+
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Miscellaneous</h2>
           <div>
