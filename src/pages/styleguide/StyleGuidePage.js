@@ -29,6 +29,8 @@ import {
   TimePicker,
 } from "antd";
 import PasswordStrengthBar from "react-password-strength-bar";
+import appLogo from "../../assets/images/appLogo.svg";
+import signupBackground from "../../assets/images/signupBackground.svg";
 
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import BottomBar from "../../components/bottombar/BottomBar";
@@ -124,6 +126,19 @@ const StyleGuidePage = () => {
       <div>
         <h1 className="text-blue-600 text-center">Style Guide</h1>
         <h2 className="bg-blue-600 py-3 px-3 text-white">Logo</h2>
+        <p className="text-blue-600  text-xl">Main Logo</p>
+        <div className="h-28 w-28">
+          <img className="h-full w-full" src={appLogo} alt="girl with a dog" />
+        </div>
+
+        <p className="text-blue-600  text-xl">Landing Page Image</p>
+        <div className="mt-5">
+          <img
+            className="h-[250px] w-full"
+            src={signupBackground}
+            alt="girl with a dog"
+          />
+        </div>
         <div>
           <h2 className="bg-blue-600 py-3 px-3 text-white">Color</h2>
         </div>
