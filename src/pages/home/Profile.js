@@ -1,4 +1,3 @@
-import petImage from "../../assets/images/petProfileImage.jpeg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Typography, Button, Rate, Image } from "antd";
@@ -15,7 +14,6 @@ const Profile = () => {
   useEffect(() => {
     const raw = JSON.parse(localStorage.getItem("profileList"));
     let rawd = raw.filter((n) => n.id === parseInt(profileID));
-    console.log(rawd);
     setProfileData(rawd[0]);
   }, []);
 
@@ -89,8 +87,8 @@ const Profile = () => {
               {profileData.pet_details?.energy}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">PlayStyle: </span>
-              {profileData.pet_details?.playstyle}
+              <span className="font-semibold text-gray-600">Personality: </span>
+              {profileData.pet_details?.personality}
             </Text>
             <Text className="text-base">
               <span className="font-semibold text-gray-600">Location: </span>

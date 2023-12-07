@@ -1,4 +1,3 @@
-import petImage from "../../../assets/images/petProfileImage.jpeg";
 import { useNavigate, useParams } from "react-router-dom";
 import { Typography, Button, Rate } from "antd";
 import SecondaryTopbar from "../../../components/secondary-topbar/SecondaryTopbar";
@@ -66,7 +65,7 @@ const PlayDateProfile = () => {
               {matchedProfile.pet_details?.energy}
             </Text>
             <Text className="text-base">
-              <span className="font-semibold text-gray-600">PlayStyle: </span>
+              <span className="font-semibold text-gray-600">Personality: </span>
               {matchedProfile.pet_details?.personality}
             </Text>
             <Text className="text-base">
