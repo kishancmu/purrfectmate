@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { InboxOutlined, UploadOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  UploadOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Typography,
@@ -14,7 +19,6 @@ import {
   Select,
   Slider,
   Space,
-  Switch,
   Upload,
   Avatar,
   Empty,
@@ -24,13 +28,57 @@ import {
   Modal,
   Image,
   Skeleton,
-  Divider,
 } from "antd";
+
+const getBase64 = (img, callback) => {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+
+const beforeUpload = (file) => {
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  if (!isJpgOrPng) {
+    message.error("You can only upload JPG/PNG file!");
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error("Image must smaller than 2MB!");
+  }
+  return isJpgOrPng && isLt2M;
+};
 
 const StyleGuidePage = () => {
   const { Title } = Typography;
   const { TextArea } = Input;
   const { Option } = Select;
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
+  const handleChange = (info) => {
+    if (info.file.status === "uploading") {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (url) => {
+        setLoading(false);
+        setImageUrl(url);
+      });
+    }
+  };
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
   const formItemLayout = {
     labelCol: {
       span: 6,
@@ -74,14 +122,12 @@ const StyleGuidePage = () => {
           <h2 className="bg-blue-600 py-3 px-3 text-white">Colors</h2>
           <div></div>
         </div>
-        <Divider />
         <h2 className="bg-blue-600 py-3 px-3 text-white">Typography</h2>
         <Title>Heading 1</Title>
         <Title level={2}>Heading 2</Title>
         <Title level={3}>Heading 3</Title>
         <Title level={4}>Heading 4</Title>
         <Title level={5}>Heading 5</Title>
-        <Divider />
         <h2 className="bg-blue-600 py-3 px-3 text-white">Buttons</h2>
         <div className="flex gap-4 flex-wrap">
           <Button type="primary" size="large">
@@ -95,14 +141,14 @@ const StyleGuidePage = () => {
           </Button>
         </div>
 
-        <h2 className="bg-blue-600 py-3 px-3 text-white">Inputs</h2>
-        <div>
-          <p>Checkboxes</p>
+        <h2 className="bg-blue-600 py-3 px-3 text-white">Form Inputs</h2>
+        {/* <div>
+          <p className="text-blue-600 bold text-xl">Checkboxes</p>
           <Checkbox>Checkbox (active)</Checkbox>
           <Checkbox defaultChecked disabled>
             Checkbox (inactive)
           </Checkbox>
-        </div>
+        </div> */}
         <div>
           <Form
             name="basic"
@@ -120,11 +166,11 @@ const StyleGuidePage = () => {
             }}
             autoComplete="off"
           >
-            <p>Input (regular)</p>
+            <p className="text-blue-600 bold text-xl">Input (regular)</p>
             <Form.Item label="Username" name="username">
               <Input />
             </Form.Item>
-            <p>Input (error)</p>
+            <p className="text-blue-600 bold text-xl">Input (error)</p>
             <Form.Item
               label="Username"
               name="username"
@@ -136,7 +182,7 @@ const StyleGuidePage = () => {
           </Form>
         </div>
         <div>
-          <p>Password</p>
+          <p className="text-blue-600 bold text-xl">Password</p>
           <Form.Item
             label="Password"
             name="password"
@@ -151,13 +197,12 @@ const StyleGuidePage = () => {
           </Form.Item>
         </div>
         <div>
-          <p>Form</p>
           <Form
             name="validate_other"
             {...formItemLayout}
             onFinish={onFinish}
             initialValues={{
-              "input-number": 3,
+              "input-number": 33,
               "checkbox-group": ["A", "B"],
               rate: 3.5,
             }}
@@ -165,12 +210,10 @@ const StyleGuidePage = () => {
               maxWidth: 600,
             }}
           >
-            <Form.Item label="Plain Text">
-              <span className="ant-form-text">China</span>
-            </Form.Item>
+            <p className="text-blue-600 bold text-xl">Dropdown List</p>
             <Form.Item
               name="select"
-              label="Select"
+              label="Country"
               hasFeedback
               rules={[
                 {
@@ -180,14 +223,17 @@ const StyleGuidePage = () => {
               ]}
             >
               <Select placeholder="Please select a country">
-                <Option value="china">China</Option>
-                <Option value="usa">U.S.A</Option>
+                <Option value="china">India</Option>
+                <Option value="usa">China</Option>
+                <Option value="usa">United States of America</Option>
               </Select>
             </Form.Item>
-
+            <p className="text-blue-600 bold text-xl">
+              Multiple Select Dropdown List
+            </p>
             <Form.Item
               name="select-multiple"
-              label="Select[multiple]"
+              label="Favorite Colors"
               rules={[
                 {
                   required: true,
@@ -205,10 +251,10 @@ const StyleGuidePage = () => {
                 <Option value="blue">Blue</Option>
               </Select>
             </Form.Item>
-
-            <Form.Item label="InputNumber">
+            <p className="text-blue-600 bold text-xl">Numerical Input</p>
+            <Form.Item label="Age">
               <Form.Item name="input-number" noStyle>
-                <InputNumber min={1} max={10} />
+                <InputNumber min={18} max={100} />
               </Form.Item>
               <span
                 className="ant-form-text"
@@ -216,38 +262,34 @@ const StyleGuidePage = () => {
                   marginLeft: 8,
                 }}
               >
-                machines
+                years
               </span>
             </Form.Item>
-
-            <Form.Item name="switch" label="Switch" valuePropName="checked">
-              <Switch />
-            </Form.Item>
-
-            <Form.Item name="slider" label="Slider">
+            <p className="text-blue-600 bold text-xl">Slider</p>
+            <Form.Item name="slider" label="Score">
               <Slider
                 marks={{
-                  0: "A",
-                  20: "B",
-                  40: "C",
-                  60: "D",
-                  80: "E",
-                  100: "F",
+                  0: "0%",
+                  20: "20%",
+                  40: "40%",
+                  60: "60%",
+                  80: "80%",
+                  100: "100%",
                 }}
               />
             </Form.Item>
-
-            <Form.Item name="radio-group" label="Radio.Group">
+            <p className="text-blue-600 bold text-xl">Radio Button (Type 1)</p>
+            <Form.Item name="radio-group" label="Sex">
               <Radio.Group>
-                <Radio value="a">item 1</Radio>
-                <Radio value="b">item 2</Radio>
-                <Radio value="c">item 3</Radio>
+                <Radio value="a">Male</Radio>
+                <Radio value="b">Female</Radio>
+                <Radio value="c">Others</Radio>
               </Radio.Group>
             </Form.Item>
-
+            <p className="text-blue-600 bold text-xl">Radio Button (Type 2)</p>
             <Form.Item
               name="radio-button"
-              label="Radio.Button"
+              label="Eye Color"
               rules={[
                 {
                   required: true,
@@ -256,13 +298,13 @@ const StyleGuidePage = () => {
               ]}
             >
               <Radio.Group>
-                <Radio.Button value="a">item 1</Radio.Button>
-                <Radio.Button value="b">item 2</Radio.Button>
-                <Radio.Button value="c">item 3</Radio.Button>
+                <Radio.Button value="a">Black</Radio.Button>
+                <Radio.Button value="b">Brown</Radio.Button>
+                <Radio.Button value="c">Other</Radio.Button>
               </Radio.Group>
             </Form.Item>
-
-            <Form.Item name="checkbox-group" label="Checkbox.Group">
+            <p className="text-blue-600 bold text-xl">Checkboxes</p>
+            <Form.Item name="checkbox-group" label="Nationality">
               <Checkbox.Group>
                 <Row>
                   <Col span={8}>
@@ -272,7 +314,7 @@ const StyleGuidePage = () => {
                         lineHeight: "32px",
                       }}
                     >
-                      A
+                      Indian
                     </Checkbox>
                   </Col>
                   <Col span={8}>
@@ -283,7 +325,7 @@ const StyleGuidePage = () => {
                       }}
                       disabled
                     >
-                      B
+                      American
                     </Checkbox>
                   </Col>
                   <Col span={8}>
@@ -293,7 +335,7 @@ const StyleGuidePage = () => {
                         lineHeight: "32px",
                       }}
                     >
-                      C
+                      Chinese
                     </Checkbox>
                   </Col>
                   <Col span={8}>
@@ -303,7 +345,7 @@ const StyleGuidePage = () => {
                         lineHeight: "32px",
                       }}
                     >
-                      D
+                      Dutch
                     </Checkbox>
                   </Col>
                   <Col span={8}>
@@ -313,7 +355,7 @@ const StyleGuidePage = () => {
                         lineHeight: "32px",
                       }}
                     >
-                      E
+                      Filipino
                     </Checkbox>
                   </Col>
                   <Col span={8}>
@@ -323,126 +365,72 @@ const StyleGuidePage = () => {
                         lineHeight: "32px",
                       }}
                     >
-                      F
+                      German
                     </Checkbox>
                   </Col>
                 </Row>
               </Checkbox.Group>
             </Form.Item>
-
-            <Form.Item name="rate" label="Rate">
+            <p className="text-blue-600 bold text-xl">Rating</p>
+            <Form.Item name="rate" label="Rate your driver">
               <Rate />
             </Form.Item>
-
-            <Form.Item
+            <p className="text-blue-600 bold text-xl">Upload Photo</p>
+            {/* <Form.Item
               name="upload"
-              label="Upload"
+              label="Upload your photo"
               valuePropName="fileList"
               getValueFromEvent={normFile}
-              extra="Additional information"
+              extra=".jpg, .jpeg, .png only"
             >
               <Upload name="logo" action="/upload.do" listType="picture">
                 <Button icon={<UploadOutlined />}>Click to upload</Button>
               </Upload>
-            </Form.Item>
+            </Form.Item> */}
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+              beforeUpload={beforeUpload}
+              onChange={handleChange}
+            >
+              {imageUrl ? (
+                <img
+                  src={imageUrl}
+                  alt="avatar"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              ) : (
+                uploadButton
+              )}
+            </Upload>
             <div>
-              <p>Date Picker</p>
+              <p className="text-blue-600 bold text-xl">Date Picker</p>
               <DatePicker />
             </div>
             <div>
-              <p>Text Area</p>
-              <TextArea rows={4} placeholder="maxLength is 6" maxLength={6} />
+              <p className="text-blue-600 bold text-xl">Text Area</p>
+              <TextArea
+                rows={4}
+                placeholder="Fill in the description of your problem"
+                maxLength={6}
+              />
             </div>
-            <Form.Item label="Dragger">
-              <Form.Item
-                name="dragger"
-                valuePropName="fileList"
-                getValueFromEvent={normFile}
-                noStyle
-              >
-                <Upload.Dragger name="files" action="/upload.do">
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">
-                    Click or drag file to this area to upload
-                  </p>
-                  <p className="ant-upload-hint">
-                    Support for a single or bulk upload.
-                  </p>
-                </Upload.Dragger>
-              </Form.Item>
-            </Form.Item>
-            <Form.Item
-              wrapperCol={{
-                span: 12,
-                offset: 6,
-              }}
-            >
-              <Space>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-                <Button htmlType="reset">Reset</Button>
-              </Space>
-            </Form.Item>
           </Form>
         </div>
-        <Divider />
         <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Avatar</p>
-          <Space wrap size={16}>
-            <Avatar shape="square" size={64} icon={<UserOutlined />} />
-          </Space>
-        </div>
-        <Divider />
-        <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Empty</p>
-          <Empty />
+          <h2 className="bg-blue-600 py-3 px-3 text-white">Loader Screens</h2>
+          <div>
+            <p className="text-blue-600 bold text-xl">Empty</p>
+            <Empty />
+          </div>
         </div>
         <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Segment</p>
-          <Segmented
-            options={[123, 456, "longtext-longtext-longtext-longtext"]}
-            block
-          />
-        </div>
-        <Divider />
-        <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Success Message</p>
-          {contextHolder}
-          <Space>
-            <Button onClick={success}>Success</Button>
-          </Space>
-        </div>
-        <Divider />
-        <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Modal</p>
-          <Button type="primary" onClick={showModal}>
-            Open Modal
-          </Button>
-          <Modal
-            title="Basic Modal"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </Modal>
-        </div>
-        <Divider />
-        <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Image</p>
-          <Image
-            width={200}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <Divider />
-        <div>
-          <p className="bg-blue-600 py-3 px-3 text-white">Skeleton</p>
+          <p className="text-blue-600 bold text-xl">Skeleton</p>
           <Skeleton.Image active="true" className="w-16 h-16" />
           <Skeleton.Button
             active="true"
@@ -451,6 +439,52 @@ const StyleGuidePage = () => {
             className="ml-2 h-6"
           />
           <Skeleton.Avatar active="true" size="default" shape="circle" />
+        </div>
+        <div>
+          <h2 className="bg-blue-600 py-3 px-3 text-white">Miscellaneous</h2>
+          <div>
+            <p className="text-blue-600 bold text-xl">Avatar</p>
+            <Space wrap size={16}>
+              <Avatar shape="square" size={64} icon={<UserOutlined />} />
+            </Space>
+          </div>
+          <div>
+            <p className="text-blue-600 bold text-xl">Modal</p>
+            <Button type="primary" onClick={showModal}>
+              Open Modal
+            </Button>
+            <Modal
+              title="Basic Modal"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </Modal>
+          </div>
+          <div>
+            <p className="text-blue-600 bold text-xl">Success Message</p>
+            {contextHolder}
+            <Space>
+              <Button onClick={success}>Success</Button>
+            </Space>
+          </div>
+          <div>
+            <p className="text-blue-600 bold text-xl">Segment</p>
+            <Segmented
+              options={[123, 456, "longtext-longtext-longtext-longtext"]}
+              block
+            />
+          </div>
+          <div>
+            <p className="text-blue-600 bold text-xl">Image</p>
+            <Image
+              width={200}
+              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            />
+          </div>
         </div>
       </div>
     </div>
