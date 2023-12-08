@@ -149,7 +149,7 @@ const PackPlaydate = () => {
                 maxTagCount="responsive"
                 size="large"
                 options={[
-                  { value: "Tommy", label: "Tommy" },
+                  { value: "Mocha", label: "Mocha" },
                   { value: "Danny", label: "Danny" },
                   { value: "Maddy", label: "Maddy" },
                   { value: "Jojo", label: "Jojo" },

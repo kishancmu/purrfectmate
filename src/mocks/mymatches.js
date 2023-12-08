@@ -1,9 +1,9 @@
 export const MY_MATCHES = [
   {
     id: 1,
-    owner_name: "Jane Jacob",
-    name: "Tommy",
-    profile_image: "/assets/petimages/petProfileImage3.webp",
+    owner_name: "Frank Zeng",
+    name: "Mocha",
+    profile_image: "/assets/petimages/petProfileImage7.webp",
     past_playdates: [],
   },
   {
